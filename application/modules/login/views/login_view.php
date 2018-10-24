@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="body">
 
                 <form id="sign_in" action="<?php echo base_url('login/autentikasi'); ?>" method="POST" enctype="multipart/form-data">
-                    <div class="msg"> Laporan Pengoperasian Jalan Tol </div>
+                    <div class="msg"> Sistem Aplikasi Monitoring Jabatan </div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
