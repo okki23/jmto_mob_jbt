@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Departemen extends Parent_Controller {
  
   var $nama_tabel = 'm_departemen';
-  var $daftar_field = array('id','id_divisi','nama_department');
+  var $daftar_field = array('id','id_divisi','nama_departemen');
   var $primary_key = 'id';
   
  	public function __construct(){
@@ -25,14 +25,21 @@ class Departemen extends Parent_Controller {
    
 	}
  
-  public function fetch_departemen(){  
+  	public function fetch_departemen(){  
        $getdata = $this->m_departemen->fetch_departemen();
        echo json_encode($getdata);   
-  }  
+  	}
+
+  	public function fetch_divisi(){  
+       $getdata = $this->m_departemen->fetch_divisi();
+       echo json_encode($getdata);   
+  	}  
 	 
 	public function get_data_edit(){
-		$id = $this->uri->segment(3); 
-		$get = $this->db->where($this->primary_key,$id)->get($this->nama_tabel)->row();
+		$id = $this->uri->segment(3);
+		$sql = "select a.*,b.nama_divisi from m_departemen a
+				left join m_divisi b on b.id = a.id_divisi where a.id = '".$id."' ";
+		$get = $this->db->query($sql)->row();
 		echo json_encode($get,TRUE);
 	}
 	 

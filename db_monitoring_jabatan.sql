@@ -10,25 +10,68 @@ Target Server Type    : MYSQL
 Target Server Version : 100135
 File Encoding         : 65001
 
-Date: 2018-10-24 15:27:11
+Date: 2018-10-24 17:11:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for m_department
+-- Table structure for jurusan
 -- ----------------------------
-DROP TABLE IF EXISTS `m_department`;
-CREATE TABLE `m_department` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `id_divisi` int(10) DEFAULT NULL,
-  `nama_department` varchar(100) DEFAULT NULL,
+DROP TABLE IF EXISTS `jurusan`;
+CREATE TABLE `jurusan` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_jurusan` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of m_department
+-- Records of jurusan
 -- ----------------------------
+INSERT INTO `jurusan` VALUES ('1', 'Teknik Elektro');
+INSERT INTO `jurusan` VALUES ('2', 'Pariwisata');
+INSERT INTO `jurusan` VALUES ('3', 'Akuntansi');
+INSERT INTO `jurusan` VALUES ('4', 'Teknik Mesin');
+INSERT INTO `jurusan` VALUES ('5', 'Teknik Sipil');
+INSERT INTO `jurusan` VALUES ('6', 'Administrasi Niaga');
+
+-- ----------------------------
+-- Table structure for mahasiswa
+-- ----------------------------
+DROP TABLE IF EXISTS `mahasiswa`;
+CREATE TABLE `mahasiswa` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
+  `id_prodi` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mahasiswa
+-- ----------------------------
+INSERT INTO `mahasiswa` VALUES ('3', 'Kresna', '1', '31');
+INSERT INTO `mahasiswa` VALUES ('4', 'Agus', '1', '31');
+INSERT INTO `mahasiswa` VALUES ('5', 'Adi', '1', '32');
+INSERT INTO `mahasiswa` VALUES ('6', 'Okki', '4', '22');
+
+-- ----------------------------
+-- Table structure for m_departemen
+-- ----------------------------
+DROP TABLE IF EXISTS `m_departemen`;
+CREATE TABLE `m_departemen` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id_divisi` int(10) DEFAULT NULL,
+  `nama_departemen` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of m_departemen
+-- ----------------------------
+INSERT INTO `m_departemen` VALUES ('1', '1', 'IT Services');
+INSERT INTO `m_departemen` VALUES ('2', '1', 'Operation Support System');
+INSERT INTO `m_departemen` VALUES ('4', '1', 'HH Depart');
 
 -- ----------------------------
 -- Table structure for m_direktorat
@@ -38,11 +81,14 @@ CREATE TABLE `m_direktorat` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nama_direktorat` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_direktorat
 -- ----------------------------
+INSERT INTO `m_direktorat` VALUES ('1', 'Direktur Utama');
+INSERT INTO `m_direktorat` VALUES ('3', 'Direktur Teknik & Operasi');
+INSERT INTO `m_direktorat` VALUES ('4', 'Direktur Keuangan & SDM');
 
 -- ----------------------------
 -- Table structure for m_divisi
@@ -53,11 +99,14 @@ CREATE TABLE `m_divisi` (
   `id_direktorat` int(10) DEFAULT NULL,
   `nama_divisi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_divisi
 -- ----------------------------
+INSERT INTO `m_divisi` VALUES ('1', '3', 'Information Technology');
+INSERT INTO `m_divisi` VALUES ('2', '3', 'Operation Management');
+INSERT INTO `m_divisi` VALUES ('5', '3', 'Divisi pengembangan');
 
 -- ----------------------------
 -- Table structure for m_formasi_jabatan
@@ -170,4 +219,33 @@ CREATE TABLE `m_user` (
 -- ----------------------------
 INSERT INTO `m_user` VALUES ('1', 'admin', 'YQ==', null, null, null, null);
 INSERT INTO `m_user` VALUES ('2', 'rere', 'YQ==', null, null, null, null);
+
+-- ----------------------------
+-- Table structure for prodi
+-- ----------------------------
+DROP TABLE IF EXISTS `prodi`;
+CREATE TABLE `prodi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_prodi` varchar(255) NOT NULL,
+  `jenjang` char(2) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of prodi
+-- ----------------------------
+INSERT INTO `prodi` VALUES ('11', 'Teknik Sipil', 'D3', '5');
+INSERT INTO `prodi` VALUES ('12', 'Manajemen Proyek Konstruksi', 'D4', '5');
+INSERT INTO `prodi` VALUES ('21', 'Teknik Mesin', 'D3', '4');
+INSERT INTO `prodi` VALUES ('22', 'Tata Pendingin dan Tata Udara', 'D3', '4');
+INSERT INTO `prodi` VALUES ('31', 'Teknik Listrik', 'D3', '1');
+INSERT INTO `prodi` VALUES ('32', 'Manajemen Informatika', 'D3', '1');
+INSERT INTO `prodi` VALUES ('61', 'Akuntansi', 'D3', '3');
+INSERT INTO `prodi` VALUES ('64', 'Akuntansi Manajerial', 'D4', '3');
+INSERT INTO `prodi` VALUES ('71', 'Administrasi Bisnis', 'D3', '6');
+INSERT INTO `prodi` VALUES ('74', 'Manajemen Bisnis Internasional', 'D4', '6');
+INSERT INTO `prodi` VALUES ('81', 'Usaha Perjalanan Wisata', 'D3', '2');
+INSERT INTO `prodi` VALUES ('82', 'Perhotelan', 'D3', '2');
+INSERT INTO `prodi` VALUES ('83', 'Manajemen Bisnis Pariwisata', 'D4', '2');
 SET FOREIGN_KEY_CHECKS=1;
