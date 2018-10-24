@@ -138,21 +138,21 @@
                     </li> 
                     <li class="header">Master</li> 
                     <li>
-                        <a href="<?php echo base_url('gardu'); ?>">
+                        <a href="<?php echo base_url('direktorat'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Gardu</span>
+                            <span>Direktorat</span>
                         </a>
                     </li> 
                     <li>
-                        <a href="<?php echo base_url('jenis_gardu'); ?>">
+                        <a href="<?php echo base_url('divisi'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Jenis Gardu</span>
+                            <span>Divisi</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('gerbang'); ?>">
+                        <a href="<?php echo base_url('departemen'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Gerbang</span>
+                            <span>Departemen</span>
                         </a>
                     </li> 
                     <li>
