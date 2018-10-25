@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Departemen
+                               Seksi
                             </h2>
                             <br>
                             <a href="javascript:void(0);" id="addmodal" class="btn btn-primary waves-effect">  <i class="material-icons">add_circle</i>  Tambah Data </a>
@@ -23,12 +23,10 @@
   
 									<thead>
 										<tr>
-											<th style="width:5%;">No</th>
-                                            
-											<th style="width:5%;">Nama Divisi</th>
-                                            <th style="width:5%;">Nama Departemen</th> 
-							 
-											<th style="width:10%;">Opsi</th> 
+											<th style="width:5%;">No</th> 
+                                            <th style="width:10%;">Nama Departemen</th>  
+											<th style="width:10%;">Nama Seksi</th>  
+											<th style="width:5%;">Opsi</th> 
 										</tr>
 									</thead> 
 								</table> 
@@ -54,24 +52,25 @@
                         <div class="modal-body">
                               <form method="post" id="user_form" enctype="multipart/form-data">   
                                  
-                                    <input type="text" name="id" id="id"> 
-
-									<div class="input-group">
+                                    <input type="hidden" name="id" id="id"> 
+									 
+                                    <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_divisi" id="nama_divisi" class="form-control" required readonly="readonly" >
-                                                    <input type="text" name="id_divisi" id="id_divisi" required>
+                                                    <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" required readonly="readonly" >
+                                                    <input type="hidden" name="id_departemen" id="id_departemen" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
-                                                    <button type="button" onclick="CariDivisi();" class="btn btn-primary"> Pilih Divisi... </button>
+                                                    <button type="button" onclick="CariDepartemen();" class="btn btn-primary"> Pilih departemen... </button>
                                                 </span>
                                     </div>
-
 									<div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" placeholder="Nama departemen" />
+                                            <input type="text" name="nama_seksi" id="nama_seksi" class="form-control" placeholder="Nama seksi" />
                                         </div>
                                     </div>
+
+
 									 
 
 								   <button type="button" onclick="Simpan_Data();" class="btn btn-success waves-effect"> <i class="material-icons">save</i> Simpan</button>
@@ -83,14 +82,14 @@
                     </div>
                 </div>
     </div>
-
+			
 
     <!-- modal cari ruas -->
-    <div class="modal fade" id="CariDivisiModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="CariDepartemenModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" >Cari Divisi</h4>
+                            <h4 class="modal-title" >Cari Departemen</h4>
                         </div>
                         <div class="modal-body">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
@@ -98,14 +97,14 @@
                                 <br>
                                 <hr>
 
-                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_divisi" >
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_departemen" >
   
                                     <thead>
                                         <tr>  
-                                            <th style="width:98%;">Nama Divisi </th> 
+                                            <th style="width:98%;">Nama Departemen </th> 
                                          </tr>
                                     </thead> 
-                                    <tbody id="daftar_divisix">
+                                    <tbody id="daftar_departemenx">
 
                                 </tbody>
                                 </table> 
@@ -115,51 +114,48 @@
                 </div>
     </div>
 
-			
  
    <script type="text/javascript">
 	
-
-    $('#daftar_divisi').DataTable( {
-            "ajax": "<?php echo base_url(); ?>departemen/fetch_divisi"           
-    });
+        $('#daftar_departemen').DataTable( {
+            "ajax": "<?php echo base_url(); ?>seksi/fetch_departemen"           
+        });
 
      
      
-    function CariDivisi(){
-        $("#CariDivisiModal").modal({backdrop: 'static', keyboard: false,show:true});
+    function CariDepartemen(){
+        $("#CariDepartemenModal").modal({backdrop: 'static', keyboard: false,show:true});
     } 
    
         
-        var daftar_divisi = $('#daftar_divisi').DataTable();
+        var daftar_departemen = $('#daftar_departemen').DataTable();
      
-        $('#daftar_divisi tbody').on('click', 'tr', function () {
+        $('#daftar_departemen tbody').on('click', 'tr', function () {
             
-            var content = daftar_divisi.row(this).data()
+            var content = daftar_departemen.row(this).data()
             console.log(content);
-            $("#nama_divisi").val(content[0]);
-            $("#id_divisi").val(content[1]);
-            $("#CariDivisiModal").modal('hide');
+            $("#nama_departemen").val(content[0]);
+            $("#id_departemen").val(content[1]);
+            $("#CariDepartemenModal").modal('hide');
         } );
 
        
- 
        
 	 function Ubah_Data(id){
 		$("#defaultModalLabel").html("Form Ubah Data");
 		$("#defaultModal").modal('show');
  
 		$.ajax({
-			 url:"<?php echo base_url(); ?>departemen/get_data_edit/"+id,
+			 url:"<?php echo base_url(); ?>seksi/get_data_edit/"+id,
 			 type:"GET",
 			 dataType:"JSON", 
 			 success:function(result){ 
                   
 				 $("#defaultModal").modal('show'); 
-				 $("#id").val(result.id);
-                 $("#id_divisi").val(result.id_divisi);                 
+				 $("#id").val(result.id);  
+                 $("#id_departemen").val(result.id_departemen);  
+                 $("#nama_seksi").val(result.nama_seksi);
                  $("#nama_departemen").val(result.nama_departemen);
-                 $("#nama_divisi").val(result.nama_divisi);
               
                   
 			 }
@@ -176,7 +172,7 @@
         {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo base_url('departemen/hapus_data')?>/"+id,
+            url : "<?php echo base_url('seksi/hapus_data')?>/"+id,
             type: "GET",
             dataType: "JSON",
             success: function(data)
@@ -210,13 +206,13 @@
 		 var formData = new FormData($('#user_form')[0]); 
 
            
-         var nama_departemen = $("#nama_departemen").val();
+         var nama_seksi = $("#nama_seksi").val();
          
            
 
             //transaksi dibelakang layar
             $.ajax({
-             url:"<?php echo base_url(); ?>departemen/simpan_data",
+             url:"<?php echo base_url(); ?>seksi/simpan_data",
              type:"POST",
              data:formData,
              contentType:false,  
@@ -253,11 +249,12 @@
 		 
 		
 		$('#example').DataTable( {
-			"ajax": "<?php echo base_url(); ?>departemen/fetch_departemen",
-            'rowsGroup': [1] ,
-            'order': [[ 0, 'asc' ]]
+			"ajax": "<?php echo base_url(); ?>seksi/fetch_seksi",
+            'rowsGroup': [1],
+            "order": [[ 1, "asc" ]]
 		});
-	  
+	 
+	 
 		 
 	  });
   

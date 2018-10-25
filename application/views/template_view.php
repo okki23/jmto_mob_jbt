@@ -156,15 +156,15 @@
                         </a>
                     </li> 
                     <li>
-                        <a href="<?php echo base_url('ruas'); ?>">
+                        <a href="<?php echo base_url('seksi'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Ruas</span>
+                            <span>Seksi</span>
                         </a>
                     </li> 
                     <li>
-                        <a href="<?php echo base_url('bank'); ?>">
+                        <a href="<?php echo base_url('kelas_jabatan'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Bank</span>
+                            <span>Kelas Jabatan</span>
                         </a>
                     </li>
                      <li>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100135
 File Encoding         : 65001
 
-Date: 2018-10-24 17:11:12
+Date: 2018-10-25 08:48:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -71,7 +71,7 @@ CREATE TABLE `m_departemen` (
 -- ----------------------------
 INSERT INTO `m_departemen` VALUES ('1', '1', 'IT Services');
 INSERT INTO `m_departemen` VALUES ('2', '1', 'Operation Support System');
-INSERT INTO `m_departemen` VALUES ('4', '1', 'HH Depart');
+INSERT INTO `m_departemen` VALUES ('6', '6', 'Finance & Accounting');
 
 -- ----------------------------
 -- Table structure for m_direktorat
@@ -99,7 +99,7 @@ CREATE TABLE `m_divisi` (
   `id_direktorat` int(10) DEFAULT NULL,
   `nama_divisi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_divisi
@@ -107,6 +107,7 @@ CREATE TABLE `m_divisi` (
 INSERT INTO `m_divisi` VALUES ('1', '3', 'Information Technology');
 INSERT INTO `m_divisi` VALUES ('2', '3', 'Operation Management');
 INSERT INTO `m_divisi` VALUES ('5', '3', 'Divisi pengembangan');
+INSERT INTO `m_divisi` VALUES ('6', '4', 'Financial Management');
 
 -- ----------------------------
 -- Table structure for m_formasi_jabatan
@@ -149,11 +150,12 @@ CREATE TABLE `m_kelas_jabatan` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nama_kelas_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_kelas_jabatan
 -- ----------------------------
+INSERT INTO `m_kelas_jabatan` VALUES ('2', 'Kelas A');
 
 -- ----------------------------
 -- Table structure for m_kelompok_jabatan
@@ -190,14 +192,16 @@ CREATE TABLE `m_lokasi` (
 DROP TABLE IF EXISTS `m_seksi`;
 CREATE TABLE `m_seksi` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `id_department` int(10) DEFAULT NULL,
+  `id_departemen` int(10) DEFAULT NULL,
   `nama_seksi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_seksi
 -- ----------------------------
+INSERT INTO `m_seksi` VALUES ('2', '2', 'Operation Support Planning');
+INSERT INTO `m_seksi` VALUES ('4', '1', 'Application & Database');
 
 -- ----------------------------
 -- Table structure for m_user
