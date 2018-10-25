@@ -63,26 +63,83 @@
                                     <!-- hidden -->
 									<div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_lokasi" id="nama_lokasi" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_lokasi" id="id_lokasi" required>
+                                                    <input type="text" name="nama_direktorat" id="nama_direktorat" class="form-control" required readonly="readonly" >
+                                                    <input type="text" name="id_direktorat" id="id_direktorat" readonly="readonly" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
-                                                    <button type="button" onclick="CariLokasi();" class="btn btn-primary"> Pilih Lokasi... </button>
+                                                    <button type="button" onclick="CariDirektorat();" class="btn btn-primary"> Pilih Direktorat... </button>
+                                                </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="nama_divisi" id="nama_divisi" class="form-control" required readonly="readonly" >
+                                                    <input type="text" name="id_divisi" id="id_divisi" required>
+                                                    
+                                                </div>
+                                                <span class="input-group-addon">
+                                                    <button type="button" onclick="CariDivisi();" class="btn btn-primary"> Pilih Divisi... </button>
+                                                </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" required readonly="readonly" >
+                                                    <input type="text" name="id_departemen" id="id_departemen" required>
+                                                    
+                                                </div>
+                                                <span class="input-group-addon">
+                                                    <button type="button" onclick="CariDepartemen();" class="btn btn-primary"> Pilih Departemen... </button>
+                                                </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="nama_seksi" id="nama_seksi" class="form-control" required readonly="readonly" >
+                                                    <input type="text" name="id_seksi" id="id_seksi" required>
+                                                    
+                                                </div>
+                                                <span class="input-group-addon">
+                                                    <button type="button" onclick="CariSeksi();" class="btn btn-primary"> Pilih Seksi... </button>
+                                                </span>
+                                    </div>
+
+                                    <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="nama_kelompok_jabatan" id="nama_kelompok_jabatan" class="form-control" required readonly="readonly" >
+                                                    <input type="text" name="id_kelompok_jabatan" id="id_kelompok_jabatan" required>
+                                                    
+                                                </div>
+                                                <span class="input-group-addon">
+                                                    <button type="button" onclick="CariKelompokJabatan();" class="btn btn-primary"> Pilih Kelompok Jabatan... </button>
                                                 </span>
                                     </div>
 
 									<div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="npp" id="npp" class="form-control" placeholder="NPP" />
+                                            <input type="text" name="nama_jabatan" id="nama_jabatan" class="form-control" placeholder="Nama Jabatan" />
                                         </div>
+                                    </div>
+
+
+                                    <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="npp" id="npp" class="form-control" required readonly="readonly" >
+                                                    <input type="text" name="id_karyawan" id="id_karyawan" required>
+                                                    
+                                                </div>
+                                                <span class="input-group-addon">
+                                                    <button type="button" onclick="CariNpp();" class="btn btn-primary"> Pilih NPP... </button>
+                                                </span>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="nama_formasi_jabatan" id="nama_formasi_jabatan" class="form-control" placeholder="Nama formasi_jabatan" />
+                                            <input type="text" name="nama_karyawan" id="nama_karyawan" class="form-control" placeholder="Nama Karyawan" readonly="readonly" />
                                         </div>
                                     </div>
+                                     
 									 
 
 								   <button type="button" onclick="Simpan_Data();" class="btn btn-success waves-effect"> <i class="material-icons">save</i> Simpan</button>
@@ -96,12 +153,12 @@
     </div>
 
 
-    <!-- modal cari ruas -->
-    <div class="modal fade" id="CariLokasiModal" tabindex="-1" role="dialog">
+    <!-- modal cari direktorat -->
+    <div class="modal fade" id="CariDirektoratModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" >Cari Lokasi</h4>
+                            <h4 class="modal-title" >Cari Direktorat</h4>
                         </div>
                         <div class="modal-body">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
@@ -109,14 +166,14 @@
                                 <br>
                                 <hr>
 
-                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_lokasi" >
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_direktorat" >
   
                                     <thead>
                                         <tr>  
-                                            <th style="width:98%;">Lokasi </th> 
+                                            <th style="width:98%;">Direktorat </th> 
                                          </tr>
                                     </thead> 
-                                    <tbody id="daftar_lokasix">
+                                    <tbody id="daftar_direktoratx">
 
                                 </tbody>
                                 </table> 
@@ -126,31 +183,371 @@
                 </div>
     </div>
 
+
+    <!-- modal cari divisi -->
+    <div class="modal fade" id="CariDivisiModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" >Cari Divisi</h4>
+                        </div>
+                        <div class="modal-body">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
+
+                                <br>
+                                <hr>
+
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="tabel_divisi" > 
+                                    <thead>
+                                        <tr>  
+                                            <th style="width:15%;">Nama Divisi</th> 
+                                            <th style="width:15%;">Action</th> 
+                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>  
+                                </table>  
+                       </div>
+                     
+                    </div>
+                </div>
+    </div>
+
+    <!-- modal cari departemen -->
+    <div class="modal fade" id="CariDepartemenModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" >Cari Departemen</h4>
+                        </div>
+                        <div class="modal-body">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
+
+                                <br>
+                                <hr>
+
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="tabel_departemen" > 
+                                    <thead>
+                                        <tr>  
+                                            <th style="width:15%;">Nama Departemen</th> 
+                                            <th style="width:15%;">Action</th> 
+                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>  
+                                </table>  
+                       </div>
+                     
+                    </div>
+                </div>
+    </div>
+
+    <!-- modal cari seksi -->
+    <div class="modal fade" id="CariSeksiModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" >Cari Seksi</h4>
+                        </div>
+                        <div class="modal-body">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
+
+                                <br>
+                                <hr>
+
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="tabel_seksi" > 
+                                    <thead>
+                                        <tr>  
+                                            <th style="width:15%;">Nama Seksi</th> 
+                                            <th style="width:15%;">Action</th> 
+                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>  
+                                </table>  
+                       </div>
+                     
+                    </div>
+                </div>
+    </div>
+
+    <!-- modal cari kel jabatan -->
+    <div class="modal fade" id="CariKelompokJabatanModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" >Cari Kelompok Jabatan</h4>
+                        </div>
+                        <div class="modal-body">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
+
+                                <br>
+                                <hr>
+
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_kelompok_jabatan" >
+  
+                                    <thead>
+                                        <tr>  
+                                            <th style="width:98%;">Kelompok Jabatan </th> 
+                                         </tr>
+                                    </thead> 
+                                    <tbody id="daftar_kelompok_jabatanx">
+
+                                </tbody>
+                                </table> 
+                       </div>
+                     
+                    </div>
+                </div>
+    </div>
+
+
+    <!-- modal cari npp -->
+    <div class="modal fade" id="CariNppModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" >Cari NPP Karyawan </h4>
+                        </div>
+                        <div class="modal-body">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
+
+                                <br>
+                                <hr>
+
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_npp" >
+  
+                                    <thead>
+                                        <tr>  
+                                            <th style="width:50%;">NPP </th> 
+                                            <th style="width:50%;">Nama Karyawan</th> 
+                                         </tr>
+                                    </thead> 
+                                    <tbody id="daftar_kelompok_jabatanx">
+
+                                </tbody>
+                                </table> 
+                       </div>
+                     
+                    </div>
+                </div>
+    </div>
 			
  
    <script type="text/javascript">
 	
+    function GetDataSeksi(id){
+        console.log(id);
+        $.get("<?php echo base_url('formasi_jabatan/fetch_nama_seksi_row/'); ?>"+id,function(result){
+            console.log(result);
+            var parse = JSON.parse(result);
+            $("#id_seksi").val(id);
+            $("#nama_seksi").val(parse.nama_seksi);
+            $("#CariSeksiModal").modal('hide');
+        });
 
-    $('#daftar_lokasi').DataTable( {
-            "ajax": "<?php echo base_url(); ?>formasi_jabatan/fetch_lokasi"           
+    }
+
+ 
+    function CariSeksi(){
+        $("#CariSeksiModal").modal({backdrop: 'static', keyboard: false,show:true});
+
+        var id_departemen = $("#id_departemen").val();
+        
+        $('#tabel_seksi').DataTable({
+            "processing" : true,
+            "ajax" : {
+                "url" : "<?php echo base_url('formasi_jabatan/fetch_nama_seksi'); ?>",
+                "data":{id_departemen},
+                "type":"POST",
+                 dataSrc : '',
+
+            },
+ 
+
+            "columns" : [ {
+                "data" : "nama"
+            },{
+                "data" : "action"
+            }],
+
+            "rowReorder": {
+                "update": false
+            },
+
+            "destroy":true,
+        });
+    
+ 
+    } 
+
+    
+    function GetDataDepartemen(id){
+        console.log(id);
+        $.get("<?php echo base_url('formasi_jabatan/fetch_nama_departemen_row/'); ?>"+id,function(result){
+            console.log(result);
+            var parse = JSON.parse(result);
+            $("#id_departemen").val(id);
+            $("#nama_departemen").val(parse.nama_departemen);
+            $("#CariDepartemenModal").modal('hide');
+        });
+
+    }
+
+ 
+    function CariDepartemen(){
+        $("#CariDepartemenModal").modal({backdrop: 'static', keyboard: false,show:true});
+
+        var id_divisi = $("#id_divisi").val();
+        
+        $('#tabel_departemen').DataTable({
+            "processing" : true,
+            "ajax" : {
+                "url" : "<?php echo base_url('formasi_jabatan/fetch_nama_departemen'); ?>",
+                "data":{id_divisi},
+                "type":"POST",
+                dataSrc : '',
+
+            },
+ 
+
+            "columns" : [ {
+                "data" : "nama"
+            },{
+                "data" : "action"
+            }],
+
+            "rowReorder": {
+                "update": false
+            },
+
+            "destroy":true,
+        });
+    
+ 
+    } 
+
+   
+    function GetDataDivisi(id){
+        console.log(id);
+        $.get("<?php echo base_url('formasi_jabatan/fetch_nama_divisi_row/'); ?>"+id,function(result){
+            console.log(result);
+            var parse = JSON.parse(result);
+            $("#id_divisi").val(id);
+            $("#nama_divisi").val(parse.nama_divisi);
+            $("#CariDivisiModal").modal('hide');
+        });
+
+    }
+
+ 
+    function CariDivisi(){
+        $("#CariDivisiModal").modal({backdrop: 'static', keyboard: false,show:true});
+
+        var id_direktorat = $("#id_direktorat").val();
+        
+        $('#tabel_divisi').DataTable({
+            "processing" : true,
+            "ajax" : {
+                "url" : "<?php echo base_url('formasi_jabatan/fetch_nama_divisi'); ?>",
+                "data":{id_direktorat},
+                "type":"POST",
+                dataSrc : '',
+
+            },
+ 
+
+            "columns" : [ {
+                "data" : "nama"
+            },{
+                "data" : "action"
+            }],
+
+            "rowReorder": {
+                "update": false
+            },
+
+            "destroy":true,
+        });
+    
+ 
+    } 
+
+
+
+    // cari direktorat
+    $('#daftar_direktorat').DataTable( {
+            "ajax": "<?php echo base_url(); ?>formasi_jabatan/fetch_direktorat"           
     });
 
      
      
-    function CariLokasi(){
-        $("#CariLokasiModal").modal({backdrop: 'static', keyboard: false,show:true});
+    function CariDirektorat(){
+        $("#CariDirektoratModal").modal({backdrop: 'static', keyboard: false,show:true});
     } 
    
         
-        var daftar_lokasi = $('#daftar_lokasi').DataTable();
+        var daftar_direktorat = $('#daftar_direktorat').DataTable();
      
-        $('#daftar_lokasi tbody').on('click', 'tr', function () {
+        $('#daftar_direktorat tbody').on('click', 'tr', function () {
             
-            var content = daftar_lokasi.row(this).data()
+            var content = daftar_direktorat.row(this).data()
             console.log(content);
-            $("#nama_lokasi").val(content[0]);
-            $("#id_lokasi").val(content[1]);
-            $("#CariLokasiModal").modal('hide');
+            $("#nama_direktorat").val(content[0]);
+            $("#id_direktorat").val(content[1]);
+            $("#CariDirektoratModal").modal('hide');
+        } );
+
+
+    // cari kelompok jabatan
+    $('#daftar_kelompok_jabatan').DataTable( {
+            "ajax": "<?php echo base_url(); ?>formasi_jabatan/fetch_kelompok_jabatan"           
+    });
+
+     
+     
+    function CariKelompokJabatan(){
+        $("#CariKelompokJabatanModal").modal({backdrop: 'static', keyboard: false,show:true});
+    } 
+   
+        
+        var daftar_kelompok_jabatan = $('#daftar_kelompok_jabatan').DataTable();
+     
+        $('#daftar_kelompok_jabatan tbody').on('click', 'tr', function () {
+            
+            var content = daftar_kelompok_jabatan.row(this).data()
+            console.log(content);
+            $("#nama_kelompok_jabatan").val(content[0]);
+            $("#id_kelompok_jabatan").val(content[1]);
+            $("#CariKelompokJabatanModal").modal('hide');
+        } );
+
+
+    // cari npp
+    $('#daftar_npp').DataTable( {
+            "ajax": "<?php echo base_url(); ?>formasi_jabatan/fetch_npp"           
+    });
+
+     
+     
+    function CariNpp(){
+        $("#CariNppModal").modal({backdrop: 'static', keyboard: false,show:true});
+    } 
+   
+        
+        var daftar_npp = $('#daftar_npp').DataTable();
+     
+        $('#daftar_npp tbody').on('click', 'tr', function () {
+            
+            var content = daftar_npp.row(this).data()
+            console.log(content);
+            $("#nama_karyawan").val(content[1]);
+            $("#id_karyawan").val(content[2]);
+            $("#npp").val(content[0]);
+            $("#CariNppModal").modal('hide');
         } );
 
        

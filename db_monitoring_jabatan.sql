@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100135
 File Encoding         : 65001
 
-Date: 2018-10-25 10:28:10
+Date: 2018-10-25 16:21:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -64,14 +64,23 @@ CREATE TABLE `m_departemen` (
   `id_divisi` int(10) DEFAULT NULL,
   `nama_departemen` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_departemen
 -- ----------------------------
-INSERT INTO `m_departemen` VALUES ('1', '1', 'IT Services');
-INSERT INTO `m_departemen` VALUES ('2', '1', 'Operation Support System');
-INSERT INTO `m_departemen` VALUES ('6', '6', 'Finance & Accounting');
+INSERT INTO `m_departemen` VALUES ('1', '1', 'Departemen IT Services Management');
+INSERT INTO `m_departemen` VALUES ('2', '1', 'Departemen Operation Support System');
+INSERT INTO `m_departemen` VALUES ('7', '2', 'Departemen Settlement & Reconsiliation');
+INSERT INTO `m_departemen` VALUES ('8', '2', 'Departemen Maintenance');
+INSERT INTO `m_departemen` VALUES ('9', '2', 'Departemen Toll Collection Management');
+INSERT INTO `m_departemen` VALUES ('10', '2', 'Departemen Traffic Management');
+INSERT INTO `m_departemen` VALUES ('11', '6', 'Departemen Finance & Accounting');
+INSERT INTO `m_departemen` VALUES ('12', '6', 'Departemen Coorporate Plan, Risk & Quality Management');
+INSERT INTO `m_departemen` VALUES ('13', '8', 'Departemen Human Capital');
+INSERT INTO `m_departemen` VALUES ('14', '8', 'Departemen General Affair');
+INSERT INTO `m_departemen` VALUES ('15', '9', 'Departemen Business Management');
+INSERT INTO `m_departemen` VALUES ('16', '9', 'Departemen Marketing');
 
 -- ----------------------------
 -- Table structure for m_direktorat
@@ -80,15 +89,16 @@ DROP TABLE IF EXISTS `m_direktorat`;
 CREATE TABLE `m_direktorat` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nama_direktorat` varchar(100) DEFAULT NULL,
+  `id_dirut` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_direktorat
 -- ----------------------------
-INSERT INTO `m_direktorat` VALUES ('1', 'Direktur Utama');
-INSERT INTO `m_direktorat` VALUES ('3', 'Direktur Teknik & Operasi');
-INSERT INTO `m_direktorat` VALUES ('4', 'Direktur Keuangan & SDM');
+INSERT INTO `m_direktorat` VALUES ('3', 'Direktur Teknik & Operasi', '1');
+INSERT INTO `m_direktorat` VALUES ('4', 'Direktur Keuangan & SDM', '1');
+INSERT INTO `m_direktorat` VALUES ('5', 'Direktur Utama', null);
 
 -- ----------------------------
 -- Table structure for m_dirut
@@ -114,15 +124,16 @@ CREATE TABLE `m_divisi` (
   `id_direktorat` int(10) DEFAULT NULL,
   `nama_divisi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_divisi
 -- ----------------------------
-INSERT INTO `m_divisi` VALUES ('1', '3', 'Information Technology');
-INSERT INTO `m_divisi` VALUES ('2', '3', 'Operation Management');
-INSERT INTO `m_divisi` VALUES ('5', '3', 'Divisi pengembangan');
-INSERT INTO `m_divisi` VALUES ('6', '4', 'Financial Management');
+INSERT INTO `m_divisi` VALUES ('1', '3', 'Divisi Information Technology');
+INSERT INTO `m_divisi` VALUES ('2', '3', 'Divisi Operation Management');
+INSERT INTO `m_divisi` VALUES ('6', '4', 'Divisi Financial Management');
+INSERT INTO `m_divisi` VALUES ('8', '4', 'Divisi Human Capital & General Affair');
+INSERT INTO `m_divisi` VALUES ('9', '5', 'Divisi Business Development');
 
 -- ----------------------------
 -- Table structure for m_example
@@ -154,16 +165,20 @@ INSERT INTO `m_example` VALUES ('7', '7', 'Data Unit', null, '2');
 DROP TABLE IF EXISTS `m_formasi_jabatan`;
 CREATE TABLE `m_formasi_jabatan` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id_direktorat` int(10) DEFAULT NULL,
+  `id_departemen` int(10) DEFAULT NULL,
   `id_seksi` int(10) DEFAULT NULL,
   `id_kelompok_jabatan` int(10) DEFAULT NULL,
-  `npp` varchar(25) DEFAULT NULL,
+  `id_divisi` int(10) DEFAULT NULL,
+  `npp` varchar(20) DEFAULT NULL,
   `nama_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_formasi_jabatan
 -- ----------------------------
+INSERT INTO `m_formasi_jabatan` VALUES ('1', '3', '1', '4', '4', '1', '6533453', 'Web Developer');
 
 -- ----------------------------
 -- Table structure for m_karyawan
@@ -192,13 +207,15 @@ CREATE TABLE `m_kelas_jabatan` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nama_kelas_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_kelas_jabatan
 -- ----------------------------
-INSERT INTO `m_kelas_jabatan` VALUES ('2', 'Kelas A');
-INSERT INTO `m_kelas_jabatan` VALUES ('3', 'Kelas B');
+INSERT INTO `m_kelas_jabatan` VALUES ('2', '1');
+INSERT INTO `m_kelas_jabatan` VALUES ('3', '2');
+INSERT INTO `m_kelas_jabatan` VALUES ('5', '3');
+INSERT INTO `m_kelas_jabatan` VALUES ('6', '4');
 
 -- ----------------------------
 -- Table structure for m_kelompok_jabatan
@@ -209,15 +226,15 @@ CREATE TABLE `m_kelompok_jabatan` (
   `id_kelas_jabatan` int(10) DEFAULT NULL,
   `nama_kelompok_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_kelompok_jabatan
 -- ----------------------------
-INSERT INTO `m_kelompok_jabatan` VALUES ('1', '2', 'IT Departemen');
-INSERT INTO `m_kelompok_jabatan` VALUES ('4', '2', 'IT Web Dev');
-INSERT INTO `m_kelompok_jabatan` VALUES ('5', '3', 'IT Infra');
-INSERT INTO `m_kelompok_jabatan` VALUES ('7', '3', 'IT Network Security');
+INSERT INTO `m_kelompok_jabatan` VALUES ('8', '2', 'VP');
+INSERT INTO `m_kelompok_jabatan` VALUES ('9', '3', 'AVP');
+INSERT INTO `m_kelompok_jabatan` VALUES ('10', '5', 'Manager');
+INSERT INTO `m_kelompok_jabatan` VALUES ('11', '6', 'SO');
 
 -- ----------------------------
 -- Table structure for m_lokasi
@@ -245,13 +262,38 @@ CREATE TABLE `m_seksi` (
   `id_departemen` int(10) DEFAULT NULL,
   `nama_seksi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_seksi
 -- ----------------------------
-INSERT INTO `m_seksi` VALUES ('2', '2', 'Operation Support Planning');
-INSERT INTO `m_seksi` VALUES ('4', '1', 'Application & Database');
+INSERT INTO `m_seksi` VALUES ('6', '7', 'Seksi Settlement Management');
+INSERT INTO `m_seksi` VALUES ('7', '8', 'Seksi Maintenance Control');
+INSERT INTO `m_seksi` VALUES ('8', '10', 'Seksi Traffic Planning');
+INSERT INTO `m_seksi` VALUES ('9', '10', 'Seksi Traffic Service & Sec');
+INSERT INTO `m_seksi` VALUES ('10', '9', 'Seksi Toll Collecting Planning');
+INSERT INTO `m_seksi` VALUES ('11', '9', 'Area Manager Belmera');
+INSERT INTO `m_seksi` VALUES ('12', '9', 'Area Manager Jagorawi');
+INSERT INTO `m_seksi` VALUES ('13', '9', 'Area Manager JTC');
+INSERT INTO `m_seksi` VALUES ('14', '9', 'Area Manager Japek - Palikanci');
+INSERT INTO `m_seksi` VALUES ('15', '2', 'Seksi Operation Support System Planning');
+INSERT INTO `m_seksi` VALUES ('16', '2', 'Seksi Transaction Support System Control');
+INSERT INTO `m_seksi` VALUES ('17', '2', 'Seksi Traffic Support System Control');
+INSERT INTO `m_seksi` VALUES ('18', '9', 'Area Manager Cipularang Padaleunyi');
+INSERT INTO `m_seksi` VALUES ('19', '9', 'Area Manager Surgem');
+INSERT INTO `m_seksi` VALUES ('20', '1', 'Seksi IT Application & Database');
+INSERT INTO `m_seksi` VALUES ('21', '1', 'Seksi IT Network & Infrastruktur');
+INSERT INTO `m_seksi` VALUES ('22', '11', 'Seksi Finance');
+INSERT INTO `m_seksi` VALUES ('23', '11', 'Seksi Tax & Accounting');
+INSERT INTO `m_seksi` VALUES ('24', '12', 'Seksi Coorporate Plan');
+INSERT INTO `m_seksi` VALUES ('25', '12', 'Seksi Risk & Quality Management');
+INSERT INTO `m_seksi` VALUES ('26', '13', 'Seksi Planning & Development Human Capital');
+INSERT INTO `m_seksi` VALUES ('27', '13', 'Seksi Employment');
+INSERT INTO `m_seksi` VALUES ('28', '14', 'Seksi Procurement & Administration Assets');
+INSERT INTO `m_seksi` VALUES ('29', '14', 'Seksi Legal & Publicrelations');
+INSERT INTO `m_seksi` VALUES ('30', '14', 'Seksi Office Administration');
+INSERT INTO `m_seksi` VALUES ('31', '15', 'Seksi Business Planning');
+INSERT INTO `m_seksi` VALUES ('32', '16', 'Seksi Project Management');
 
 -- ----------------------------
 -- Table structure for m_struktur

@@ -13,8 +13,15 @@ class M_formasi_jabatan extends Parent_Model {
         $this->load->database();
   }
   public function fetch_formasi_jabatan(){
-       $sql = "select a.*,b.nama_lokasi from m_formasi_jabatan a
-               LEFT JOIN m_lokasi b on b.id = a.id_lokasi";
+       $sql = "SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_departemen,g.nama_divisi,h.nama_direktorat 
+       from m_formasi_jabatan a
+      LEFT JOIN m_karyawan b on b.npp = a.npp
+      LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+      LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+      LEFT JOIN m_seksi e on e.id = a.id_seksi
+      LEFT JOIN m_departemen f on f.id = a.id_departemen
+      LEFT JOIN m_divisi g on g.id = a.id_divisi
+      LEFT JOIN m_direktorat h on h.id = a.id_direktorat";
                
 		   $getdata = $this->db->query($sql)->result();
 		   $data = array();  
@@ -23,13 +30,18 @@ class M_formasi_jabatan extends Parent_Model {
            {  
                 $sub_array = array();  
                 $sub_array[] = $no;
-                $sub_array[] = $row->npp;  
-                $sub_array[] = $row->nama_formasi_jabatan;  
-                $sub_array[] = $row->nama_lokasi;
+                $sub_array[] = $row->nama_direktorat;  
+                $sub_array[] = $row->nama_divisi;  
+                $sub_array[] = $row->nama_departemen;
+                $sub_array[] = $row->nama_seksi;
+                $sub_array[] = $row->nama_kelas_jabatan;
+                $sub_array[] = $row->nama_kelompok_jabatan;
+                $sub_array[] = $row->npp;
+                $sub_array[] = $row->nama_karyawan;
                 
                  
-			          $sub_array[] = '<a href="javascript:void(0)" class="btn btn-warning btn-xs waves-effect" id="edit" onclick="Ubah_Data('.$row->id.');" > <i class="material-icons">create</i> Ubah </a>  &nbsp; <a href="javascript:void(0)" id="delete" class="btn btn-danger btn-xs waves-effect" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Hapus </a>';  
-                $sub_array[] = $row->id_lokasi;
+			          $sub_array[] = '<a href="javascript:void(0)" class="btn btn-warning btn-xs waves-effect" id="edit" onclick="Ubah_Data('.$row->id.');" > <i class="material-icons">create</i> Ubah </a>  &nbsp; &nbsp; &nbsp; &nbsp; <a href="javascript:void(0)" id="delete" class="btn btn-danger btn-xs waves-effect" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Hapus </a>';  
+                $sub_array[] = $row->id;
                
                 $data[] = $sub_array;  
                 $no++;
@@ -39,16 +51,59 @@ class M_formasi_jabatan extends Parent_Model {
 		    
     }
 
-     public function fetch_lokasi(){
+    public function fetch_direktorat(){
       
-       $getdata = $this->db->get('m_lokasi')->result();
+       $getdata = $this->db->get('m_direktorat')->result();
        $data = array();  
       
            foreach($getdata as $row)  
            {  
                 $sub_array = array();  
              
-                $sub_array[] = $row->nama_lokasi;  
+                $sub_array[] = $row->nama_direktorat;  
+                $sub_array[] = $row->id;  
+                 
+                  
+                $data[] = $sub_array;  
+              
+           }  
+          
+       return $output = array("data"=>$data);
+        
+    }
+
+    public function fetch_kelompok_jabatan(){
+      
+       $getdata = $this->db->get('m_kelompok_jabatan')->result();
+       $data = array();  
+      
+           foreach($getdata as $row)  
+           {  
+                $sub_array = array();  
+             
+                $sub_array[] = $row->nama_kelompok_jabatan;  
+                $sub_array[] = $row->id;  
+                 
+                  
+                $data[] = $sub_array;  
+              
+           }  
+          
+       return $output = array("data"=>$data);
+        
+    }
+
+    public function fetch_npp(){
+      
+       $getdata = $this->db->get('m_karyawan')->result();
+       $data = array();  
+      
+           foreach($getdata as $row)  
+           {  
+                $sub_array = array();  
+             
+                $sub_array[] = $row->npp;
+                $sub_array[] = $row->nama_karyawan;  
                 $sub_array[] = $row->id;  
                  
                   

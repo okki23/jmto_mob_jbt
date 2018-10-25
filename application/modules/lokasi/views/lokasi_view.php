@@ -200,10 +200,7 @@
             $("#defaultModalLabel").html("Form Tambah Data");
 		});
 		
-		$("#addmodalx").on("click",function(){
-			$("#defaultModalx").modal({backdrop: 'static', keyboard: false,show:true});
-            $("#defaultModalLabel").html("Form Tambah Datax");
-		});
+	 
 		
 		$('#example').DataTable( {
 			"ajax": "<?php echo base_url(); ?>lokasi/fetch_lokasi" 

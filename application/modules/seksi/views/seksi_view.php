@@ -23,7 +23,7 @@
   
 									<thead>
 										<tr>
-											<th style="width:5%;">No</th> 
+											<!-- <th style="width:5%;">No</th>  -->
                                             <th style="width:10%;">Nama Departemen</th>  
 											<th style="width:10%;">Nama Seksi</th>  
 											<th style="width:5%;">Opsi</th> 
@@ -222,7 +222,7 @@
                  $("#defaultModal").modal('hide');
                  $('#example').DataTable().ajax.reload(); 
                  $('#user_form')[0].reset();
-                 
+                 Bersihkan_Form();
                  $.notify("Data berhasil disimpan!", {
                     animate: {
                         enter: 'animated fadeInRight',
@@ -248,11 +248,47 @@
 		});
 		 
 		
-		$('#example').DataTable( {
-			"ajax": "<?php echo base_url(); ?>seksi/fetch_seksi",
-            'rowsGroup': [1],
-            "order": [[ 1, "asc" ]]
-		});
+		// $('#example').DataTable( {
+		// 	"ajax": "<?php echo base_url(); ?>seksi/fetch_seksi" 
+		// });
+
+
+        var groupColumn = 0;
+        var table = $('#example').DataTable({
+            "ajax": "<?php echo base_url(); ?>seksi/fetch_seksi",
+            "columnDefs": [
+                { "visible": false, "targets": groupColumn }
+            ],
+            "order": [[ 0, 'asc' ]],
+            "displayLength": 25,
+            "drawCallback": function ( settings ) {
+                var api = this.api();
+                var rows = api.rows( {page:'current'} ).nodes();
+                var last=null;
+     
+                api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                    if ( last !== group ) {
+                        $(rows).eq( i ).before(
+                            '<tr class="group"><td colspan="4"><b>'+group+'</b></td></tr>'
+                        );
+     
+                        last = group;
+                    }
+                } );
+            }
+        } );
+     
+        // Order by the grouping
+        $('#example tbody').on( 'click', 'tr.group', function () {
+            var currentOrder = table.order()[0];
+            if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
+                table.order( [ groupColumn, 'asc' ] ).draw();
+            }
+            else {
+                table.order( [ groupColumn, 'asc' ] ).draw();
+            }
+        } );
+ 
 	 
 	 
 		 

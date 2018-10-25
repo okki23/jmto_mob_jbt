@@ -27,8 +27,7 @@
                                             
 											<th style="width:5%;">NPP</th>
                                             <th style="width:5%;">Nama Karyawan</th> 
-                                            <th style="width:5%;">Lokasi</th> 
-							 
+                                            <th style="width:5%;">Lokasi</th>							 
 											<th style="width:5%;">Opsi</th> 
 										</tr>
 									</thead> 
@@ -263,7 +262,7 @@
         var table = $('#example').DataTable({
             "ajax": "<?php echo base_url(); ?>karyawan/fetch_karyawan",
             "columnDefs": [
-                { "visible": true, "targets": groupColumn }
+                { "visible": false, "targets": groupColumn }
             ],
             "order": [[ 0, 'asc' ]],
             "displayLength": 25,
@@ -294,14 +293,7 @@
                 table.order( [ groupColumn, 'asc' ] ).draw();
             }
         } );
-
-
-		// $('#example').DataTable( {
-		// 	"ajax": "<?php echo base_url(); ?>karyawan/fetch_karyawan",
-  //           'rowsGroup': [3] ,
-  //           'order': [[ 0, 'asc' ], [ 4, 'asc' ]]
-		// });
-	  
+ 
 		 
 	  });
   

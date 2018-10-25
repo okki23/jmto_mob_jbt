@@ -22,7 +22,7 @@ class M_seksi extends Parent_Model {
            foreach($getdata as $row)  
            {  
                 $sub_array = array();  
-                 $sub_array[] = $no;
+                // $sub_array[] = $no;
                 $sub_array[] = $row->nama_departemen;  
                 $sub_array[] = $row->nama_seksi;                   
 			          $sub_array[] = '<a href="javascript:void(0)" class="btn btn-warning btn-xs waves-effect" id="edit" onclick="Ubah_Data('.$row->id.');" > <i class="material-icons">create</i> Ubah </a>  &nbsp; <a href="javascript:void(0)" id="delete" class="btn btn-danger btn-xs waves-effect" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Hapus </a>';  
