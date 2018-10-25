@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Departemen
+                                Kelompok Jabatan
                             </h2>
                             <br>
                             <a href="javascript:void(0);" id="addmodal" class="btn btn-primary waves-effect">  <i class="material-icons">add_circle</i>  Tambah Data </a>
@@ -25,8 +25,8 @@
 										<tr>
 											<th style="width:5%;">No</th>
                                             
-											<th style="width:5%;">Nama Divisi</th>
-                                            <th style="width:5%;">Nama Departemen</th> 
+											<th style="width:5%;">Nama Kelas Jabatan</th>
+                                            <th style="width:5%;">Nama Kelompok Jabatan</th> 
 							 
 											<th style="width:10%;">Opsi</th> 
 										</tr>
@@ -58,18 +58,18 @@
 
 									<div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_divisi" id="nama_divisi" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_divisi" id="id_divisi" required>
+                                                    <input type="text" name="nama_kelas_jabatan" id="nama_kelas_jabatan" class="form-control" required readonly="readonly" >
+                                                    <input type="hidden" name="id_kelas_jabatan" id="id_kelas_jabatan" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
-                                                    <button type="button" onclick="CariDivisi();" class="btn btn-primary"> Pilih Divisi... </button>
+                                                    <button type="button" onclick="CariKelasJabatan();" class="btn btn-primary"> Pilih Kelas Jabatan... </button>
                                                 </span>
                                     </div>
 
 									<div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" placeholder="Nama departemen" />
+                                            <input type="text" name="nama_kelompok_jabatan" id="nama_kelompok_jabatan" class="form-control" placeholder="Nama Kelompok Jabatan" />
                                         </div>
                                     </div>
 									 
@@ -86,11 +86,11 @@
 
 
     <!-- modal cari ruas -->
-    <div class="modal fade" id="CariDivisiModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="CariKelasJabatanModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" >Cari Divisi</h4>
+                            <h4 class="modal-title" >Cari kelas_jabatan</h4>
                         </div>
                         <div class="modal-body">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
@@ -98,14 +98,14 @@
                                 <br>
                                 <hr>
 
-                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_divisi" >
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_kelas_jabatan" >
   
                                     <thead>
                                         <tr>  
-                                            <th style="width:98%;">Nama Divisi </th> 
+                                            <th style="width:98%;">Nama Kelas Jabatan </th> 
                                          </tr>
                                     </thead> 
-                                    <tbody id="daftar_divisix">
+                                    <tbody id="daftar_kelas_jabatanx">
 
                                 </tbody>
                                 </table> 
@@ -120,26 +120,26 @@
    <script type="text/javascript">
 	
 
-    $('#daftar_divisi').DataTable( {
-            "ajax": "<?php echo base_url(); ?>departemen/fetch_divisi"           
+    $('#daftar_kelas_jabatan').DataTable( {
+            "ajax": "<?php echo base_url(); ?>kelompok_jabatan/fetch_kelas_jabatan"           
     });
 
      
      
-    function CariDivisi(){
-        $("#CariDivisiModal").modal({backdrop: 'static', keyboard: false,show:true});
+    function CariKelasJabatan(){
+        $("#CariKelasJabatanModal").modal({backdrop: 'static', keyboard: false,show:true});
     } 
    
         
-        var daftar_divisi = $('#daftar_divisi').DataTable();
+        var daftar_kelas_jabatan = $('#daftar_kelas_jabatan').DataTable();
      
-        $('#daftar_divisi tbody').on('click', 'tr', function () {
+        $('#daftar_kelas_jabatan tbody').on('click', 'tr', function () {
             
-            var content = daftar_divisi.row(this).data()
+            var content = daftar_kelas_jabatan.row(this).data()
             console.log(content);
-            $("#nama_divisi").val(content[0]);
-            $("#id_divisi").val(content[1]);
-            $("#CariDivisiModal").modal('hide');
+            $("#nama_kelas_jabatan").val(content[0]);
+            $("#id_kelas_jabatan").val(content[1]);
+            $("#CariKelasJabatanModal").modal('hide');
         } );
 
        
@@ -150,16 +150,16 @@
 		$("#defaultModal").modal('show');
  
 		$.ajax({
-			 url:"<?php echo base_url(); ?>departemen/get_data_edit/"+id,
+			 url:"<?php echo base_url(); ?>kelompok_jabatan/get_data_edit/"+id,
 			 type:"GET",
 			 dataType:"JSON", 
 			 success:function(result){ 
                   
 				 $("#defaultModal").modal('show'); 
 				 $("#id").val(result.id);
-                 $("#id_divisi").val(result.id_divisi);                 
-                 $("#nama_departemen").val(result.nama_departemen);
-                 $("#nama_divisi").val(result.nama_divisi);
+                 $("#id_kelas_jabatan").val(result.id_kelas_jabatan);                 
+                 $("#nama_kelompok_jabatan").val(result.nama_kelompok_jabatan);
+                 $("#nama_kelas_jabatan").val(result.nama_kelas_jabatan);
               
                   
 			 }
@@ -176,7 +176,7 @@
         {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo base_url('departemen/hapus_data')?>/"+id,
+            url : "<?php echo base_url('kelompok_jabatan/hapus_data')?>/"+id,
             type: "GET",
             dataType: "JSON",
             success: function(data)
@@ -210,13 +210,13 @@
 		 var formData = new FormData($('#user_form')[0]); 
 
            
-         var nama_departemen = $("#nama_departemen").val();
+         var nama_kelompok_jabatan = $("#nama_kelompok_jabatan").val();
          
            
 
             //transaksi dibelakang layar
             $.ajax({
-             url:"<?php echo base_url(); ?>departemen/simpan_data",
+             url:"<?php echo base_url(); ?>kelompok_jabatan/simpan_data",
              type:"POST",
              data:formData,
              contentType:false,  
@@ -253,7 +253,7 @@
 		 
 		
 		$('#example').DataTable( {
-			"ajax": "<?php echo base_url(); ?>departemen/fetch_departemen",
+			"ajax": "<?php echo base_url(); ?>kelompok_jabatan/fetch_kelompok_jabatan",
             'rowsGroup': [1] ,
             'order': [[ 0, 'asc' ]]
 		});

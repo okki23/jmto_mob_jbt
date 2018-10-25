@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
 class M_example extends Parent_Model { 
 
-  var $nama_tabel = 'm_example';
+  var $nama_tabel = 'm_struktur';
   var $daftar_field = array('id','kode_menu','nama_menu','link','kode_parent');
   var $primary_key = 'id';
   

@@ -168,70 +168,32 @@
                         </a>
                     </li>
                      <li>
-                        <a href="<?php echo base_url('tarif'); ?>">
+                        <a href="<?php echo base_url('kelompok_jabatan'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Tarif</span>
+                            <span>Kelompok Jabatan</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('integrasi'); ?>">
+                        <a href="<?php echo base_url('lokasi'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Integrasi</span>
+                            <span>Lokasi</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('pultol'); ?>">
+                        <a href="<?php echo base_url('karyawan'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Pultol</span>
+                            <span>Karyawan</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url('waktu_transaksi'); ?>">
+                        <a href="<?php echo base_url('formasi_jabatan'); ?>">
                            <i class="material-icons">dns</i>
-                            <span>Waktu Transaksi</span>
+                            <span>Formasi Jabatan</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url('spm'); ?>">
-                           <i class="material-icons">dns</i>
-                            <span>SPM</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo base_url('user'); ?>">
-                           <i class="material-icons">dns</i>
-                            <span>User</span>
-                        </a>
-                    </li> 
-                    <li class="header">Transaksi</li> 
-                     <li>
-                        <a href="<?php echo base_url('upload_at4'); ?>">
-                           <i class="material-icons">dns</i>
-                            <span>Upload AT4 </span>
-                        </a>
-                    </li> 
-                     <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">dns</i>
-                            <span>Form Upload Manual</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="<?php echo base_url('manual_non_etoll'); ?>">Form Upload Manual Non E-Toll</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url('manual_rupiah_non_etoll'); ?>">Form Upload Manual Rupiah Non E-Toll</a>
-                            </li> 
-                            <li>
-                                <a href="<?php echo base_url('manual_etoll'); ?>">Form Upload Manual E-Toll</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url('manual_rupiah_etoll'); ?>">Form Upload Manual Rupiah E-Toll</a>
-                            </li> 
-                        </ul>
-                    </li>
+                    
                     <li class="header">Laporan</li>
-                    <li>
+                    <!-- <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">dns</i>
                             <span>A. Vol Lalin dan Beban Ruas</span>
@@ -353,7 +315,7 @@
                            
 
                         </ul> 
-                    </li>
+                    </li> -->
                     
                     <li>
                         <a href="<?php echo base_url('example'); ?>">

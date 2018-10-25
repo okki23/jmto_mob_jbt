@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Departemen
+                                Lokasi
                             </h2>
                             <br>
                             <a href="javascript:void(0);" id="addmodal" class="btn btn-primary waves-effect">  <i class="material-icons">add_circle</i>  Tambah Data </a>
@@ -25,8 +25,8 @@
 										<tr>
 											<th style="width:5%;">No</th>
                                             
-											<th style="width:5%;">Nama Divisi</th>
-                                            <th style="width:5%;">Nama Departemen</th> 
+											<th style="width:5%;">Nama lokasi</th>
+											 
 							 
 											<th style="width:10%;">Opsi</th> 
 										</tr>
@@ -55,21 +55,10 @@
                               <form method="post" id="user_form" enctype="multipart/form-data">   
                                  
                                     <input type="hidden" name="id" id="id"> 
-
-									<div class="input-group">
-                                                <div class="form-line">
-                                                    <input type="text" name="nama_divisi" id="nama_divisi" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_divisi" id="id_divisi" required>
-                                                    
-                                                </div>
-                                                <span class="input-group-addon">
-                                                    <button type="button" onclick="CariDivisi();" class="btn btn-primary"> Pilih Divisi... </button>
-                                                </span>
-                                    </div>
-
+									 
 									<div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" placeholder="Nama departemen" />
+                                            <input type="text" name="nama_lokasi" id="nama_lokasi" class="form-control" placeholder="Nama lokasi" />
                                         </div>
                                     </div>
 									 
@@ -83,66 +72,10 @@
                     </div>
                 </div>
     </div>
-
-
-    <!-- modal cari ruas -->
-    <div class="modal fade" id="CariDivisiModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" >Cari Divisi</h4>
-                        </div>
-                        <div class="modal-body">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
-
-                                <br>
-                                <hr>
-
-                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_divisi" >
-  
-                                    <thead>
-                                        <tr>  
-                                            <th style="width:98%;">Nama Divisi </th> 
-                                         </tr>
-                                    </thead> 
-                                    <tbody id="daftar_divisix">
-
-                                </tbody>
-                                </table> 
-                       </div>
-                     
-                    </div>
-                </div>
-    </div>
-
 			
  
    <script type="text/javascript">
 	
-
-    $('#daftar_divisi').DataTable( {
-            "ajax": "<?php echo base_url(); ?>departemen/fetch_divisi"           
-    });
-
-     
-     
-    function CariDivisi(){
-        $("#CariDivisiModal").modal({backdrop: 'static', keyboard: false,show:true});
-    } 
-   
-        
-        var daftar_divisi = $('#daftar_divisi').DataTable();
-     
-        $('#daftar_divisi tbody').on('click', 'tr', function () {
-            
-            var content = daftar_divisi.row(this).data()
-            console.log(content);
-            $("#nama_divisi").val(content[0]);
-            $("#id_divisi").val(content[1]);
-            $("#CariDivisiModal").modal('hide');
-        } );
-
-       
  
        
 	 function Ubah_Data(id){
@@ -150,16 +83,15 @@
 		$("#defaultModal").modal('show');
  
 		$.ajax({
-			 url:"<?php echo base_url(); ?>departemen/get_data_edit/"+id,
+			 url:"<?php echo base_url(); ?>lokasi/get_data_edit/"+id,
 			 type:"GET",
 			 dataType:"JSON", 
 			 success:function(result){ 
                   
 				 $("#defaultModal").modal('show'); 
 				 $("#id").val(result.id);
-                 $("#id_divisi").val(result.id_divisi);                 
-                 $("#nama_departemen").val(result.nama_departemen);
-                 $("#nama_divisi").val(result.nama_divisi);
+                 
+                 $("#nama_lokasi").val(result.nama_lokasi);
               
                   
 			 }
@@ -176,7 +108,7 @@
         {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo base_url('departemen/hapus_data')?>/"+id,
+            url : "<?php echo base_url('lokasi/hapus_data')?>/"+id,
             type: "GET",
             dataType: "JSON",
             success: function(data)
@@ -203,20 +135,29 @@
     }
 	}
     
-      
+    $("#longok").on("click",function(){
+        alert('1');
+    });
+    $('.thumbnail').on('click',function(){
+        $('.modal-body').empty();
+        var title = $(this).parent('a').attr("title");
+        $('.modal-title').html(title);
+        $($(this).parents('div').html()).appendTo('.modal-body');
+        $('#Prev').modal({show:true});
+    });
   
 	function Simpan_Data(){
 		//setting semua data dalam form dijadikan 1 variabel 
 		 var formData = new FormData($('#user_form')[0]); 
 
            
-         var nama_departemen = $("#nama_departemen").val();
+         var nama_lokasi = $("#nama_lokasi").val();
          
            
 
             //transaksi dibelakang layar
             $.ajax({
-             url:"<?php echo base_url(); ?>departemen/simpan_data",
+             url:"<?php echo base_url(); ?>lokasi/simpan_data",
              type:"POST",
              data:formData,
              contentType:false,  
@@ -241,7 +182,15 @@
          
 
 	}
-      
+     
+
+	 $('.datepicker').bootstrapMaterialDatePicker({
+        format: 'YYYY-MM-DD',
+        clearButton: true,
+        weekStart: 1,
+        time: false
+     });
+
 	 
        $(document).ready(function() {
 		   
@@ -250,14 +199,17 @@
             $("#method").val('Add');
             $("#defaultModalLabel").html("Form Tambah Data");
 		});
-		 
+		
+		$("#addmodalx").on("click",function(){
+			$("#defaultModalx").modal({backdrop: 'static', keyboard: false,show:true});
+            $("#defaultModalLabel").html("Form Tambah Datax");
+		});
 		
 		$('#example').DataTable( {
-			"ajax": "<?php echo base_url(); ?>departemen/fetch_departemen",
-            'rowsGroup': [1] ,
-            'order': [[ 0, 'asc' ]]
+			"ajax": "<?php echo base_url(); ?>lokasi/fetch_lokasi" 
 		});
-	  
+	 
+	 
 		 
 	  });
   

@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Departemen
+                                Karyawan
                             </h2>
                             <br>
                             <a href="javascript:void(0);" id="addmodal" class="btn btn-primary waves-effect">  <i class="material-icons">add_circle</i>  Tambah Data </a>
@@ -25,10 +25,11 @@
 										<tr>
 											<th style="width:5%;">No</th>
                                             
-											<th style="width:5%;">Nama Divisi</th>
-                                            <th style="width:5%;">Nama Departemen</th> 
+											<th style="width:5%;">NPP</th>
+                                            <th style="width:5%;">Nama Karyawan</th> 
+                                            <th style="width:5%;">Lokasi</th> 
 							 
-											<th style="width:10%;">Opsi</th> 
+											<th style="width:5%;">Opsi</th> 
 										</tr>
 									</thead> 
 								</table> 
@@ -55,21 +56,27 @@
                               <form method="post" id="user_form" enctype="multipart/form-data">   
                                  
                                     <input type="hidden" name="id" id="id"> 
-
+                                    <!-- hidden -->
 									<div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_divisi" id="nama_divisi" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_divisi" id="id_divisi" required>
+                                                    <input type="text" name="nama_lokasi" id="nama_lokasi" class="form-control" required readonly="readonly" >
+                                                    <input type="hidden" name="id_lokasi" id="id_lokasi" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
-                                                    <button type="button" onclick="CariDivisi();" class="btn btn-primary"> Pilih Divisi... </button>
+                                                    <button type="button" onclick="CariLokasi();" class="btn btn-primary"> Pilih Lokasi... </button>
                                                 </span>
                                     </div>
 
 									<div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" placeholder="Nama departemen" />
+                                            <input type="text" name="npp" id="npp" class="form-control" placeholder="NPP" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" name="nama_karyawan" id="nama_karyawan" class="form-control" placeholder="Nama karyawan" />
                                         </div>
                                     </div>
 									 
@@ -86,11 +93,11 @@
 
 
     <!-- modal cari ruas -->
-    <div class="modal fade" id="CariDivisiModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="CariLokasiModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" >Cari Divisi</h4>
+                            <h4 class="modal-title" >Cari Lokasi</h4>
                         </div>
                         <div class="modal-body">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
@@ -98,14 +105,14 @@
                                 <br>
                                 <hr>
 
-                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_divisi" >
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_lokasi" >
   
                                     <thead>
                                         <tr>  
-                                            <th style="width:98%;">Nama Divisi </th> 
+                                            <th style="width:98%;">Lokasi </th> 
                                          </tr>
                                     </thead> 
-                                    <tbody id="daftar_divisix">
+                                    <tbody id="daftar_lokasix">
 
                                 </tbody>
                                 </table> 
@@ -120,26 +127,26 @@
    <script type="text/javascript">
 	
 
-    $('#daftar_divisi').DataTable( {
-            "ajax": "<?php echo base_url(); ?>departemen/fetch_divisi"           
+    $('#daftar_lokasi').DataTable( {
+            "ajax": "<?php echo base_url(); ?>karyawan/fetch_lokasi"           
     });
 
      
      
-    function CariDivisi(){
-        $("#CariDivisiModal").modal({backdrop: 'static', keyboard: false,show:true});
+    function CariLokasi(){
+        $("#CariLokasiModal").modal({backdrop: 'static', keyboard: false,show:true});
     } 
    
         
-        var daftar_divisi = $('#daftar_divisi').DataTable();
+        var daftar_lokasi = $('#daftar_lokasi').DataTable();
      
-        $('#daftar_divisi tbody').on('click', 'tr', function () {
+        $('#daftar_lokasi tbody').on('click', 'tr', function () {
             
-            var content = daftar_divisi.row(this).data()
+            var content = daftar_lokasi.row(this).data()
             console.log(content);
-            $("#nama_divisi").val(content[0]);
-            $("#id_divisi").val(content[1]);
-            $("#CariDivisiModal").modal('hide');
+            $("#nama_lokasi").val(content[0]);
+            $("#id_lokasi").val(content[1]);
+            $("#CariLokasiModal").modal('hide');
         } );
 
        
@@ -150,16 +157,17 @@
 		$("#defaultModal").modal('show');
  
 		$.ajax({
-			 url:"<?php echo base_url(); ?>departemen/get_data_edit/"+id,
+			 url:"<?php echo base_url(); ?>karyawan/get_data_edit/"+id,
 			 type:"GET",
 			 dataType:"JSON", 
 			 success:function(result){ 
                   
 				 $("#defaultModal").modal('show'); 
 				 $("#id").val(result.id);
-                 $("#id_divisi").val(result.id_divisi);                 
-                 $("#nama_departemen").val(result.nama_departemen);
-                 $("#nama_divisi").val(result.nama_divisi);
+                 $("#npp").val(result.npp);
+                 $("#id_lokasi").val(result.id_lokasi);                 
+                 $("#nama_karyawan").val(result.nama_karyawan);
+                 $("#nama_lokasi").val(result.nama_lokasi);
               
                   
 			 }
@@ -176,7 +184,7 @@
         {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo base_url('departemen/hapus_data')?>/"+id,
+            url : "<?php echo base_url('karyawan/hapus_data')?>/"+id,
             type: "GET",
             dataType: "JSON",
             success: function(data)
@@ -210,13 +218,13 @@
 		 var formData = new FormData($('#user_form')[0]); 
 
            
-         var nama_departemen = $("#nama_departemen").val();
+         var nama_karyawan = $("#nama_karyawan").val();
          
            
 
             //transaksi dibelakang layar
             $.ajax({
-             url:"<?php echo base_url(); ?>departemen/simpan_data",
+             url:"<?php echo base_url(); ?>karyawan/simpan_data",
              type:"POST",
              data:formData,
              contentType:false,  
@@ -251,12 +259,48 @@
             $("#defaultModalLabel").html("Form Tambah Data");
 		});
 		 
-		
-		$('#example').DataTable( {
-			"ajax": "<?php echo base_url(); ?>departemen/fetch_departemen",
-            'rowsGroup': [1] ,
-            'order': [[ 0, 'asc' ]]
-		});
+		var groupColumn = 3;
+        var table = $('#example').DataTable({
+            "ajax": "<?php echo base_url(); ?>karyawan/fetch_karyawan",
+            "columnDefs": [
+                { "visible": true, "targets": groupColumn }
+            ],
+            "order": [[ 0, 'asc' ]],
+            "displayLength": 25,
+            "drawCallback": function ( settings ) {
+                var api = this.api();
+                var rows = api.rows( {page:'current'} ).nodes();
+                var last=null;
+     
+                api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                    if ( last !== group ) {
+                        $(rows).eq( i ).before(
+                            '<tr class="group"><td colspan="5"><b>'+group+'</b></td></tr>'
+                        );
+     
+                        last = group;
+                    }
+                } );
+            }
+        } );
+     
+        // Order by the grouping
+        $('#example tbody').on( 'click', 'tr.group', function () {
+            var currentOrder = table.order()[0];
+            if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
+                table.order( [ groupColumn, 'asc' ] ).draw();
+            }
+            else {
+                table.order( [ groupColumn, 'asc' ] ).draw();
+            }
+        } );
+
+
+		// $('#example').DataTable( {
+		// 	"ajax": "<?php echo base_url(); ?>karyawan/fetch_karyawan",
+  //           'rowsGroup': [3] ,
+  //           'order': [[ 0, 'asc' ], [ 4, 'asc' ]]
+		// });
 	  
 		 
 	  });
