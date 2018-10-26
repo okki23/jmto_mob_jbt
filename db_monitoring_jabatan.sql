@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100135
 File Encoding         : 65001
 
-Date: 2018-10-26 10:37:43
+Date: 2018-10-26 13:56:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -173,12 +173,52 @@ CREATE TABLE `m_formasi_jabatan` (
   `npp` varchar(20) DEFAULT NULL,
   `nama_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_formasi_jabatan
 -- ----------------------------
-INSERT INTO `m_formasi_jabatan` VALUES ('5', '5', '0', '0', '0', '0', '', '');
+INSERT INTO `m_formasi_jabatan` VALUES ('9', '3', '0', '0', '0', '0', '474784', '');
+INSERT INTO `m_formasi_jabatan` VALUES ('10', '4', '0', '0', '0', '0', '34545', '');
+INSERT INTO `m_formasi_jabatan` VALUES ('11', '3', '0', '0', '8', '2', '324234', '');
+INSERT INTO `m_formasi_jabatan` VALUES ('12', '3', '0', '0', '8', '1', '72834', 'Divisi Information Technology');
+INSERT INTO `m_formasi_jabatan` VALUES ('13', '4', '0', '0', '8', '6', '2428645', 'Divisi Financial Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('14', '4', '0', '0', '8', '8', '3805734', 'Divisi Human Capital & General Affair');
+INSERT INTO `m_formasi_jabatan` VALUES ('15', '5', '0', '0', '8', '9', '', '');
+INSERT INTO `m_formasi_jabatan` VALUES ('16', '3', '7', '6', '9', '2', '965234', 'Seksi Settlement Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('17', '3', '9', '0', '9', '2', '872364', 'Departemen Toll Collection Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('18', '3', '8', '0', '9', '2', '', 'Departemen Maintenance');
+INSERT INTO `m_formasi_jabatan` VALUES ('19', '3', '10', '0', '9', '2', '', 'Departemen Traffic Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('20', '3', '7', '6', '10', '2', '', 'Seksi Settlement Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('21', '3', '8', '7', '10', '2', '', 'Seksi Maintenance Control');
+INSERT INTO `m_formasi_jabatan` VALUES ('22', '3', '10', '8', '10', '2', '', 'Seksi Traffic Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('23', '3', '10', '9', '10', '2', '7435349', 'Seksi Traffic Service & Sec');
+INSERT INTO `m_formasi_jabatan` VALUES ('24', '3', '9', '10', '10', '2', '69998456', 'Seksi Toll Collecting Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('25', '3', '9', '11', '10', '2', '777897456', 'Area Manager Belmera');
+INSERT INTO `m_formasi_jabatan` VALUES ('26', '3', '2', '0', '9', '1', '634574435', 'Departemen Operation Support System');
+INSERT INTO `m_formasi_jabatan` VALUES ('27', '3', '2', '15', '10', '1', '66779889', 'Seksi Operation Support System Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('28', '3', '2', '16', '10', '1', '', 'Seksi Transaction Support System Control');
+INSERT INTO `m_formasi_jabatan` VALUES ('29', '3', '2', '17', '10', '1', '', 'Seksi Traffic Support System Control');
+INSERT INTO `m_formasi_jabatan` VALUES ('30', '3', '1', '0', '9', '1', '542354', 'Departemen IT Services Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('31', '3', '1', '20', '10', '1', '6999345', 'Seksi IT Application & Database');
+INSERT INTO `m_formasi_jabatan` VALUES ('32', '3', '1', '21', '10', '1', '4596989', 'Seksi IT Network & Infrastruktur');
+INSERT INTO `m_formasi_jabatan` VALUES ('33', '4', '11', '0', '9', '6', '973253', 'Departemen Finance & Accounting');
+INSERT INTO `m_formasi_jabatan` VALUES ('34', '4', '12', '0', '9', '6', '623843', 'Departemen Coorporate Plan, Risk & Quality Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('35', '4', '13', '0', '9', '8', '92837471', 'Departemen Human Capital');
+INSERT INTO `m_formasi_jabatan` VALUES ('36', '4', '14', '0', '9', '8', '6532399', 'Departemen General Affair');
+INSERT INTO `m_formasi_jabatan` VALUES ('37', '4', '11', '22', '10', '6', '4524239', 'Seksi Finance');
+INSERT INTO `m_formasi_jabatan` VALUES ('38', '4', '11', '23', '10', '6', '654699995', 'Seksi Tax & Accounting');
+INSERT INTO `m_formasi_jabatan` VALUES ('39', '4', '12', '24', '10', '6', '62347888', 'Seksi Coorporate Plan');
+INSERT INTO `m_formasi_jabatan` VALUES ('40', '4', '12', '25', '10', '6', '7546867', 'Seksi Risk & Quality Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('41', '4', '13', '26', '10', '8', '5634590', 'Seksi Planning & Development Human Capital');
+INSERT INTO `m_formasi_jabatan` VALUES ('42', '4', '13', '27', '10', '8', '986745333', 'Seksi Employment');
+INSERT INTO `m_formasi_jabatan` VALUES ('43', '4', '14', '28', '10', '8', '324239090', 'Seksi Procurement & Administration Assets');
+INSERT INTO `m_formasi_jabatan` VALUES ('44', '4', '14', '29', '10', '8', '77777998', 'Seksi Legal & Publicrelations');
+INSERT INTO `m_formasi_jabatan` VALUES ('45', '4', '14', '30', '10', '8', '78756799', 'Seksi Office Administration');
+INSERT INTO `m_formasi_jabatan` VALUES ('46', '5', '15', '0', '9', '9', '', 'Departemen Business Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('47', '5', '16', '0', '9', '9', '', 'Departemen Marketing');
+INSERT INTO `m_formasi_jabatan` VALUES ('48', '5', '15', '31', '10', '9', '54233333', 'Seksi Business Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('49', '5', '16', '32', '10', '9', '975347377', 'Seksi Project Management');
 
 -- ----------------------------
 -- Table structure for m_karyawan

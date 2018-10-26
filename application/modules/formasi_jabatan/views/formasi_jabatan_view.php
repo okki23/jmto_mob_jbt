@@ -59,12 +59,12 @@
                         <div class="modal-body">
                               <form method="post" id="user_form" enctype="multipart/form-data">   
                                  
-                                    <input type="hidden" name="id" id="id"> 
+                                    <input type="text" name="id" id="id"> 
                                     <!-- hidden -->
 									<div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_direktorat" id="nama_direktorat" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_direktorat" id="id_direktorat" readonly="readonly" required>
+                                                    <input type="text" name="nama_direktorat" id="nama_direktorat" class="form-control" readonly="readonly" >
+                                                    <input type="text" name="id_direktorat" id="id_direktorat" readonly="readonly" >
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -74,8 +74,8 @@
 
                                     <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_divisi" id="nama_divisi" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_divisi" id="id_divisi" required>
+                                                    <input type="text" name="nama_divisi" id="nama_divisi" class="form-control" readonly="readonly" >
+                                                    <input type="text" name="id_divisi" id="id_divisi" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -85,8 +85,8 @@
 
                                     <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_departemen" id="id_departemen" required>
+                                                    <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" readonly="readonly" >
+                                                    <input type="text" name="id_departemen" id="id_departemen" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -96,8 +96,8 @@
 
                                     <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_seksi" id="nama_seksi" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_seksi" id="id_seksi" required>
+                                                    <input type="text" name="nama_seksi" id="nama_seksi" class="form-control" readonly="readonly" >
+                                                    <input type="text" name="id_seksi" id="id_seksi" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -107,8 +107,8 @@
 
                                     <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_kelompok_jabatan" id="nama_kelompok_jabatan" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_kelompok_jabatan" id="id_kelompok_jabatan" required>
+                                                    <input type="text" name="nama_kelompok_jabatan" id="nama_kelompok_jabatan" class="form-control" readonly="readonly" >
+                                                    <input type="text" name="id_kelompok_jabatan" id="id_kelompok_jabatan" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -125,8 +125,8 @@
 
                                     <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="npp" id="npp" class="form-control" required readonly="readonly" >
-                                                    <input type="hidden" name="id_karyawan" id="id_karyawan" required>
+                                                    <input type="text" name="npp" id="npp" class="form-control" readonly="readonly" >
+                                                    <input type="text" name="id_karyawan" id="id_karyawan" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -565,10 +565,21 @@
                   
 				 $("#defaultModal").modal('show'); 
 				 $("#id").val(result.id);
+                 $("#nama_direktorat").val(result.nama_direktorat);
+                 $("#id_direktorat").val(result.id_direktorat);                 
+                 $("#nama_departemen").val(result.nama_departemen);
+                 $("#id_departemen").val(result.id_departemen);
+                 $("#nama_divisi").val(result.nama_divisi);
+                 $("#id_divisi").val(result.id_divisi);
+                 $("#nama_seksi").val(result.nama_seksi);
+                 $("#id_seksi").val(result.id_seksi);
+                 $("#nama_kelompok_jabatan").val(result.nama_kelompok_jabatan);
+                 $("#id_kelompok_jabatan").val(result.id_kelompok_jabatan);
+                 $("#nama_jabatan").val(result.nama_jabatan);
+
+                 $("#nama_karyawan").val(result.nama_karyawan);
                  $("#npp").val(result.npp);
-                 $("#id_lokasi").val(result.id_lokasi);                 
-                 $("#nama_formasi_jabatan").val(result.nama_formasi_jabatan);
-                 $("#nama_lokasi").val(result.nama_lokasi);
+                 $("#id_karyawan").val(result.id_karyawan);
               
                   
 			 }
@@ -619,17 +630,56 @@
 		 var formData = new FormData($('#user_form')[0]); 
 
            
-         var id_direktorat = $("#id_direktorat").val();
+         // var id_direktorat = $("#id_direktorat").val();
+         // var id_divisi = $("#id_divisi").val();
+         // var id_departemen = $("#id_departemen").val();
+         // var id_seksi = $("#id_seksi").val();
+         // var id_kelompok_jabatan = $("#id_kelompok_jabatan").val();
+         // var nama_jabatan = $("#nama_jabatan").val();
          
-            if(id_direktorat == ''){
+         //    if(id_direktorat == ''){
 
-                alert("Direktorat Belum Terpilih!");
-                $("#nama_direktorat").parents('.form-line').addClass('focused error');
-                $("#nama_direktorat").focus();
-                $("#nama_direktorat").prop('placeholder','Harap Pilih Direktorat!');
+         //        alert("Direktorat Belum Terpilih!");
+         //        $("#nama_direktorat").parents('.form-line').addClass('focused error');
+         //        $("#nama_direktorat").focus();
+         //        $("#nama_direktorat").prop('placeholder','Harap Pilih Direktorat!');
 
-            }else{
+         //    }else if(id_divisi == ''){
 
+         //        alert("Divisi Belum Terpilih!");
+         //        $("#nama_divisi").parents('.form-line').addClass('focused error');
+         //        $("#nama_divisi").focus();
+         //        $("#nama_divisi").prop('placeholder','Harap Pilih Divisi!');
+
+         //    }else if(id_departemen == ''){
+
+         //        alert("Departemen Belum Terpilih!");
+         //        $("#nama_departemen").parents('.form-line').addClass('focused error');
+         //        $("#nama_departemen").focus();
+         //        $("#nama_departemen").prop('placeholder','Harap Pilih Departemen!');
+
+         //    }else if(id_seksi == ''){
+
+         //        alert("Seksi Belum Terpilih!");
+         //        $("#nama_seksi").parents('.form-line').addClass('focused error');
+         //        $("#nama_seksi").focus();
+         //        $("#nama_seksi").prop('placeholder','Harap Pilih Seksi!');
+
+         //    }else if(id_kelompok_jabatan == ''){
+
+         //        alert("Kelompok Jabatan Belum Terpilih!");
+         //        $("#nama_kelompok_jabatan").parents('.form-line').addClass('focused error');
+         //        $("#nama_kelompok_jabatan").focus();
+         //        $("#nama_kelompok_jabatan").prop('placeholder','Harap Pilih Kelompok Jabatan!');
+
+         //    }else if(nama_jabatan == ''){
+
+         //        alert("Nama Jabatan Belum Terpilih!");
+         //        $("#nama_jabatan").parents('.form-line').addClass('focused error');
+         //        $("#nama_jabatan").focus();
+         //        $("#nama_jabatan").prop('placeholder','Harap Isi Nama Jabatan!');
+
+         //    }else{
                  //transaksi dibelakang layar
                  $.ajax({
                  url:"<?php echo base_url(); ?>formasi_jabatan/simpan_data",
@@ -654,11 +704,8 @@
                  }
                 }); 
 
-            }
-
-          
-           
-
+            //}
+ 
          
 
 	}

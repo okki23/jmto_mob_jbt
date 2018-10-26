@@ -118,8 +118,15 @@ class formasi_jabatan extends Parent_Controller {
 	 
 	public function get_data_edit(){
 		$id = $this->uri->segment(3);
-		$sql = "select a.*,b.nama_lokasi from m_formasi_jabatan a
-				LEFT JOIN m_lokasi b on b.id = a.id_lokasi where a.id = '".$id."' ";
+		$sql = "SELECT a.*,b.id as id_karyawan,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_departemen,g.nama_divisi,h.nama_direktorat 
+       from m_formasi_jabatan a
+      LEFT JOIN m_karyawan b on b.npp = a.npp
+      LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+      LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+      LEFT JOIN m_seksi e on e.id = a.id_seksi
+      LEFT JOIN m_departemen f on f.id = a.id_departemen
+      LEFT JOIN m_divisi g on g.id = a.id_divisi
+      LEFT JOIN m_direktorat h on h.id = a.id_direktorat where a.id = '".$id."' ";
 		$get = $this->db->query($sql)->row();
 		echo json_encode($get,TRUE);
 	}
