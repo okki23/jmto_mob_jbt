@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100135
 File Encoding         : 65001
 
-Date: 2018-10-25 16:21:21
+Date: 2018-10-26 10:37:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -173,12 +173,12 @@ CREATE TABLE `m_formasi_jabatan` (
   `npp` varchar(20) DEFAULT NULL,
   `nama_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_formasi_jabatan
 -- ----------------------------
-INSERT INTO `m_formasi_jabatan` VALUES ('1', '3', '1', '4', '4', '1', '6533453', 'Web Developer');
+INSERT INTO `m_formasi_jabatan` VALUES ('5', '5', '0', '0', '0', '0', '', '');
 
 -- ----------------------------
 -- Table structure for m_karyawan
@@ -190,14 +190,50 @@ CREATE TABLE `m_karyawan` (
   `npp` varchar(25) DEFAULT NULL,
   `nama_karyawan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_karyawan
 -- ----------------------------
-INSERT INTO `m_karyawan` VALUES ('3', '1', '563453', 'Indro');
-INSERT INTO `m_karyawan` VALUES ('4', '1', '6533453', 'Kasino Hadiwibowo');
-INSERT INTO `m_karyawan` VALUES ('5', '2', '72426', 'Wahyoe Sardono');
+INSERT INTO `m_karyawan` VALUES ('6', '1', '4234545', 'Septerianto Sanaf');
+INSERT INTO `m_karyawan` VALUES ('7', '1', '474784', 'Taruli Hutapea');
+INSERT INTO `m_karyawan` VALUES ('8', '1', '34545', 'Benny Soediarto. D');
+INSERT INTO `m_karyawan` VALUES ('9', '1', '324234', 'Saut Sitorus');
+INSERT INTO `m_karyawan` VALUES ('10', '1', '72834', 'Rahwono Haji');
+INSERT INTO `m_karyawan` VALUES ('11', '1', '2428645', 'Anang Mohamad Maruf');
+INSERT INTO `m_karyawan` VALUES ('12', '1', '3805734', 'Sujakat Triyanto');
+INSERT INTO `m_karyawan` VALUES ('13', '1', '965234', 'Hadha Alamajibuwono');
+INSERT INTO `m_karyawan` VALUES ('14', '1', '872364', 'Djoko Siswanto');
+INSERT INTO `m_karyawan` VALUES ('15', '1', '634574435', 'Nasir Ahmad');
+INSERT INTO `m_karyawan` VALUES ('16', '1', '542354', 'Muchammad Subchan');
+INSERT INTO `m_karyawan` VALUES ('17', '1', '973253', 'Ajeng Ananda Pratiwi');
+INSERT INTO `m_karyawan` VALUES ('18', '1', '623843', 'Benekdita');
+INSERT INTO `m_karyawan` VALUES ('19', '1', '92837471', 'Peni Widianti');
+INSERT INTO `m_karyawan` VALUES ('20', '1', '6532399', 'Florita Marlene');
+INSERT INTO `m_karyawan` VALUES ('21', '1', '54233333', 'Usca W');
+INSERT INTO `m_karyawan` VALUES ('22', '1', '975347377', 'Tody S');
+INSERT INTO `m_karyawan` VALUES ('23', '1', '69998456', 'Sebitalia');
+INSERT INTO `m_karyawan` VALUES ('24', '1', '66779889', 'Asep Rendra');
+INSERT INTO `m_karyawan` VALUES ('25', '1', '6999345', 'Raina');
+INSERT INTO `m_karyawan` VALUES ('26', '1', '4524239', 'Dedi Rachmat');
+INSERT INTO `m_karyawan` VALUES ('27', '1', '62347888', 'Berfit Aprilia P');
+INSERT INTO `m_karyawan` VALUES ('28', '1', '5634590', 'Mala Grazziana A');
+INSERT INTO `m_karyawan` VALUES ('29', '1', '324239090', 'Natasha Evelyn');
+INSERT INTO `m_karyawan` VALUES ('30', '1', '7435349', 'Richo Tamba');
+INSERT INTO `m_karyawan` VALUES ('31', '1', '4596989', 'Heru');
+INSERT INTO `m_karyawan` VALUES ('32', '1', '654699995', 'Suwanto');
+INSERT INTO `m_karyawan` VALUES ('33', '1', '7546867', 'Didik Susanto');
+INSERT INTO `m_karyawan` VALUES ('34', '1', '986745333', 'A.Firmansyah');
+INSERT INTO `m_karyawan` VALUES ('35', '1', '77777998', 'Ivan Mawara');
+INSERT INTO `m_karyawan` VALUES ('36', '1', '78756799', 'Sri Margono');
+INSERT INTO `m_karyawan` VALUES ('37', '1', '777897456', 'Lokot Pulungan');
+INSERT INTO `m_karyawan` VALUES ('38', '1', '534242455', 'Ronny H');
+INSERT INTO `m_karyawan` VALUES ('39', '1', '55334411', 'Anas Emil');
+INSERT INTO `m_karyawan` VALUES ('40', '1', '3454200', 'Iswantono');
+INSERT INTO `m_karyawan` VALUES ('41', '1', '545459898', 'Solihin');
+INSERT INTO `m_karyawan` VALUES ('42', '1', '55779090', 'Mustari');
+INSERT INTO `m_karyawan` VALUES ('43', '1', '555999', 'Okki Setyawan');
+INSERT INTO `m_karyawan` VALUES ('44', '1', '999555', 'Taufik');
 
 -- ----------------------------
 -- Table structure for m_kelas_jabatan

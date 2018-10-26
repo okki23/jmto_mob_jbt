@@ -64,7 +64,7 @@
 									<div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_direktorat" id="nama_direktorat" class="form-control" required readonly="readonly" >
-                                                    <input type="text" name="id_direktorat" id="id_direktorat" readonly="readonly" required>
+                                                    <input type="hidden" name="id_direktorat" id="id_direktorat" readonly="readonly" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -75,7 +75,7 @@
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_divisi" id="nama_divisi" class="form-control" required readonly="readonly" >
-                                                    <input type="text" name="id_divisi" id="id_divisi" required>
+                                                    <input type="hidden" name="id_divisi" id="id_divisi" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -86,7 +86,7 @@
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" required readonly="readonly" >
-                                                    <input type="text" name="id_departemen" id="id_departemen" required>
+                                                    <input type="hidden" name="id_departemen" id="id_departemen" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -97,7 +97,7 @@
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_seksi" id="nama_seksi" class="form-control" required readonly="readonly" >
-                                                    <input type="text" name="id_seksi" id="id_seksi" required>
+                                                    <input type="hidden" name="id_seksi" id="id_seksi" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -108,7 +108,7 @@
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_kelompok_jabatan" id="nama_kelompok_jabatan" class="form-control" required readonly="readonly" >
-                                                    <input type="text" name="id_kelompok_jabatan" id="id_kelompok_jabatan" required>
+                                                    <input type="hidden" name="id_kelompok_jabatan" id="id_kelompok_jabatan" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -126,7 +126,7 @@
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="npp" id="npp" class="form-control" required readonly="readonly" >
-                                                    <input type="text" name="id_karyawan" id="id_karyawan" required>
+                                                    <input type="hidden" name="id_karyawan" id="id_karyawan" required>
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -619,33 +619,45 @@
 		 var formData = new FormData($('#user_form')[0]); 
 
            
-         var nama_formasi_jabatan = $("#nama_formasi_jabatan").val();
+         var id_direktorat = $("#id_direktorat").val();
          
-           
+            if(id_direktorat == ''){
 
-            //transaksi dibelakang layar
-            $.ajax({
-             url:"<?php echo base_url(); ?>formasi_jabatan/simpan_data",
-             type:"POST",
-             data:formData,
-             contentType:false,  
-             processData:false,   
-             success:function(result){ 
-                
-                 $("#defaultModal").modal('hide');
-                 $('#example').DataTable().ajax.reload(); 
-                 $('#user_form')[0].reset();
-                 
-                 $.notify("Data berhasil disimpan!", {
-                    animate: {
-                        enter: 'animated fadeInRight',
-                        exit: 'animated fadeOutRight'
-                 } 
-                 },{
-                    type: 'success'
-                });
-             }
-            }); 
+                alert("Direktorat Belum Terpilih!");
+                $("#nama_direktorat").parents('.form-line').addClass('focused error');
+                $("#nama_direktorat").focus();
+                $("#nama_direktorat").prop('placeholder','Harap Pilih Direktorat!');
+
+            }else{
+
+                 //transaksi dibelakang layar
+                 $.ajax({
+                 url:"<?php echo base_url(); ?>formasi_jabatan/simpan_data",
+                 type:"POST",
+                 data:formData,
+                 contentType:false,  
+                 processData:false,   
+                 success:function(result){ 
+                    
+                     $("#defaultModal").modal('hide');
+                     $('#example').DataTable().ajax.reload(); 
+                     $('#user_form')[0].reset();
+                     
+                     $.notify("Data berhasil disimpan!", {
+                        animate: {
+                            enter: 'animated fadeInRight',
+                            exit: 'animated fadeOutRight'
+                     } 
+                     },{
+                        type: 'success'
+                    });
+                 }
+                }); 
+
+            }
+
+          
+           
 
          
 

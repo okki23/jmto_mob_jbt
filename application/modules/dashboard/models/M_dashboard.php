@@ -1,17 +1,61 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-/*
-author     : Karlina
-email      : karlinamaksum19@gmail.com
-copyright  : 2018 
-deskripsi  : Class M_dashboard berisi rincian method atau fungsi logic yang digunakan untuk melakukan transaksi data master dashboard, dimana method yang terdaftar mengadopsi dari Parent Model
-*/
+ 
 class M_dashboard extends Parent_Model { 
   
-  /*variabel global yang digunakan untuk instance di masing masing method agar dapat
-  digunakan sewaktu waktu tanpa harus menulis ulang
-  */
+  
+  var $nama_tabel = 'm_struktur';
+  var $daftar_field = array('id','kode_menu','nama_menu','link','kode_parent');
+  var $primary_key = 'id';
+  
+	  
+  public function __construct(){
+        parent::__construct();
+        $this->load->database();
+  }
  
- 
+  /* function getMenu($parent,$hasil){*/ 
+  function getMenu($parent,$hasil){
+        // echo "<pre>";
+        $sql = $this->db->where('kode_parent',$parent)->get($this->nama_tabel);
+
+        if(($sql->num_rows())>0)
+        {
+            $hasil .= "<ul>";
+        }
+        foreach($sql->result() as $h)
+        {
+            $hasil .= "<li> <a href='javascript::void(0);'>".$h->nama_menu." </a>";
+            $hasil = $this->getMenu($h->kode_menu,$hasil);
+            $hasil .= "</li>";
+        }
+        if(($sql->num_rows())>0)
+        {
+            $hasil .= "</ul>";
+        }
+        return $hasil;
+
+        // var_dump($sql);
+        // echo "</pre>";
+        // exit();
+
+        // $w = $this->db->query("SELECT * from tbl_menu where id_parent='".$parent."'");
+        // if(($sql->num_rows())>0)
+        // {
+        //     $hasil .= "<ul>";
+        // }
+        // foreach($w->result() as $h)
+        // {
+        //     $hasil .= "<li><span>".$h->menu."</span>";
+        //     $hasil = $this->getMenu($h->id_menu,$hasil);
+        //     $hasil .= "</li>";
+        // }
+        // if(($w->num_rows)>0)
+        // {
+        //     $hasil .= "</ul>";
+        // }
+        // return $hasil;
+    } 
+  
  
 }

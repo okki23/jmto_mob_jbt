@@ -1,11 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-/*
-author     : Karlina
-email      : karlinamaksum19@gmail.com
-copyright  : 2018 
-deskripsi  : Class dashboard berisi rincian method atau fungsi logic yang digunakan untuk melakukan autentikasi dashboard serta logout, dimana method yang terdaftar mengadopsi dari Parent Controller
-*/
+ 
 
 class Dashboard extends Parent_Controller {
  
@@ -17,6 +12,7 @@ class Dashboard extends Parent_Controller {
 	public function index(){
 		$data['judul'] = $this->data['judul']; 
 		$data['konten'] = 'dashboard/dashboard_view';
+		$data['dataparse'] = $this->m_dashboard->getMenu(0,"");
 		$this->load->view('template_view',$data);
 	}
 	 
