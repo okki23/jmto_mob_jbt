@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class formasi_jabatan extends Parent_Controller {
  
   var $nama_tabel = 'm_formasi_jabatan';
-  var $daftar_field = array('id','id_direktorat','id_departemen','id_seksi','id_kelompok_jabatan','id_divisi','npp','nama_jabatan');
+  var $daftar_field = array('id','id_direktorat','id_departemen','id_seksi','id_kelompok_jabatan','id_divisi','id_parent_seksi','npp','nama_jabatan');
   var $primary_key = 'id';
   
  	public function __construct(){
@@ -112,6 +112,28 @@ class formasi_jabatan extends Parent_Controller {
   		$data = $this->db->where('id',$id)->get('m_seksi')->row();
   		echo json_encode($data);
   	}
+
+    public function fetch_nama_parent_seksi(){  
+       
+       $id_departemen =  $this->input->post('id_departemen');
+       $sql = "select * from m_seksi where id_departemen = '".$id_departemen."' ";
+   
+       $getdata = $this->db->query($sql)->result();
+       $return_arr = array();
+
+       foreach ($getdata as $key => $value) {
+         $row_array['nama'] = $value->nama_seksi; 
+         $row_array['action'] = "<button typpe='button' onclick='GetDataSeksi(".$value->id.");' class = 'btn btn-warning'> Pilih </button>";  
+         array_push($return_arr,$row_array);
+       }
+       echo json_encode($return_arr);
+ 
+    }  
+    public function fetch_nama_parent_seksi_row(){
+      $id = $this->uri->segment(3);
+      $data = $this->db->where('id',$id)->get('m_seksi')->row();
+      echo json_encode($data);
+    }
 
 
 
