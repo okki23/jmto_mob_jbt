@@ -35,6 +35,11 @@ class formasi_jabatan extends Parent_Controller {
        echo json_encode($getdata);   
   	}  
 
+    public function fetch_atasan(){  
+       $getdata = $this->m_formasi_jabatan->fetch_atasan();
+       echo json_encode($getdata);   
+    }  
+
   	public function fetch_kelompok_jabatan(){  
        $getdata = $this->m_formasi_jabatan->fetch_kelompok_jabatan();
        echo json_encode($getdata);   

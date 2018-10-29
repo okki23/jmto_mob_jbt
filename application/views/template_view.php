@@ -74,6 +74,10 @@
   
  
     <script src="<?php echo base_url(); ?>assets/plugins/jquery-validation/jquery.validate.js"></script>
+
+
+ 
+
   
 	 
 </head>

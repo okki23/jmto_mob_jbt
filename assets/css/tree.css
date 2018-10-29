@@ -3,14 +3,14 @@
 
 .tree ul {
     padding-top: 20px; position: relative;
-	
+	font-size: 10px;
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 }
 
 .tree li {
-	float: left; text-align: center;
+	float: right; text-align: center;
 	list-style-type: none;
 	position: relative;
 	padding: 20px 5px 0 5px;

@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_formasi_jabatan extends Parent_Model { 
   
   var $nama_tabel = 'm_formasi_jabatan';
-  var $daftar_field = array('id','id_direktorat','id_departemen','id_seksi','id_kelompok_jabatan','id_divisi','id_parent_seksi','npp','nama_jabatan');
+  var $daftar_field = array('id','id_direktorat','id_departemen','id_seksi','id_kelompok_jabatan','id_divisi','id_parent_seksi
+    ','npp','nama_jabatan');
   var $primary_key = 'id';
   
 	  
@@ -61,6 +62,33 @@ class M_formasi_jabatan extends Parent_Model {
                 $sub_array = array();  
              
                 $sub_array[] = $row->nama_direktorat;  
+                $sub_array[] = $row->id;  
+                 
+                  
+                $data[] = $sub_array;  
+              
+           }  
+          
+       return $output = array("data"=>$data);
+        
+    }
+
+    public function fetch_atasan(){
+      
+       $getdata = $this->db->query('SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
+              d.nama_kelas_jabatan,e.nama_seksi from m_formasi_jabatan a
+                  LEFT JOIN m_karyawan b on b.npp = a.npp
+                  LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+                  LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+                  LEFT JOIN m_seksi e on e.id = a.id_seksi where a.npp != "" ')->result();
+       $data = array();  
+      
+           foreach($getdata as $row)  
+           {  
+                $sub_array = array();  
+             
+                $sub_array[] = $row->npp; 
+                $sub_array[] = $row->nama_karyawan;  
                 $sub_array[] = $row->id;  
                  
                   

@@ -107,12 +107,12 @@
 
                                     <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_parent_seksi" id="nama_parent_seksi" class="form-control" readonly="readonly" >
+                                                    <input type="text" name="nama_atasan" id="nama_atasan" class="form-control" readonly="readonly" >
                                                     <input type="text" name="id_parent_seksi" id="id_parent_seksi" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
-                                                    <button type="button" onclick="CariParentSeksi();" class="btn btn-primary"> Pilih Seksi... </button>
+                                                    <button type="button" onclick="CariParentSeksi();" class="btn btn-primary"> Pilih Atasan... </button>
                                                 </span>
                                     </div>
 
@@ -291,7 +291,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" >Cari Parent Seksi</h4>
+                            <h4 class="modal-title" >Cari Atasan</h4>
                         </div>
                         <div class="modal-body">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
@@ -299,11 +299,12 @@
                                 <br>
                                 <hr>
 
-                                 <table width="100%" class="table table-bordered table-striped table-hover " id="tabel_parent_seksi" > 
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_parent_seksi" > 
                                     <thead>
                                         <tr>  
-                                            <th style="width:15%;">Nama Seksi</th> 
-                                            <th style="width:15%;">Action</th> 
+                                            <th style="width:15%;">NPP</th>
+                                            <th style="width:15%;">Nama</th>
+                                      
                                          </tr>
                                     </thead>
                                     <tbody>
@@ -426,50 +427,28 @@
  
     } 
 
-    function GetDataParentSeksi(id){
-        console.log(id);
-        $.get("<?php echo base_url('formasi_jabatan/fetch_nama_parent_seksi_row/'); ?>"+id,function(result){
-            console.log(result);
-            var parse = JSON.parse(result);
-            $("#id_parent_seksi").val(id);
-            $("#nama_parent_seksi").val(parse.nama_seksi);
-            $("#CariParentSeksiModal").modal('hide');
-        });
+     // cari direktorat
+    $('#daftar_parent_seksi').DataTable( {
+            "ajax": "<?php echo base_url(); ?>formasi_jabatan/fetch_atasan"           
+    });
 
-    }
-
- 
+     
+     
     function CariParentSeksi(){
         $("#CariParentSeksiModal").modal({backdrop: 'static', keyboard: false,show:true});
-
-        var id_departemen = $("#id_departemen").val();
-        
-        $('#tabel_parent_seksi').DataTable({
-            "processing" : true,
-            "ajax" : {
-                "url" : "<?php echo base_url('formasi_jabatan/fetch_nama_parent_seksi'); ?>",
-                "data":{id_departemen},
-                "type":"POST",
-                 dataSrc : '',
-
-            },
- 
-
-            "columns" : [ {
-                "data" : "nama"
-            },{
-                "data" : "action"
-            }],
-
-            "rowReorder": {
-                "update": false
-            },
-
-            "destroy":true,
-        });
-    
- 
     } 
+   
+        
+        var daftar_parent_seksi = $('#daftar_parent_seksi').DataTable();
+     
+        $('#daftar_parent_seksi tbody').on('click', 'tr', function () {
+            
+            var content = daftar_parent_seksi.row(this).data()
+            console.log(content);
+            $("#nama_atasan").val(content[1]);
+            $("#id_parent_seksi").val(content[2]);
+            $("#CariParentSeksiModal").modal('hide');
+        } );
 
     
     function GetDataDepartemen(id){
