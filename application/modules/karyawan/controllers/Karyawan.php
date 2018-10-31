@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Karyawan extends Parent_Controller {
  
   var $nama_tabel = 'm_karyawan';
-  var $daftar_field = array('id','id_lokasi','npp','nama_karyawan');
+  var $daftar_field = array('id','id_lokasi','npp','nama_karyawan','foto');
   var $primary_key = 'id';
   
  	public function __construct(){
@@ -45,9 +45,16 @@ class Karyawan extends Parent_Controller {
 	 
 	public function hapus_data(){
 		$id = $this->uri->segment(3);  
-    
+    //cek apakah foto/gambar tersedia
+		$cek_foto = $this->db->where($this->primary_key,$id)->get($this->nama_tabel)->row(); 
+   
+		if($cek_foto->foto != '' || $cek_foto->foto != NULL){
+          //apabila foto ada maka dihapus,apabila sebaliknya maka tidak dihapus
+          unlink("upload/".str_replace(" ","_",$cek_foto->foto));
+		}   
 
     $sqlhapus = $this->m_karyawan->hapus_data($id);
+    
 		
 		if($sqlhapus){
 			$result = array("response"=>array('message'=>'success'));
@@ -67,8 +74,10 @@ class Karyawan extends Parent_Controller {
  
 
     $simpan_data = $this->m_karyawan->simpan_data($data_form,$this->nama_tabel,$this->primary_key,$id);
+
+    $simpan_foto = $this->upload_foto();
  
-		if($simpan_data){
+		if($simpan_data && $simpan_foto){
 			$result = array("response"=>array('message'=>'success'));
 		}else{
 			$result = array("response"=>array('message'=>'failed'));
@@ -77,6 +86,16 @@ class Karyawan extends Parent_Controller {
 		echo json_encode($result,TRUE);
 
 	}
+
+	 function upload_foto(){  
+    if(isset($_FILES["user_image"])){  
+        $extension = explode('.', $_FILES['user_image']['name']);   
+        $destination = './upload/' . $_FILES['user_image']['name'];  
+        return move_uploaded_file($_FILES['user_image']['tmp_name'], $destination);  
+         
+    }  
+  }  
+       
  
   
        

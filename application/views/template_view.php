@@ -141,7 +141,13 @@
                         </a>
                     </li> 
                     <li class="header">Master</li> 
-                    <li>
+                      <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">dns</i>
+                            <span>Master</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
                         <a href="<?php echo base_url('direktorat'); ?>">
                            <i class="material-icons">dns</i>
                             <span>Direktorat</span>
@@ -195,6 +201,16 @@
                             <span>Formasi Jabatan</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="<?php echo base_url('user'); ?>">
+                           <i class="material-icons">dns</i>
+                            <span>User</span>
+                        </a>
+                    </li>
+                    
+                        </ul>
+                    </li>
+                    
                     
                     <li class="header">Laporan</li>
                      

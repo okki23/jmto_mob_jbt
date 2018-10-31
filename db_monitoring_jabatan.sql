@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100135
 File Encoding         : 65001
 
-Date: 2018-10-29 17:18:28
+Date: 2018-10-31 12:07:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -174,7 +174,7 @@ CREATE TABLE `m_formasi_jabatan` (
   `npp` varchar(20) DEFAULT NULL,
   `nama_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_formasi_jabatan
@@ -183,11 +183,9 @@ INSERT INTO `m_formasi_jabatan` VALUES ('11', '3', '0', '0', '8', '2', '65', '32
 INSERT INTO `m_formasi_jabatan` VALUES ('12', '3', '0', '0', '8', '1', '65', '72834', 'Divisi Information Technology');
 INSERT INTO `m_formasi_jabatan` VALUES ('13', '4', '0', '0', '8', '6', '66', '2428645', 'Divisi Financial Management');
 INSERT INTO `m_formasi_jabatan` VALUES ('14', '4', '0', '0', '8', '8', '66', '3805734', 'Divisi Human Capital & General Affair');
-INSERT INTO `m_formasi_jabatan` VALUES ('16', '3', '7', '0', '9', '2', null, '965234', 'Seksi Settlement Management');
 INSERT INTO `m_formasi_jabatan` VALUES ('17', '3', '9', '0', '9', '2', null, '872364', 'Departemen Toll Collection Management');
 INSERT INTO `m_formasi_jabatan` VALUES ('18', '3', '8', '0', '9', '2', null, '', 'Departemen Maintenance');
 INSERT INTO `m_formasi_jabatan` VALUES ('19', '3', '10', '0', '9', '2', null, '', 'Departemen Traffic Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('20', '3', '7', '6', '10', '2', null, '', 'Seksi Settlement Management');
 INSERT INTO `m_formasi_jabatan` VALUES ('21', '3', '8', '7', '10', '2', null, '', 'Seksi Maintenance Control');
 INSERT INTO `m_formasi_jabatan` VALUES ('22', '3', '10', '8', '10', '2', null, '', 'Seksi Traffic Planning');
 INSERT INTO `m_formasi_jabatan` VALUES ('23', '3', '10', '9', '10', '2', null, '7435349', 'Seksi Traffic Service & Sec');
@@ -217,7 +215,7 @@ INSERT INTO `m_formasi_jabatan` VALUES ('52', '6', '15', '0', '9', '10', null, '
 INSERT INTO `m_formasi_jabatan` VALUES ('53', '6', '16', '0', '9', '10', null, '', 'Departemen Marketing');
 INSERT INTO `m_formasi_jabatan` VALUES ('54', '6', '15', '31', '10', '10', null, '54233333', 'Seksi Business Planning');
 INSERT INTO `m_formasi_jabatan` VALUES ('55', '6', '16', '32', '10', '10', null, '975347377', 'Seksi Project Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('56', '6', '0', '0', '8', '10', null, '', 'Divisi Business Development');
+INSERT INTO `m_formasi_jabatan` VALUES ('56', '6', '0', '0', '8', '10', '0', '', 'Divisi Business Development');
 INSERT INTO `m_formasi_jabatan` VALUES ('57', '3', '9', '12', '10', '2', null, '534242455', 'Area Manager Jagorawi');
 INSERT INTO `m_formasi_jabatan` VALUES ('58', '3', '9', '13', '10', '2', null, '55334411', 'Area Manager JTC');
 INSERT INTO `m_formasi_jabatan` VALUES ('59', '3', '9', '14', '10', '2', null, '3454200', 'Area Manager Japek - Palikanci');
@@ -230,6 +228,8 @@ INSERT INTO `m_formasi_jabatan` VALUES ('65', '3', '0', '0', '0', '0', '67', '47
 INSERT INTO `m_formasi_jabatan` VALUES ('66', '4', '0', '0', '0', '0', '67', '34545', 'Direktur Keuangan & SDM');
 INSERT INTO `m_formasi_jabatan` VALUES ('67', '0', '0', '0', '0', '0', '0', '4234545', 'Direktur Utama');
 INSERT INTO `m_formasi_jabatan` VALUES ('68', '3', '1', '21', '11', '1', '32', '4545909', 'Ass Seksi IT Network & Infrastruktur');
+INSERT INTO `m_formasi_jabatan` VALUES ('69', '3', '7', '0', '9', '2', '11', '965234', 'Departemen Settlement & Reconsiliation');
+INSERT INTO `m_formasi_jabatan` VALUES ('70', '3', '7', '6', '10', '2', '69', '', 'Seksi Settlement Management');
 
 -- ----------------------------
 -- Table structure for m_karyawan
@@ -240,53 +240,55 @@ CREATE TABLE `m_karyawan` (
   `id_lokasi` int(10) DEFAULT NULL,
   `npp` varchar(25) DEFAULT NULL,
   `nama_karyawan` varchar(100) DEFAULT NULL,
+  `foto` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_karyawan
 -- ----------------------------
-INSERT INTO `m_karyawan` VALUES ('6', '1', '4234545', 'Septerianto Sanaf');
-INSERT INTO `m_karyawan` VALUES ('7', '1', '474784', 'Taruli Hutapea');
-INSERT INTO `m_karyawan` VALUES ('8', '1', '34545', 'Benny Soediarto. D');
-INSERT INTO `m_karyawan` VALUES ('9', '1', '324234', 'Saut Sitorus');
-INSERT INTO `m_karyawan` VALUES ('10', '1', '72834', 'Rahwono Haji');
-INSERT INTO `m_karyawan` VALUES ('11', '1', '2428645', 'Anang Mohamad Maruf');
-INSERT INTO `m_karyawan` VALUES ('12', '1', '3805734', 'Sujakat Triyanto');
-INSERT INTO `m_karyawan` VALUES ('13', '1', '965234', 'Hadha Alamajibuwono');
-INSERT INTO `m_karyawan` VALUES ('14', '1', '872364', 'Djoko Siswanto');
-INSERT INTO `m_karyawan` VALUES ('15', '1', '634574435', 'Nasir Ahmad');
-INSERT INTO `m_karyawan` VALUES ('16', '1', '542354', 'Muchammad Subchan');
-INSERT INTO `m_karyawan` VALUES ('17', '1', '973253', 'Ajeng Ananda Pratiwi');
-INSERT INTO `m_karyawan` VALUES ('18', '1', '623843', 'Benekdita');
-INSERT INTO `m_karyawan` VALUES ('19', '1', '92837471', 'Peni Widianti');
-INSERT INTO `m_karyawan` VALUES ('20', '1', '6532399', 'Florita Marlene');
-INSERT INTO `m_karyawan` VALUES ('21', '1', '54233333', 'Usca W');
-INSERT INTO `m_karyawan` VALUES ('22', '1', '975347377', 'Tody S');
-INSERT INTO `m_karyawan` VALUES ('23', '1', '69998456', 'Sebitalia');
-INSERT INTO `m_karyawan` VALUES ('24', '1', '66779889', 'Asep Rendra');
-INSERT INTO `m_karyawan` VALUES ('25', '1', '6999345', 'Raina');
-INSERT INTO `m_karyawan` VALUES ('26', '1', '4524239', 'Dedi Rachmat');
-INSERT INTO `m_karyawan` VALUES ('27', '1', '62347888', 'Berfit Aprilia P');
-INSERT INTO `m_karyawan` VALUES ('28', '1', '5634590', 'Mala Grazziana A');
-INSERT INTO `m_karyawan` VALUES ('29', '1', '324239090', 'Natasha Evelyn');
-INSERT INTO `m_karyawan` VALUES ('30', '1', '7435349', 'Richo Tamba');
-INSERT INTO `m_karyawan` VALUES ('31', '1', '4596989', 'Heru');
-INSERT INTO `m_karyawan` VALUES ('32', '1', '654699995', 'Suwanto');
-INSERT INTO `m_karyawan` VALUES ('33', '1', '7546867', 'Didik Susanto');
-INSERT INTO `m_karyawan` VALUES ('34', '1', '986745333', 'A.Firmansyah');
-INSERT INTO `m_karyawan` VALUES ('35', '1', '77777998', 'Ivan Mawara');
-INSERT INTO `m_karyawan` VALUES ('36', '1', '78756799', 'Sri Margono');
-INSERT INTO `m_karyawan` VALUES ('37', '1', '777897456', 'Lokot Pulungan');
-INSERT INTO `m_karyawan` VALUES ('38', '1', '534242455', 'Ronny H');
-INSERT INTO `m_karyawan` VALUES ('39', '1', '55334411', 'Anas Emil');
-INSERT INTO `m_karyawan` VALUES ('40', '1', '3454200', 'Iswantono');
-INSERT INTO `m_karyawan` VALUES ('41', '1', '545459898', 'Solihin');
-INSERT INTO `m_karyawan` VALUES ('42', '1', '55779090', 'Mustari');
-INSERT INTO `m_karyawan` VALUES ('43', '1', '555999', 'Okki Setyawan');
-INSERT INTO `m_karyawan` VALUES ('44', '1', '999555', 'Taufik');
-INSERT INTO `m_karyawan` VALUES ('45', '1', '34343222', 'Imam');
-INSERT INTO `m_karyawan` VALUES ('46', '1', '4545909', 'Iyan Kasela');
+INSERT INTO `m_karyawan` VALUES ('6', '1', '4234545', 'Septerianto Sanaf', null);
+INSERT INTO `m_karyawan` VALUES ('7', '1', '474784', 'Taruli Hutapea', null);
+INSERT INTO `m_karyawan` VALUES ('8', '1', '34545', 'Benny Soediarto. D', null);
+INSERT INTO `m_karyawan` VALUES ('9', '1', '324234', 'Saut Sitorus', null);
+INSERT INTO `m_karyawan` VALUES ('10', '1', '72834', 'Rahwono Haji', null);
+INSERT INTO `m_karyawan` VALUES ('11', '1', '2428645', 'Anang Mohamad Maruf', null);
+INSERT INTO `m_karyawan` VALUES ('12', '1', '3805734', 'Sujakat Triyanto', null);
+INSERT INTO `m_karyawan` VALUES ('13', '1', '965234', 'Hadha Alamajibuwono', null);
+INSERT INTO `m_karyawan` VALUES ('14', '1', '872364', 'Djoko Siswanto', null);
+INSERT INTO `m_karyawan` VALUES ('15', '1', '634574435', 'Nasir Ahmad', null);
+INSERT INTO `m_karyawan` VALUES ('16', '1', '542354', 'Muchammad Subchan', null);
+INSERT INTO `m_karyawan` VALUES ('17', '1', '973253', 'Ajeng Ananda Pratiwi', null);
+INSERT INTO `m_karyawan` VALUES ('18', '1', '623843', 'Benekdita', null);
+INSERT INTO `m_karyawan` VALUES ('19', '1', '92837471', 'Peni Widianti', null);
+INSERT INTO `m_karyawan` VALUES ('20', '1', '6532399', 'Florita Marlene', null);
+INSERT INTO `m_karyawan` VALUES ('21', '1', '54233333', 'Usca W', null);
+INSERT INTO `m_karyawan` VALUES ('22', '1', '975347377', 'Tody S', null);
+INSERT INTO `m_karyawan` VALUES ('23', '1', '69998456', 'Sebitalia', null);
+INSERT INTO `m_karyawan` VALUES ('24', '1', '66779889', 'Asep Rendra', null);
+INSERT INTO `m_karyawan` VALUES ('25', '1', '6999345', 'Raina', null);
+INSERT INTO `m_karyawan` VALUES ('26', '1', '4524239', 'Dedi Rachmat', null);
+INSERT INTO `m_karyawan` VALUES ('27', '1', '62347888', 'Berfit Aprilia P', null);
+INSERT INTO `m_karyawan` VALUES ('28', '1', '5634590', 'Mala Grazziana A', null);
+INSERT INTO `m_karyawan` VALUES ('29', '1', '324239090', 'Natasha Evelyn', null);
+INSERT INTO `m_karyawan` VALUES ('30', '1', '7435349', 'Richo Tamba', null);
+INSERT INTO `m_karyawan` VALUES ('31', '1', '4596989', 'Heru', null);
+INSERT INTO `m_karyawan` VALUES ('32', '1', '654699995', 'Suwanto', null);
+INSERT INTO `m_karyawan` VALUES ('33', '1', '7546867', 'Didik Susanto', null);
+INSERT INTO `m_karyawan` VALUES ('34', '1', '986745333', 'A.Firmansyah', null);
+INSERT INTO `m_karyawan` VALUES ('35', '1', '77777998', 'Ivan Mawara', null);
+INSERT INTO `m_karyawan` VALUES ('36', '1', '78756799', 'Sri Margono', null);
+INSERT INTO `m_karyawan` VALUES ('37', '1', '777897456', 'Lokot Pulungan', null);
+INSERT INTO `m_karyawan` VALUES ('38', '1', '534242455', 'Ronny H', null);
+INSERT INTO `m_karyawan` VALUES ('39', '1', '55334411', 'Anas Emil', null);
+INSERT INTO `m_karyawan` VALUES ('40', '1', '3454200', 'Iswantono', null);
+INSERT INTO `m_karyawan` VALUES ('41', '1', '545459898', 'Solihin', null);
+INSERT INTO `m_karyawan` VALUES ('42', '1', '55779090', 'Mustari', null);
+INSERT INTO `m_karyawan` VALUES ('43', '1', '555999', 'Okki Setyawan', 'pIBiU3Q.png');
+INSERT INTO `m_karyawan` VALUES ('44', '1', '999555', 'Taufik', null);
+INSERT INTO `m_karyawan` VALUES ('45', '1', '34343222', 'Imam', null);
+INSERT INTO `m_karyawan` VALUES ('46', '1', '4545909', 'Bill Gates', null);
+INSERT INTO `m_karyawan` VALUES ('47', '1', '877834', 'Linus Torvalds', 'linus.jpg');
 
 -- ----------------------------
 -- Table structure for m_kelas_jabatan
@@ -294,17 +296,17 @@ INSERT INTO `m_karyawan` VALUES ('46', '1', '4545909', 'Iyan Kasela');
 DROP TABLE IF EXISTS `m_kelas_jabatan`;
 CREATE TABLE `m_kelas_jabatan` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `nama_kelas_jabatan` int(10) DEFAULT NULL,
+  `nama_kelas_jabatan` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_kelas_jabatan
 -- ----------------------------
-INSERT INTO `m_kelas_jabatan` VALUES ('2', '1');
-INSERT INTO `m_kelas_jabatan` VALUES ('3', '2');
-INSERT INTO `m_kelas_jabatan` VALUES ('5', '3');
-INSERT INTO `m_kelas_jabatan` VALUES ('6', '4');
+INSERT INTO `m_kelas_jabatan` VALUES ('2', 'I');
+INSERT INTO `m_kelas_jabatan` VALUES ('3', 'II');
+INSERT INTO `m_kelas_jabatan` VALUES ('5', 'III');
+INSERT INTO `m_kelas_jabatan` VALUES ('6', 'IV');
 
 -- ----------------------------
 -- Table structure for m_kelompok_jabatan
@@ -440,13 +442,14 @@ CREATE TABLE `m_user` (
   `user_update` varchar(50) DEFAULT NULL,
   `date_update` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of m_user
 -- ----------------------------
 INSERT INTO `m_user` VALUES ('1', 'admin', 'YQ==', null, null, null, null);
 INSERT INTO `m_user` VALUES ('2', 'rere', 'YQ==', null, null, null, null);
+INSERT INTO `m_user` VALUES ('3', 'okki', 'YQ==', 'admin', '2018-10-31 05:22:49', null, null);
 
 -- ----------------------------
 -- Table structure for prodi

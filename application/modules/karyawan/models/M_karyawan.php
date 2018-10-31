@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class M_karyawan extends Parent_Model { 
   
   var $nama_tabel = 'm_karyawan';
-  var $daftar_field = array('id','id_lokasi','npp','nama_karyawan');
+  var $daftar_field = array('id','id_lokasi','npp','nama_karyawan','foto');
   var $primary_key = 'id';
   
 	  

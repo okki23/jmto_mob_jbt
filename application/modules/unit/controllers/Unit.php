@@ -1,11 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-/*
-author     : Karlina
-email      : karlinamaksum19@gmail.com
-copyright  : 2018 
-deskripsi  : Class unit berisi rincian method atau fungsi logic yang digunakan untuk melakukan olah data master Unit, dimana method yang terdaftar mengadopsi dari Parent Controller
-*/
+ 
 
 class Unit extends Parent_Controller {
 

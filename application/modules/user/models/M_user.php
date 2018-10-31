@@ -4,16 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 author     : Karlina
 email      : karlinamaksum19@gmail.com
 copyright  : 2018 
-deskripsi  : Class M_unit berisi rincian method atau fungsi logic yang digunakan untuk melakukan transaksi data master Unit, dimana method yang terdaftar mengadopsi dari Parent Model
+deskripsi  : Class M_user berisi rincian method atau fungsi logic yang digunakan untuk melakukan transaksi data master user, dimana method yang terdaftar mengadopsi dari Parent Model
 */
-class M_unit extends Parent_Model { 
+class M_user extends Parent_Model { 
   
   /*variabel global yang digunakan untuk instance di masing masing method agar dapat
   digunakan sewaktu waktu tanpa harus menulis ulang
   */
 
-  var $nama_tabel = 'm_unit';
-  var $daftar_field = array('id', 'blok_tower', 'lantai', 'no_unit', 'luas', 'tipe', 'foto', 'harga', 'user_insert', 'date_insert', 'user_update', 'date_update');
+  var $nama_tabel = 'm_user';
+  var $daftar_field = array('id','username','password','user_insert','date_insert','user_update','date_update');
   var $primary_key = 'id';
 
 	  
@@ -21,7 +21,7 @@ class M_unit extends Parent_Model {
         parent::__construct();
         $this->load->database();
   }
-  public function fetch_unit(){   
+  public function fetch_user(){   
 		   $getdata = $this->db->get($this->nama_tabel)->result();
 		   $data = array();  
 		   $no = 1;
@@ -29,18 +29,9 @@ class M_unit extends Parent_Model {
            {  
                 $sub_array = array();  
                 $sub_array[] = $no;
-                $sub_array[] = $row->blok_tower;  
-                $sub_array[] = $row->lantai;  
-			    $sub_array[] = $row->no_unit;  
-				$sub_array[] = $row->luas;  
-                $sub_array[] = $row->tipe;  
-			    $sub_array[] = $row->harga;  
-        
-				if($row->foto == '' || $row->foto == NULL){
-					$sub_array[] = '<a data-image = "'.base_url().'upload/photo_na.jpg" id="longok" href="javascript:void(0)"><img class="thumbnail img-responsive" src="'.base_url().'upload/photo_na.jpg"></a>';
-				}else{
-					$sub_array[] = '<a data-image = "'.base_url().'upload/'.$row->foto.'" id="longok" href="javascript:void(0)"><img class="thumbnail img-responsive" src="'.base_url().'upload/'.$row->foto.'"></a>';
-				}
+                $sub_array[] = $row->username;  
+    
+			   
 				 
 			    $sub_array[] = '<a href="javascript:void(0)" class="btn btn-warning btn-xs waves-effect" id="edit" onclick="Ubah_Data('.$row->id.');" > <i class="material-icons">create</i> Ubah </a>  &nbsp; <a href="javascript:void(0)" id="delete" class="btn btn-danger btn-xs waves-effect" onclick="Hapus_Data('.$row->id.');" > <i class="material-icons">delete</i> Hapus </a>';  
                

@@ -36,7 +36,9 @@
                    		 <div class="card">
                         <div class="header">
                             <h2>  Pemenuhan Formasi Berdasarkan Divisi</h2>
-                             
+                             <?php
+                             echo $dataparse_div;
+                             ?>
                         </div>
                          
                         </div>

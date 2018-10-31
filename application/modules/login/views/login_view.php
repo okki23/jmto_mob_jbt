@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>  PT.Jasamarga Tollroad Operator </title>
+    <title> Aplikasi Monitoring Formasi Jabatan PT.Jasamarga Tollroad Operator </title>
     <!-- Favicon-->
      <link rel="icon" href="<?php echo base_url(); ?>assets/images/favicon.png" type="image/x-icon">
 
@@ -49,9 +49,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <form id="sign_in" action="<?php echo base_url('login/autentikasi'); ?>" method="POST" enctype="multipart/form-data">
 				
 				<div align="center">
-				<img src="<?php echo base_url('assets/images/logo_jasamarga2.jpg'); ?>" style="width:50%; height:50%; ">
+				<img src="<?php echo base_url('assets/images/logo_jmto.png'); ?>" style="width:50%; height:50%; ">
 				</div>
-                    <div class="msg"><b>Sistem Aplikasi Monitoring Jabatan </b> </div>
+                    <div class="msg"><b>Aplikasi Monitoring Formasi Jabatan PT.Jasamarga Tollroad Operator </b> </div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>

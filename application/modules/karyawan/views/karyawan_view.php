@@ -78,6 +78,17 @@
                                             <input type="text" name="nama_karyawan" id="nama_karyawan" class="form-control" placeholder="Nama karyawan" />
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            Upload Foto 
+                                            <input type="file" name="user_image" id="user_image" class="form-control" onchange="PreviewGambar(this);" placeholder="Foto" />  
+                                        </div>
+                                           <input type="hidden" name="foto" id="foto">
+                                    </div>
+                                    <br>
+                                    <img onerror="this.onerror=null;this.src='<?php echo base_url('upload/image_prev.jpg'); ?>';" id="image1" src="<?php echo base_url('upload/image_prev.jpg');?>" style="height: 300px;" alt="..." class="img-rounded img-responsive">
+                                  <br>
 									 
 
 								   <button type="button" onclick="Simpan_Data();" class="btn btn-success waves-effect"> <i class="material-icons">save</i> Simpan</button>
@@ -124,7 +135,18 @@
 			
  
    <script type="text/javascript">
-	
+	function PreviewGambar(input) {
+        if (input.files && input.files[0]){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#image1').attr('src', e.target.result);
+                $("#foto").val($('#user_image').val().replace(/C:\\fakepath\\/i, ''));
+            };
+            reader.readAsDataURL(input.files[0]);
+            
+        }
+     }
+     
 
     $('#daftar_lokasi').DataTable( {
             "ajax": "<?php echo base_url(); ?>karyawan/fetch_lokasi"           
@@ -167,6 +189,7 @@
                  $("#id_lokasi").val(result.id_lokasi);                 
                  $("#nama_karyawan").val(result.nama_karyawan);
                  $("#nama_lokasi").val(result.nama_lokasi);
+                 $('#image1').attr('src',"upload/"+result.foto);
               
                   
 			 }
@@ -233,7 +256,7 @@
                  $("#defaultModal").modal('hide');
                  $('#example').DataTable().ajax.reload(); 
                  $('#user_form')[0].reset();
-                 
+                 $("#image1").attr("src","<?php echo base_url(); ?>/upload/image_prev.jpg");
                  $.notify("Data berhasil disimpan!", {
                     animate: {
                         enter: 'animated fadeInRight',
