@@ -40,8 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);"> LOGIN AREA </a>
-            
+           
         </div>
         <div class="card">
             <div class="body">

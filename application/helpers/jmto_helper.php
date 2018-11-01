@@ -13,6 +13,19 @@ if(!function_exists('level_help')){
 		return $res;
     }
 }
+if(!function_exists('bagi_nama_div')){
+    function bagi_nama_div($string){
+    $total = str_word_count($string);
+     $batas = "3";
+     $count = $total-$batas;
+     $kata1 = implode(" ", array_slice(explode(" ", $string), 0, $batas));
+     $separator = "<br>";
+     $kata2 = implode(" ", array_slice(explode(" ", $string),$batas, $count));
+    
+     $res = $kata1.$separator.$kata2;
+     return $res;
+    }
+}
 
  function kekata($x) {
         $x = abs($x);

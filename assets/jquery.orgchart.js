@@ -30,7 +30,7 @@
       'exportFilename': 'OrgChart',
       'exportFileextension': 'png',
       'parentNodeSymbol': 'fa-users',
-      'draggable': false,
+      'draggable': true,
       'direction': 't2b',
       'pan': false,
       'zoom': false,

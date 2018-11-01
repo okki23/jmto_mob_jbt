@@ -119,75 +119,222 @@ where a.id_seksi != 0  and d.nama_kelas_jabatan NOT IN ('I','II','III')   and a.
 		$this->load->view('template_view',$data);
 	}
 
+	public function cobas(){
+		// echo "[";
+		// $data_div = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
+		// 	LEFT JOIN m_karyawan b on b.npp = a.npp
+		// 	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+		// 	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+		// 	LEFT JOIN m_seksi e on e.id = a.id_seksi
+		// 	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+		// 	where a.id_departemen = 0 and a.id_divisi != 0")->result();
+		// foreach ($data_div as $key => $value) {
+		// 	$
+		// 	echo '{"name":"'.$value->nama_divisi.'"},';
+		// }
+		// echo "]";
+		// exit();
+		//header('Content-Type: application/json');
+		// $data_div = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
+		// 			      	LEFT JOIN m_karyawan b on b.npp = a.npp
+		// 			      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+		// 			      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+		// 			      	LEFT JOIN m_seksi e on e.id = a.id_seksi
+		// 			      	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+		// 			      	where a.id_departemen = 0 and a.id_divisi != 0")->result();
+	 // 		$datas = array();
+	 // 		foreach ($data_div as $key => $value) {
+	 // 			echo $value->nama_divisi."<br>";
+		// 	 $sqlb = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
+	 // 									d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
+	 // 									m_formasi_jabatan a
+		// 						      	LEFT JOIN m_karyawan b on b.npp = a.npp
+		// 						      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+		// 						      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+		// 						      	LEFT JOIN m_seksi e on e.id = a.id_seksi
+		// 						      	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+		// 								where a.id_divisi = '".$value->id_divisi."'
+		// 								GROUP BY c.id_kelas_jabatan")->result();
+		// 		foreach ($sqlb as $keyz => $valuez) {
+		// 			echo $valuez->nama_kelas_jabatan."<br>";
+		// 		}
 
+	 // 		}
+
+			$data_div = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
+					      	LEFT JOIN m_karyawan b on b.npp = a.npp
+					      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+					      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+					      	LEFT JOIN m_seksi e on e.id = a.id_seksi
+					      	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+					      	where a.id_departemen = 0 and a.id_divisi != 0")->result();
+	 		$datas = array();
+	 		foreach ($data_div as $key => $value) {
+	 			$data['name'] = $value->nama_divisi;
+	 		 
+	 				 $sqlb = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
+	 									d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
+	 									m_formasi_jabatan a
+								      	LEFT JOIN m_karyawan b on b.npp = a.npp
+								      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+								      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+								      	LEFT JOIN m_seksi e on e.id = a.id_seksi
+								      	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+										where a.id_divisi = '".$value->id_divisi."'
+										GROUP BY c.id_kelas_jabatan")->result();
+	 				 $listing = array();
+	 				 foreach ($sqlb as $keyz => $valuez) {
+	 				 	$listing[] = $valuez->nama_kelas_jabatan;
+	 				 	
+	 				 }
+	 			$data['categories'] = $listing;
+	 		 	echo json_encode($data);
+	 		 	 
+	 			//$data['categories'] = $valuez->nama_kelas_jabatan;
+	 			//array_push($datas, $data);
+	 		}
+	 		
+	}
 	 public function coba(){
 	 	//header('Content-Type: application/json');
-	 	$data_div = $this->db->query("select * from m_divisi")->result();
-		 
-	 
-	 	foreach ($data_div as $keyz => $valuez) {
-	 		//$datap = $valuez->nama_divisi;
-	 		//echo "<li>".$valuez->nama_divisi."</li>";
-	 		echo "<br> <br>". $valuez->nama_divisi."<br> <br>";	
-	 		$sqlb = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
+	 	$data_div = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
 					      	LEFT JOIN m_karyawan b on b.npp = a.npp
 					      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
 					      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
 					      	LEFT JOIN m_seksi e on e.id = a.id_seksi
-									LEFT JOIN m_divisi f on f.id = a.id_divisi
-									where d.nama_kelas_jabatan = 1 and a.id_divisi = '".$valuez->id."' ")->row();
-				echo " Kelas 1 - ".$sqlb->nama_karyawan."<br>";  
-			$sqlc = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
-					      	LEFT JOIN m_karyawan b on b.npp = a.npp
-					      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
-					      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
-					      	LEFT JOIN m_seksi e on e.id = a.id_seksi
-									LEFT JOIN m_divisi f on f.id = a.id_divisi
-									where d.nama_kelas_jabatan = 2 and a.id_divisi = '".$valuez->id."' ")->result();
-			foreach ($sqlc as $keyx => $valuex) {
-				echo "Kelas 2 - ".$valuex->nama_karyawan."<br>";
-			}
+					      	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+					      	where a.id_departemen = 0 and a.id_divisi != 0")->result();
+	 		foreach ($data_div as $key => $value) {
+	 			echo $value->nama_divisi."<br>";
 
-			$sqld = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
-					      	LEFT JOIN m_karyawan b on b.npp = a.npp
-					      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
-					      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
-					      	LEFT JOIN m_seksi e on e.id = a.id_seksi
-									LEFT JOIN m_divisi f on f.id = a.id_divisi
-									where d.nama_kelas_jabatan = 3 and a.id_divisi = '".$valuez->id."' ")->result();
+	 			$sqlb = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
+	 									d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
+	 									m_formasi_jabatan a
+								      	LEFT JOIN m_karyawan b on b.npp = a.npp
+								      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+								      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+								      	LEFT JOIN m_seksi e on e.id = a.id_seksi
+								      	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+										where a.id_divisi = '".$value->id_divisi."'
+										GROUP BY c.id_kelas_jabatan")->result();
+	 			foreach ($sqlb as $keyz => $valuez) {
+	 				//echo $valuez->nama_kelas_jabatan."<br>";
 
-			foreach ($sqld as $keys => $values) {
-				echo "Kelas 3 - ".$values->nama_karyawan."<br>";
-			}
+	 				$sqlklas_all = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
+	 									d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
+	 									m_formasi_jabatan a
+								      	LEFT JOIN m_karyawan b on b.npp = a.npp
+								      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+								      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+								      	LEFT JOIN m_seksi e on e.id = a.id_seksi
+								      	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+								      	where a.id_divisi = '".$valuez->id_divisi ."' and d.nama_kelas_jabatan = '".$valuez->nama_kelas_jabatan."'  ")->num_rows();
+	 				$sqlklas_full = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
+	 									d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
+	 									m_formasi_jabatan a
+								      	LEFT JOIN m_karyawan b on b.npp = a.npp
+								      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+								      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+								      	LEFT JOIN m_seksi e on e.id = a.id_seksi
+								      	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+								      	where a.id_divisi = '".$valuez->id_divisi ."' and d.nama_kelas_jabatan = '".$valuez->nama_kelas_jabatan."' and a.npp != '' ")->num_rows();
 
-			$sqle = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
-					      	LEFT JOIN m_karyawan b on b.npp = a.npp
-					      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
-					      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
-					      	LEFT JOIN m_seksi e on e.id = a.id_seksi
-									LEFT JOIN m_divisi f on f.id = a.id_divisi
-									where d.nama_kelas_jabatan = 4 and a.id_divisi = '".$valuez->id."' ")->result();
+	 				$sqlklas_empty = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
+	 									d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
+	 									m_formasi_jabatan a
+								      	LEFT JOIN m_karyawan b on b.npp = a.npp
+								      	LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+								      	LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+								      	LEFT JOIN m_seksi e on e.id = a.id_seksi
+								      	LEFT JOIN m_divisi f on f.id = a.id_divisi 
+								      	where a.id_divisi = '".$valuez->id_divisi ."' and d.nama_kelas_jabatan = '".$valuez->nama_kelas_jabatan."' and a.npp = '' ")->num_rows();
+	 				echo " - Untuk Kelas ".$valuez->nama_kelas_jabatan. " Pada divisi ".$value->nama_divisi. " Semua : ".$sqlklas_all. " Kosong : ".$sqlklas_empty. " Terisi : ".$sqlklas_full."<br>";
+	 			}
 
+	 		}
+			
+		exit();
+	   
+	}
 
-	 	 	foreach ($sqle as $keyc => $valuec) {
-				echo "Kelas 4 - ".$valuec->nama_karyawan."<br>";
-			}
-
-	 }
+	public function yes(){
+		echo '<ul id="mainContainer">
+                    <li id="101" title="
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div align="center">
+                                        <img style="width:90px; height:90px;" src='.base_url('assets/images/baper.jpg').' class="img-rounded"/>
+                                    </div>
+                                </div>
+                                 
+                                <div class="col-md-12 text-left userName" title="User 1">
+                                    <strong>Septerianto Sanaf </strong>
+                                </div>
+                            </div><span>Direktur Utama</span>
+                            <ul>
+                                <li id="102"  title="
+		                            <div class="row">
+		                                <div class="col-md-12">
+		                                    <div align="center">
+		                                        <img style="width:90px; height:90px;" src='.base_url('assets/images/baper.jpg').' class="img-rounded"/>
+		                                    </div>
+		                                </div>
+		                                 
+		                                <div class="col-md-12 text-left userName" title="User 1">
+		                                    <strong>Taruli Hutapea </strong>
+		                                </div>
+		                            </div>
+		                            <span>Direktur Teknik & Operasi</span>
+                                    </li>
+                            </ul>
+                            </ul>';
+	}
+	public function resmenu(){
+		echo $this->getmenus(0,"");
 	}
 
 	 function getmenus($parent,$hasil){
-	 	$sql = $this->db->query("select a.*,b.nama_karyawan from m_formasi_jabatan a left join m_karyawan b on b.npp = a.npp where id_parent_seksi = '".$parent."' ");
-        //$sql = $this->db->where('id_parent_seksi',$parent)->get('m_formasi_jabatan');
-
+	 	$sql = $this->db->query("select a.*,b.nama_karyawan,b.foto from m_formasi_jabatan a left join m_karyawan b on b.npp = a.npp where id_parent_seksi = '".$parent."' ");
+       
         if(($sql->num_rows())>0)
         {
-            $hasil .= "<ul id='ul-data' class='data'>";
+            $hasil .= "<ul id='mainContainer' style='display:none;'>";
 
         }
         foreach($sql->result() as $h)
         {
-            $hasil .= "<li>".$h->nama_karyawan . " <br> " . $h->nama_jabatan." </a>";
+        	if($h->foto == NULL || $h->foto == ''){
+        		$hasil .= '<li id='.$h->id.' title="
+                            <div class=\'row\'>
+                                <div class=\'col-md-12\'>
+                                    <div align=\'center\'>
+                                        <img style=\'width:70px; height:90px;\' 
+                                        src=\''.base_url('assets/images/user_default.png').'\' class=\'img-rounded\'/>
+                                    </div>
+                                </div>
+                                 
+                                <div class=\'col-md-12 text-left userName\' title=\'User 1\'>
+                                    <strong>'.$h->nama_karyawan.'</strong>
+                                </div>
+                            </div><span>'.bagi_nama_div($h->nama_jabatan).'</span> 
+                        ">';
+        	}else{
+        		$hasil .= '<li id='.$h->id.' title="
+                            <div class=\'row\'>
+                                <div class=\'col-md-12\'>
+                                    <div align=\'center\'>
+                                        <img style=\'width:90px; height:90px;\' 
+                                        src=\''.base_url('upload/').$h->foto.'\' class=\'img-rounded\'/>
+                                    </div>
+                                </div>
+                                 
+                                <div class=\'col-md-12 text-left userName\' title=\'User 1\'>
+                                    <strong>'.$h->nama_karyawan.'</strong>
+                                </div>
+                            </div><span>'.$h->nama_jabatan.'</span> 
+                        ">';
+        	}
+        	 
             $hasil = $this->getmenus($h->id,$hasil);
             $hasil .= "</li>";
         }
