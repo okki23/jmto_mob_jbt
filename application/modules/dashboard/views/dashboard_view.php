@@ -195,6 +195,28 @@ window.chart = new Highcharts.Chart({
             text: 'Persentase'
         },
     },
+    tooltip: {
+        headerFormat: '<b>{point.x}</b><br/>',
+        pointFormat: 'Terisi: {point.y} %'
+    },
+    yAxis: {
+        stackLabels: {
+            enabled: true, 
+            align: 'center'
+        }
+    },
+    plotOptions: {
+        column: {
+            stacking: 'normal',
+            pointPadding: 0,
+            groupPadding: 0,
+            dataLabels: {
+                enabled: true,
+                color: '#FFFFFF'
+            }
+        }
+    },
+
     xAxis: {
             <?php
             $data_div = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
@@ -242,12 +264,8 @@ window.chart = new Highcharts.Chart({
 <script type="text/javascript">
      
 	  
-    $(function () {
-
-        // $('#chart-container').orgchart({
-        //     'data' : $('#ul-data')
-        // });
-
+   $(function () {
+ 
    $('#bar_a').highcharts({
         chart: {
         type: 'column'
@@ -308,9 +326,4 @@ window.chart = new Highcharts.Chart({
             });
         });
 </script>
-
  
-
-<!-- <script src="<?php echo base_url(); ?>assets/js/chart.bundle.js"></script> -->
-
-     
