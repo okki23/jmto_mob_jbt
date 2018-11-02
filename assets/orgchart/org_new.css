@@ -140,7 +140,19 @@
     padding:3px;
     border:2px dashed transparent;
     text-align:center;
-    width:160px
+    width:180px;
+}
+
+.orgchart .node p {
+      background-color: #fff;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+      line-height: 1.6;
+        width: 100%;
+        min-height: 50px;
+        overflow:hidden;
+
+        word-wrap:break-all;
 }
 .orgchart.l2r .node,.orgchart.r2l .node{
     width:50px;
@@ -580,15 +592,15 @@ input[type=text]{
     padding:5px;
     margin:0 -4px
 }
-.userName{
-    margin-top:5px;
-     padding:2px 2px 2px 2px;
-     text-align: center;
-    text-overflow:ellipsis;
+.userName{  
+    text-align: center; 
     overflow:hidden;
     font-size:12px;
-    margin-bottom:20px;
+    word-wrap: break-word;
+   
 }
+                                 
+
 #resultadosBusqueda{
     position:absolute;
     color:#fff;

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100135
 File Encoding         : 65001
 
-Date: 2018-10-31 12:07:39
+Date: 2018-11-02 14:19:54
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -221,7 +221,7 @@ INSERT INTO `m_formasi_jabatan` VALUES ('58', '3', '9', '13', '10', '2', null, '
 INSERT INTO `m_formasi_jabatan` VALUES ('59', '3', '9', '14', '10', '2', null, '3454200', 'Area Manager Japek - Palikanci');
 INSERT INTO `m_formasi_jabatan` VALUES ('60', '3', '9', '18', '10', '2', null, '545459898', 'Area Manager Japek - Palikanci');
 INSERT INTO `m_formasi_jabatan` VALUES ('61', '3', '9', '19', '10', '2', null, '55779090', 'Area Manager Surgem');
-INSERT INTO `m_formasi_jabatan` VALUES ('62', '3', '1', '20', '11', '1', null, '555999', 'Ass Seksi IT Application & Database');
+INSERT INTO `m_formasi_jabatan` VALUES ('62', '3', '1', '20', '11', '1', '31', '555999', 'Ass Seksi IT Application & Database');
 INSERT INTO `m_formasi_jabatan` VALUES ('63', '3', '1', '20', '11', '1', null, '999555', 'Ass Seksi IT Application & Database');
 INSERT INTO `m_formasi_jabatan` VALUES ('64', '3', '1', '21', '11', '1', null, '34343222', 'Ass Seksi IT Network & Infrastruktur');
 INSERT INTO `m_formasi_jabatan` VALUES ('65', '3', '0', '0', '0', '0', '67', '474784', 'Direktur Teknik & Operasi');
@@ -479,4 +479,32 @@ INSERT INTO `prodi` VALUES ('74', 'Manajemen Bisnis Internasional', 'D4', '6');
 INSERT INTO `prodi` VALUES ('81', 'Usaha Perjalanan Wisata', 'D3', '2');
 INSERT INTO `prodi` VALUES ('82', 'Perhotelan', 'D3', '2');
 INSERT INTO `prodi` VALUES ('83', 'Manajemen Bisnis Pariwisata', 'D4', '2');
+
+-- ----------------------------
+-- Table structure for t_chart
+-- ----------------------------
+DROP TABLE IF EXISTS `t_chart`;
+CREATE TABLE `t_chart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `month` varchar(10) DEFAULT NULL,
+  `revenue` int(10) DEFAULT NULL,
+  `overhead` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of t_chart
+-- ----------------------------
+INSERT INTO `t_chart` VALUES ('1', 'Jan', '23873', '20973');
+INSERT INTO `t_chart` VALUES ('2', 'Feb', '23454', '28084');
+INSERT INTO `t_chart` VALUES ('3', 'Mar', '25094', '28974');
+INSERT INTO `t_chart` VALUES ('4', 'Apr', '27888', '28765');
+INSERT INTO `t_chart` VALUES ('5', 'May', '25854', '20985');
+INSERT INTO `t_chart` VALUES ('6', 'Jun', '26864', '26098');
+INSERT INTO `t_chart` VALUES ('7', 'Jul', '26857', '27975');
+INSERT INTO `t_chart` VALUES ('8', 'Aug', '25634', '28294');
+INSERT INTO `t_chart` VALUES ('9', 'Sep', '25984', '23984');
+INSERT INTO `t_chart` VALUES ('10', 'Oct', '25874', '25987');
+INSERT INTO `t_chart` VALUES ('11', 'Nov', '25762', '24977');
+INSERT INTO `t_chart` VALUES ('12', 'Dec', '28084', '29774');
 SET FOREIGN_KEY_CHECKS=1;

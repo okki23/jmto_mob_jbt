@@ -3,6 +3,7 @@
             <div class="block-header">
                  
             </div>
+           
             <!-- Basic Examples -->
             <div class="row clearfix">
                 <div class="col-lg-12">
@@ -10,11 +11,12 @@
                         <div class="header">
                             <h2>
                               Selamat Datang di Sistem Aplikasi Monitoring Jabatan
+
                             </h2>
                             <br>
                             
                         <div class="body">
-                           <!--  <p> All DIV VP : <?php echo $all_div_vp; ?></p> -->
+                           
             	<div class="row clearfix">
                 <!-- Line Chart -->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -39,7 +41,7 @@
                              <?php
                              echo $dataparse_div;
                              ?>
-                             <div class="chart-container" id="chart"></div>
+                             <div class="chart-container" id="chart"  style="min-width: 800px; height: 400px; margin: 0 auto"></div>
 
 
                         </div>
@@ -83,8 +85,23 @@
 
         </div>
 </section>
+
 <style type="text/css">
-    #chart, #chart-advanced, #chart-3d {height: 400px; width: 100%; position: relative; }
+    #chart, #chart-advanced, #chart-3d {
+        height: 400px; width: 100%; position: relative; 
+    }
+    #absolute_div{
+        background-color: #fff;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        padding: 5px 5px 5px 5px;
+        width: 100%;
+        min-height: 50px;
+        overflow:hidden;
+        word-wrap:break-word;
+    }
+
+
 </style>
 <script src="http://code.highcharts.com/highcharts.js"></script>
 
@@ -125,6 +142,7 @@
 </script>  
 
 <script>
+
 window.chart = new Highcharts.Chart({
     chart: {
         renderTo: "chart",
@@ -132,27 +150,95 @@ window.chart = new Highcharts.Chart({
     },
     series:
     [{
-        data: [4, 14, 18,89, 5, 6, 5,50, 14, 15, 18,30,20,12,4,33,44,33,34,45,32,54,32,32]
+        <?php
+        $data_div = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
+                            LEFT JOIN m_karyawan b on b.npp = a.npp
+                            LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+                            LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+                            LEFT JOIN m_seksi e on e.id = a.id_seksi
+                            LEFT JOIN m_divisi f on f.id = a.id_divisi 
+                            where a.id_departemen = 0 and a.id_divisi != 0")->result();
+            $return = [];
+            foreach ($data_div as $key => $value) {
+                $data['name'] = $value->nama_divisi;
+             
+                     $sqlb = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
+                                        d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
+                                        m_formasi_jabatan a
+                                        LEFT JOIN m_karyawan b on b.npp = a.npp
+                                        LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+                                        LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+                                        LEFT JOIN m_seksi e on e.id = a.id_seksi
+                                        LEFT JOIN m_divisi f on f.id = a.id_divisi 
+                                        where a.id_divisi = '".$value->id_divisi."'
+                                        GROUP BY c.id_kelas_jabatan")->result();
+                     $listing = array();
+                     foreach ($sqlb as $keyz => $valuez) {
+                     $sql_all = $this->db->query("select a.* from m_formasi_jabatan a 
+                        left join m_divisi b on b.id = a.id_divisi
+                        left join m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+                        left join m_kelas_jabatan d on d.id = c.id_kelas_jabatan where a.id_divisi = '".$value->id_divisi."' and d.nama_kelas_jabatan = '".$valuez->nama_kelas_jabatan."' ")->num_rows();
+                        $sql_full = $this->db->query("select a.* from m_formasi_jabatan a 
+                        left join m_divisi b on b.id = a.id_divisi
+                        left join m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+                        left join m_kelas_jabatan d on d.id = c.id_kelas_jabatan where a.id_divisi = '".$value->id_divisi."' and d.nama_kelas_jabatan = '".$valuez->nama_kelas_jabatan."' and a.npp != '' ")->num_rows();
+                        $return[] = round($sql_full/$sql_all,1)*100;
+                     }
+                     
+            }
+            $databars = json_encode($return);
+        ?>
+        data: <?php echo $databars; ?>
     }],
-    xAxis: {
-        categories: [{
-            "name": "Operation Management",
-            "categories": ["1", "2", "3","4","5","6"]
-        }, {
-            "name": "Information Technology",
-            "categories": ["1", "2", "3","4","5","6"]
-        }, {
-            "name": "Human Capital",
-            "categories": ["1", "2", "3","4","5","6"]
+    yAxis:{
+        title: {
+            text: 'Persentase'
         },
-        {
-            "name": "General Affair",
-            "categories": ["1", "2", "3","4","5","6"]
-        }]
+    },
+    xAxis: {
+            <?php
+            $data_div = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
+                            LEFT JOIN m_karyawan b on b.npp = a.npp
+                            LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+                            LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+                            LEFT JOIN m_seksi e on e.id = a.id_seksi
+                            LEFT JOIN m_divisi f on f.id = a.id_divisi 
+                            where a.id_departemen = 0 and a.id_divisi != 0")->result();
+            $return = [];
+            foreach ($data_div as $key => $value) {
+                $data['name'] = $value->nama_divisi;
+             
+                     $sqlb = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
+                                        d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
+                                        m_formasi_jabatan a
+                                        LEFT JOIN m_karyawan b on b.npp = a.npp
+                                        LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+                                        LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+                                        LEFT JOIN m_seksi e on e.id = a.id_seksi
+                                        LEFT JOIN m_divisi f on f.id = a.id_divisi 
+                                        where a.id_divisi = '".$value->id_divisi."'
+                                        GROUP BY c.id_kelas_jabatan")->result();
+                     $listing = array();
+                     foreach ($sqlb as $keyz => $valuez) {
+                        $listing[] = $valuez->nama_kelas_jabatan;
+                        
+                     }
+ 
+                $return_arr = ["name" => $value->nama_divisi,
+                               "categories" => $listing,];
+                $return[] = $return_arr;
+                
+            }
+                
+            
+         ?>
+     categories : <?php echo json_encode($return); ?>
+    
+
     }
 });
 </script>
-
+ 
 <script type="text/javascript">
      
 	  
@@ -163,7 +249,7 @@ window.chart = new Highcharts.Chart({
         // });
 
    $('#bar_a').highcharts({
-                 chart: {
+        chart: {
         type: 'column'
     },
     title: {
