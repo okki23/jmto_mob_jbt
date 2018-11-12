@@ -33,13 +33,13 @@
                         </div>
                 </div>
                 
-                <!-- Line Chart -->
+                
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                    		 <div class="card">
                         <div class="header">
-                            <h2 align="center">  Pemenuhan Formasi Berdasarkan Divisi</h2>
+                         
                              <?php
-                             echo $dataparse_div;
+                             //echo $dataparse_div;
                              ?>
                              <div class="chart-container" id="chart"  style="min-width: 800px; height: 400px; margin: 0 auto"></div>
 
@@ -48,17 +48,21 @@
                          
                         </div>
                 </div>
+
+
+                
+
                 </div>
                 <div class="row clearfix">
                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                          <div class="card">
                         <div class="header">
                             <h2>  Map Formasi Jabatan </h2>
-                             
+                            <button class="btn btn-primary" onclick="takescreenshot();"> Download This Map </button>
                         </div>
                                 
-                      
-                             <div class="container-fluid">
+                      <div id="capture_segment">
+                             <div class="container-fluid" style="max-width: 100%; min-height: 200px;">
       
                             <?php
                             echo $dataparse;
@@ -66,6 +70,7 @@
                             <div id="chart-container-new" style="border:1px solid #999; padding:10px; border-radius:8px;"></div>
      
     </div>
+</div>
                         </div>
                 </div>
                 </div>
@@ -108,9 +113,11 @@
 <script type="text/javascript" src="<?php echo base_url('assets/'); ?>grouped-categories.js"></script>
 
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
+<script type="text/javascript" src="<?php echo base_url('assets/js/'); ?>html2canvas.js"></script>
+ 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 <link rel="stylesheet" href="<?php echo base_url('assets/orgchart/'); ?>org_new.css">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/'); ?>css_chart.css">
 <script type="text/javascript" src="<?php echo base_url('assets/orgchart/'); ?>org.js"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/orgchart/'); ?>orgExtras.js"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/orgchart/'); ?>scripts.js"></script>
@@ -118,8 +125,7 @@
 <link rel="stylesheet" href="<?php echo base_url('assets/'); ?>jquery.orgchart.css">
 <link rel="stylesheet" href="<?php echo base_url('assets/'); ?>orgchart_style.css">
 <script type="text/javascript" src="<?php echo base_url('assets/'); ?>jquery.orgchart.js"></script> -->
-<script type="text/javascript" src="<?php echo base_url('assets/'); ?>html2canvas.js"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/'); ?>html2canvas.min.js"></script>
+ 
  
 <script>
         Highcharts.setOptions({
@@ -142,17 +148,41 @@
 </script>  
 
 <script>
+ 
+function takescreenshot(){
+    var element = $("#capture_segment");
+    html2canvas(element,{
+    background : '#FFFFFF',
+        onrendered : function(canvas){
+            var imgData = canvas.toDataURL('image/jpeg');
+            $.ajax({
+            url:'<?php echo base_url('dashboard/get_picture'); ?>',
+            type:'post',
+            dataType:'text',
+            data:{
+                base64data:imgData
+            }
+            });
+        }
+    });
+}
+
+//bagian chart
 
 window.chart = new Highcharts.Chart({
     chart: {
         renderTo: "chart",
         type: "column"
     },
+      title: {
+        text: 'Pemenuhan Formasi Berdasarkan Divisi'
+    },
     series:
     [{
-        <?php
+         name: 'Jumlah Persentase Formasi Terisi',
+    <?php
         $data_div = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
-                            LEFT JOIN m_karyawan b on b.npp = a.npp
+                             LEFT JOIN m_karyawan b on b.id = a.id_karyawan
                             LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
                             LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
                             LEFT JOIN m_seksi e on e.id = a.id_seksi
@@ -165,7 +195,7 @@ window.chart = new Highcharts.Chart({
                      $sqlb = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
                                         d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
                                         m_formasi_jabatan a
-                                        LEFT JOIN m_karyawan b on b.npp = a.npp
+                                       LEFT JOIN m_karyawan b on b.id = a.id_karyawan
                                         LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
                                         LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
                                         LEFT JOIN m_seksi e on e.id = a.id_seksi
@@ -181,7 +211,7 @@ window.chart = new Highcharts.Chart({
                         $sql_full = $this->db->query("select a.* from m_formasi_jabatan a 
                         left join m_divisi b on b.id = a.id_divisi
                         left join m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
-                        left join m_kelas_jabatan d on d.id = c.id_kelas_jabatan where a.id_divisi = '".$value->id_divisi."' and d.nama_kelas_jabatan = '".$valuez->nama_kelas_jabatan."' and a.npp != '' ")->num_rows();
+                        left join m_kelas_jabatan d on d.id = c.id_kelas_jabatan where a.id_divisi = '".$value->id_divisi."' and d.nama_kelas_jabatan = '".$valuez->nama_kelas_jabatan."' and a.id_karyawan != '' ")->num_rows();
                         $return[] = round($sql_full/$sql_all,1)*100;
                      }
                      
@@ -190,20 +220,26 @@ window.chart = new Highcharts.Chart({
         ?>
         data: <?php echo $databars; ?>
     }],
-    yAxis:{
-        title: {
-            text: 'Persentase'
-        },
-    },
+   
     tooltip: {
         headerFormat: '<b>{point.x}</b><br/>',
         pointFormat: 'Terisi: {point.y} %'
     },
-    yAxis: {
+    yAxis:  {
+        min: 0,
+        title: {
+            text: 'Persentase'
+        },
         stackLabels: {
-            enabled: true, 
-            align: 'center'
+            enabled: true,
+            style: {
+                fontWeight: 'bold',
+                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+            }
         }
+    },
+    credits: {
+      enabled: false
     },
     plotOptions: {
         column: {
@@ -220,7 +256,7 @@ window.chart = new Highcharts.Chart({
     xAxis: {
             <?php
             $data_div = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from m_formasi_jabatan a
-                            LEFT JOIN m_karyawan b on b.npp = a.npp
+                            LEFT JOIN m_karyawan b on b.id = a.id_karyawan
                             LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
                             LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
                             LEFT JOIN m_seksi e on e.id = a.id_seksi
@@ -233,7 +269,7 @@ window.chart = new Highcharts.Chart({
                      $sqlb = $this->db->query("SELECT a.*,b.nama_karyawan,c.nama_kelompok_jabatan,
                                         d.nama_kelas_jabatan,e.nama_seksi,f.nama_divisi from 
                                         m_formasi_jabatan a
-                                        LEFT JOIN m_karyawan b on b.npp = a.npp
+                                        LEFT JOIN m_karyawan b on b.id = a.id_karyawan
                                         LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
                                         LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
                                         LEFT JOIN m_seksi e on e.id = a.id_seksi
@@ -255,7 +291,6 @@ window.chart = new Highcharts.Chart({
             
          ?>
      categories : <?php echo json_encode($return); ?>
-    
 
     }
 });
@@ -275,7 +310,10 @@ window.chart = new Highcharts.Chart({
     },
     xAxis: {
         categories:  <?php echo $datacat; ?>,
-    },
+    }, 
+      credits: {
+      enabled: false
+  },
     yAxis: {
         min: 0,
         title: {
@@ -289,6 +327,7 @@ window.chart = new Highcharts.Chart({
             }
         }
     },
+    
     legend: {
         align: 'right',
         x: -30,
@@ -301,8 +340,8 @@ window.chart = new Highcharts.Chart({
         shadow: false
     },
     tooltip: {
-        headerFormat: '<b>{point.x}</b><br/>',
-        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+        headerFormat: '<b>{point.x}  </b><br/>',
+        pointFormat: '{series.name}: {point.y} % <br/>Total: {point.stackTotal} %'
     },
     plotOptions: {
         column: {
@@ -322,7 +361,7 @@ window.chart = new Highcharts.Chart({
           data: <?php echo $dataisi; ?>,
           color: '#FF8C00',
       }]
-                //series: '<?php echo base_url('dashboard/chart_data_kelas_jabatan_kosong'); ?>'
+                
             });
         });
 </script>

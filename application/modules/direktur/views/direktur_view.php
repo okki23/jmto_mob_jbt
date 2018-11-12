@@ -10,7 +10,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Direktorat
+                                Direktur
                             </h2>
                             <br>
                             <a href="javascript:void(0);" id="addmodal" class="btn btn-primary waves-effect">  <i class="material-icons">add_circle</i>  Tambah Data </a>
@@ -25,7 +25,7 @@
 										<tr>
 											<th style="width:5%;">No</th>
                                             
-											<th style="width:5%;">Nama Direktorat</th>
+											<th style="width:5%;">Nama Direktur</th>
 											 
 							 
 											<th style="width:10%;">Opsi</th> 
@@ -58,7 +58,7 @@
 									 
 									<div class="form-group">
                                         <div class="form-line">
-                                            <input type="text" name="nama_direktorat" id="nama_direktorat" class="form-control" placeholder="Nama direktorat" />
+                                            <input type="text" name="nama_dirut" id="nama_dirut" class="form-control" placeholder="Nama direktur" />
                                         </div>
                                     </div>
 									 
@@ -83,7 +83,7 @@
 		$("#defaultModal").modal('show');
  
 		$.ajax({
-			 url:"<?php echo base_url(); ?>direktorat/get_data_edit/"+id,
+			 url:"<?php echo base_url(); ?>direktur/get_data_edit/"+id,
 			 type:"GET",
 			 dataType:"JSON", 
 			 success:function(result){ 
@@ -91,7 +91,7 @@
 				 $("#defaultModal").modal('show'); 
 				 $("#id").val(result.id);
                  
-                 $("#nama_direktorat").val(result.nama_direktorat);
+                 $("#nama_dirut").val(result.nama_dirut);
               
                   
 			 }
@@ -108,7 +108,7 @@
         {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo base_url('direktorat/hapus_data')?>/"+id,
+            url : "<?php echo base_url('direktur/hapus_data')?>/"+id,
             type: "GET",
             dataType: "JSON",
             success: function(data)
@@ -142,13 +142,13 @@
 		 var formData = new FormData($('#user_form')[0]); 
 
            
-         var nama_direktorat = $("#nama_direktorat").val();
+         var nama_dirut = $("#nama_dirut").val();
          
            
 
             //transaksi dibelakang layar
             $.ajax({
-             url:"<?php echo base_url(); ?>direktorat/simpan_data",
+             url:"<?php echo base_url(); ?>direktur/simpan_data",
              type:"POST",
              data:formData,
              contentType:false,  
@@ -185,7 +185,7 @@
 		 
 		
 		$('#example').DataTable( {
-			"ajax": "<?php echo base_url(); ?>direktorat/fetch_direktorat" 
+			"ajax": "<?php echo base_url(); ?>direktur/fetch_direktur" 
 		});
 	 
 	 

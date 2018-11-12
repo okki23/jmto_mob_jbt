@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
  
-class direktorat extends Parent_Controller {
+class Direktur extends Parent_Controller {
  
-  var $nama_tabel = 'm_direktorat';
-  var $daftar_field = array('id', 'nama_direktorat');
+  var $nama_tabel = 'm_dirut';
+  var $daftar_field = array('id', 'nama_dirut');
   var $primary_key = 'id';
   
  	public function __construct(){
  		parent::__construct();
- 		$this->load->model('m_direktorat'); 
+ 		$this->load->model('m_direktur'); 
 		if(!$this->session->userdata('username')){
 		   echo "<script language=javascript>
 				 alert('Anda tidak berhak mengakses halaman ini!');
@@ -20,13 +20,13 @@ class direktorat extends Parent_Controller {
  
 	public function index(){
 		$data['judul'] = $this->data['judul']; 
-		$data['konten'] = 'direktorat/direktorat_view';
+		$data['konten'] = 'direktur/direktur_view';
 		$this->load->view('template_view',$data);		
    
 	}
  
-  public function fetch_direktorat(){  
-       $getdata = $this->m_direktorat->fetch_direktorat();
+  public function fetch_direktur(){  
+       $getdata = $this->m_direktur->fetch_direktur();
        echo json_encode($getdata);   
   }  
 	 
@@ -40,7 +40,7 @@ class direktorat extends Parent_Controller {
 		$id = $this->uri->segment(3);  
     
 
-    $sqlhapus = $this->m_direktorat->hapus_data($id);
+    $sqlhapus = $this->m_direktur->hapus_data($id);
 		
 		if($sqlhapus){
 			$result = array("response"=>array('message'=>'success'));
@@ -54,12 +54,12 @@ class direktorat extends Parent_Controller {
 	public function simpan_data(){
     
     
-    $data_form = $this->m_direktorat->array_from_post($this->daftar_field);
+    $data_form = $this->m_direktur->array_from_post($this->daftar_field);
 
     $id = isset($data_form['id']) ? $data_form['id'] : NULL; 
  
 
-    $simpan_data = $this->m_direktorat->simpan_data($data_form,$this->nama_tabel,$this->primary_key,$id);
+    $simpan_data = $this->m_direktur->simpan_data($data_form,$this->nama_tabel,$this->primary_key,$id);
  
 		if($simpan_data){
 			$result = array("response"=>array('message'=>'success'));

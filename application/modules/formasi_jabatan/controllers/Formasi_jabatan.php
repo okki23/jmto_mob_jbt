@@ -4,8 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class formasi_jabatan extends Parent_Controller {
  
   var $nama_tabel = 'm_formasi_jabatan';
-  var $daftar_field = array('id','id_direktorat','id_departemen','id_seksi','id_kelompok_jabatan','id_divisi','id_parent_seksi','npp','nama_jabatan');
+  var $daftar_field = array('id','id_direktorat','id_departemen','id_seksi','id_kelompok_jabatan','id_divisi','id_parent','id_karyawan','nama_jabatan');
   var $primary_key = 'id';
+
+ 
+
   
  	public function __construct(){
  		parent::__construct();
@@ -17,13 +20,65 @@ class formasi_jabatan extends Parent_Controller {
 				 </script>";
 		}
  	}
+
  
-	public function index(){
-		$data['judul'] = $this->data['judul']; 
-		$data['konten'] = 'formasi_jabatan/formasi_jabatan_view';
-		$this->load->view('template_view',$data);		
-   
-	}
+  	public function index(){
+  		$data['judul'] = $this->data['judul']; 
+  		$data['konten'] = 'formasi_jabatan/formasi_jabatan_view';
+  		$this->load->view('template_view',$data);		
+     
+  	}
+
+    public function cetak_report(){
+       // headers for download
+      $filename = "Formasi Jabatan Download ".tanggalan(date('Y-m-d'))."xls";
+ header("Content-Type: application/force-download");
+header("Content-Type: application/octet-stream");
+header("Content-Type: application/download");
+header("Content-Disposition: attachment; filename=\"Formasi Jabatan Download ".tanggalan(date("Y-m-d")).".xls\"");
+header("Content-Transfer-Encoding: binary");
+header("Pragma: no-cache");
+header("Expires: 0");
+ 
+      $sql = "SELECT g.nama_direktorat,f.nama_divisi,h.nama_departemen,e.nama_seksi,a.nama_jabatan,
+              b.npp,b.nama_karyawan from m_formasi_jabatan a
+              LEFT JOIN m_karyawan b on b.id = a.id_karyawan
+              LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
+              LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
+              LEFT JOIN m_seksi e on e.id = a.id_seksi
+              LEFT JOIN m_divisi f on f.id = a.id_divisi 
+              LEFT JOIN m_direktorat g on g.id = a.id_direktorat
+              LEFT JOIN m_departemen h on h.id = a.id_departemen";
+      $get = $this->db->query($sql)->result();
+      echo  "<table border='1' cellpadding='0' cellspacing='3'> 
+            <tr style='font-weight:bold; text-align:center;'>
+            <td> No </td>
+            <td> Direktorat </td>
+            <td> Divisi </td>
+            <td> Departemen </td>
+            <td> Seksi </td>
+            <td> Jabatan </td>
+            <td> NPP </td>
+            <td> Nama </td>
+            </tr>
+            ";
+      $no = 1;
+      foreach ($get as $key => $value) {
+        echo "  <tr>
+        <td> ".$no."</td>
+            <td> ".$value->nama_direktorat."</td>
+            <td> ".$value->nama_divisi."</td>
+            <td> ".$value->nama_departemen."</td>
+            <td> ".$value->nama_seksi."</td>
+            <td> ".$value->nama_jabatan."</td>
+            <td> ".$value->npp."</td>
+            <td> ".$value->nama_karyawan."</td>
+            </tr>";
+       $no++;
+      }
+     
+      echo "</table>";
+    }
  
   	public function fetch_formasi_jabatan(){  
        $getdata = $this->m_formasi_jabatan->fetch_formasi_jabatan();
@@ -35,8 +90,8 @@ class formasi_jabatan extends Parent_Controller {
        echo json_encode($getdata);   
   	}  
 
-    public function fetch_atasan(){  
-       $getdata = $this->m_formasi_jabatan->fetch_atasan();
+    public function fetch_parent(){  
+       $getdata = $this->m_formasi_jabatan->fetch_parent();
        echo json_encode($getdata);   
     }  
 
@@ -49,12 +104,11 @@ class formasi_jabatan extends Parent_Controller {
        $getdata = $this->m_formasi_jabatan->fetch_npp();
        echo json_encode($getdata);   
   	}  
-
-
+ 
   	public function fetch_nama_divisi(){  
   	   
   	   $id_direktorat =  $this->input->post('id_direktorat');
-       $sql = "select * from m_divisi where id_direktorat = '".$id_direktorat."' ";
+       $sql = "select * from m_divisi";
    
        $getdata = $this->db->query($sql)->result();
        $return_arr = array();
@@ -67,6 +121,7 @@ class formasi_jabatan extends Parent_Controller {
        echo json_encode($return_arr);
  
   	}  
+
   	public function fetch_nama_divisi_row(){
   		$id = $this->uri->segment(3);
   		$data = $this->db->where('id',$id)->get('m_divisi')->row();
@@ -145,9 +200,9 @@ class formasi_jabatan extends Parent_Controller {
 	 
 	public function get_data_edit(){
 		$id = $this->uri->segment(3);
-		$sql = "SELECT a.*,b.id as id_karyawan,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_departemen,g.nama_divisi,h.nama_direktorat 
+		$sql = "SELECT a.*,b.id as id_karyawan,b.npp,b.nama_karyawan,c.nama_kelompok_jabatan,d.nama_kelas_jabatan,e.nama_seksi,f.nama_departemen,g.nama_divisi,h.nama_direktorat 
        from m_formasi_jabatan a
-      LEFT JOIN m_karyawan b on b.npp = a.npp
+      LEFT JOIN m_karyawan b on b.id = a.id_karyawan
       LEFT JOIN m_kelompok_jabatan c on c.id = a.id_kelompok_jabatan
       LEFT JOIN m_kelas_jabatan d on d.id = c.id_kelas_jabatan
       LEFT JOIN m_seksi e on e.id = a.id_seksi

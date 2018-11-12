@@ -28,7 +28,7 @@
 
     <!-- Custom Css -->
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
-     <link href="<?php echo base_url(); ?>assets/css/tree.css" rel="stylesheet">
+ 
    <!--  <link href="<?php echo base_url(); ?>assets/css/orgchart.css" rel="stylesheet"> -->
     <link href="<?php echo base_url(); ?>assets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
 
@@ -147,7 +147,13 @@
                             <span>Master</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                    <li>
+                        <a href="<?php echo base_url('direktur'); ?>">
+                           <i class="material-icons">dns</i>
+                            <span>Direktur</span>
+                        </a>
+                    </li> 
+                    <li>
                         <a href="<?php echo base_url('direktorat'); ?>">
                            <i class="material-icons">dns</i>
                             <span>Direktorat</span>

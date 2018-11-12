@@ -14,6 +14,10 @@
                             </h2>
                             <br>
                             <a href="javascript:void(0);" id="addmodal" class="btn btn-primary waves-effect">  <i class="material-icons">add_circle</i>  Tambah Data </a>
+
+                            &nbsp;
+
+                            <a href="<?php echo base_url('formasi_jabatan/cetak_report'); ?>" target="_blank" class="btn btn-primary waves-effect">  <i class="material-icons">local_printshop</i>  Cetak Data </a>
  
                         </div>
                         <div class="body">
@@ -31,6 +35,7 @@
                                             <th style="width:5%;">Seksi</th>
                                             <th style="width:5%;">Kls Jabatan</th> 
                                             <th style="width:5%;">Kel Jabatan</th>
+                                            <th style="width:5%;">Nama Jabatan</th>
                                             <th style="width:5%;">NPP</th>
                                             <th style="width:5%;">Nama</th>
                                             <th style="width:5%;">Opsi</th> 
@@ -59,12 +64,13 @@
                         <div class="modal-body">
                               <form method="post" id="user_form" enctype="multipart/form-data">   
                                  
-                                    <input type="text" name="id" id="id"> 
+                                    <input type="hidden" name="id" id="id"> 
+                                    <input type="hidden" name="valsep" id="valsep"> 
                                     <!-- hidden -->
 									<div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_direktorat" id="nama_direktorat" class="form-control" readonly="readonly" >
-                                                    <input type="text" name="id_direktorat" id="id_direktorat" readonly="readonly" >
+                                                    <input type="hidden" name="id_direktorat" id="id_direktorat" readonly="readonly" >
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -75,7 +81,7 @@
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_divisi" id="nama_divisi" class="form-control" readonly="readonly" >
-                                                    <input type="text" name="id_divisi" id="id_divisi" readonly="readonly">
+                                                    <input type="hidden" name="id_divisi" id="id_divisi" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -86,18 +92,18 @@
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_departemen" id="nama_departemen" class="form-control" readonly="readonly" >
-                                                    <input type="text" name="id_departemen" id="id_departemen" readonly="readonly">
+                                                    <input type="hidden" name="id_departemen" id="id_departemen" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
                                                     <button type="button" onclick="CariDepartemen();" class="btn btn-primary"> Pilih Departemen... </button>
                                                 </span>
                                     </div>
-
+                                
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_seksi" id="nama_seksi" class="form-control" readonly="readonly" >
-                                                    <input type="text" name="id_seksi" id="id_seksi" readonly="readonly">
+                                                    <input type="hidden" name="id_seksi" id="id_seksi" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -107,19 +113,19 @@
 
                                     <div class="input-group">
                                                 <div class="form-line">
-                                                    <input type="text" name="nama_atasan" id="nama_atasan" class="form-control" readonly="readonly" >
-                                                    <input type="text" name="id_parent_seksi" id="id_parent_seksi" readonly="readonly">
+                                                    <input type="text" name="nama_parent" id="nama_parent" class="form-control" readonly="readonly" >
+                                                    <input type="hidden" name="id_parent" id="id_parent" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
-                                                    <button type="button" onclick="CariParentSeksi();" class="btn btn-primary"> Pilih Atasan... </button>
+                                                    <button type="button" onclick="CariParent();" class="btn btn-primary"> Pilih Parent... </button>
                                                 </span>
                                     </div>
 
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="nama_kelompok_jabatan" id="nama_kelompok_jabatan" class="form-control" readonly="readonly" >
-                                                    <input type="text" name="id_kelompok_jabatan" id="id_kelompok_jabatan" readonly="readonly">
+                                                    <input type="hidden" name="id_kelompok_jabatan" id="id_kelompok_jabatan" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -137,7 +143,7 @@
                                     <div class="input-group">
                                                 <div class="form-line">
                                                     <input type="text" name="npp" id="npp" class="form-control" readonly="readonly" >
-                                                    <input type="text" name="id_karyawan" id="id_karyawan" readonly="readonly">
+                                                    <input type="hidden" name="id_karyawan" id="id_karyawan" readonly="readonly">
                                                     
                                                 </div>
                                                 <span class="input-group-addon">
@@ -287,11 +293,11 @@
 
 
     <!-- modal cari parent seksi -->
-    <div class="modal fade" id="CariParentSeksiModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="CariParentModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" >Cari Atasan</h4>
+                            <h4 class="modal-title" >Cari Parent</h4>
                         </div>
                         <div class="modal-body">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">X Tutup</button>
@@ -299,10 +305,10 @@
                                 <br>
                                 <hr>
 
-                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_parent_seksi" > 
+                                 <table width="100%" class="table table-bordered table-striped table-hover " id="daftar_parent" > 
                                     <thead>
                                         <tr>  
-                                            <th style="width:15%;">NPP</th>
+                                            <th style="width:15%;">Jabatan</th>
                                             <th style="width:15%;">Nama</th>
                                       
                                          </tr>
@@ -427,27 +433,29 @@
  
     } 
 
+
      // cari direktorat
-    $('#daftar_parent_seksi').DataTable( {
-            "ajax": "<?php echo base_url(); ?>formasi_jabatan/fetch_atasan"           
+    $('#daftar_parent').DataTable( {
+            "ajax": "<?php echo base_url(); ?>formasi_jabatan/fetch_parent"           
     });
 
      
      
-    function CariParentSeksi(){
-        $("#CariParentSeksiModal").modal({backdrop: 'static', keyboard: false,show:true});
+    function CariParent(){
+        $('#daftar_parent').DataTable().ajax.reload(); 
+        $("#CariParentModal").modal({backdrop: 'static', keyboard: false,show:true});
     } 
    
         
-        var daftar_parent_seksi = $('#daftar_parent_seksi').DataTable();
+        var daftar_parent = $('#daftar_parent').DataTable();
      
-        $('#daftar_parent_seksi tbody').on('click', 'tr', function () {
+        $('#daftar_parent tbody').on('click', 'tr', function () {
             
-            var content = daftar_parent_seksi.row(this).data()
+            var content = daftar_parent.row(this).data()
             console.log(content);
-            $("#nama_atasan").val(content[1]);
-            $("#id_parent_seksi").val(content[2]);
-            $("#CariParentSeksiModal").modal('hide');
+            $("#nama_parent").val(content[0]);
+            $("#id_parent").val(content[2]);
+            $("#CariParentModal").modal('hide');
         } );
 
     
@@ -513,7 +521,7 @@
     function CariDivisi(){
         $("#CariDivisiModal").modal({backdrop: 'static', keyboard: false,show:true});
 
-        var id_direktorat = $("#id_direktorat").val();
+         var id_direktorat = $("#id_direktorat").val();
         
         $('#tabel_divisi').DataTable({
             "processing" : true,
@@ -628,17 +636,30 @@
 			 type:"GET",
 			 dataType:"JSON", 
 			 success:function(result){ 
-                  
+                 //$('input[name=type][value=2]').attr('checked', true); 
+                 
+
+                 if(result.is_separator == '1'){
+                   $("#radio_1").attr('checked',true);
+                   $("#radio_2").attr('checked',false);
+                 }else{
+                    $("#radio_2").attr('checked',true);
+                    $("#radio_1").attr('checked',false);
+                 }
 				 $("#defaultModal").modal('show'); 
 				 $("#id").val(result.id);
                  $("#nama_direktorat").val(result.nama_direktorat);
-                 $("#id_direktorat").val(result.id_direktorat);                 
+                 $("#id_direktorat").val(result.id_direktorat);
+                 //$("#is_separator").val(result.is_separator);   
+                 //$("#valsep").val(result.is_separator);                 
                  $("#nama_departemen").val(result.nama_departemen);
                  $("#id_departemen").val(result.id_departemen);
                  $("#nama_divisi").val(result.nama_divisi);
                  $("#id_divisi").val(result.id_divisi);
                  $("#nama_seksi").val(result.nama_seksi);
                  $("#id_seksi").val(result.id_seksi);
+                  $("#id_parent").val(result.id_parent);
+                  $("#nama_parent").val(result.nama_jabatan);
                  $("#nama_kelompok_jabatan").val(result.nama_kelompok_jabatan);
                  $("#id_kelompok_jabatan").val(result.id_kelompok_jabatan);
                  $("#nama_jabatan").val(result.nama_jabatan);
@@ -694,58 +715,7 @@
 	function Simpan_Data(){
 		//setting semua data dalam form dijadikan 1 variabel 
 		 var formData = new FormData($('#user_form')[0]); 
-
-           
-         // var id_direktorat = $("#id_direktorat").val();
-         // var id_divisi = $("#id_divisi").val();
-         // var id_departemen = $("#id_departemen").val();
-         // var id_seksi = $("#id_seksi").val();
-         // var id_kelompok_jabatan = $("#id_kelompok_jabatan").val();
-         // var nama_jabatan = $("#nama_jabatan").val();
-         
-         //    if(id_direktorat == ''){
-
-         //        alert("Direktorat Belum Terpilih!");
-         //        $("#nama_direktorat").parents('.form-line').addClass('focused error');
-         //        $("#nama_direktorat").focus();
-         //        $("#nama_direktorat").prop('placeholder','Harap Pilih Direktorat!');
-
-         //    }else if(id_divisi == ''){
-
-         //        alert("Divisi Belum Terpilih!");
-         //        $("#nama_divisi").parents('.form-line').addClass('focused error');
-         //        $("#nama_divisi").focus();
-         //        $("#nama_divisi").prop('placeholder','Harap Pilih Divisi!');
-
-         //    }else if(id_departemen == ''){
-
-         //        alert("Departemen Belum Terpilih!");
-         //        $("#nama_departemen").parents('.form-line').addClass('focused error');
-         //        $("#nama_departemen").focus();
-         //        $("#nama_departemen").prop('placeholder','Harap Pilih Departemen!');
-
-         //    }else if(id_seksi == ''){
-
-         //        alert("Seksi Belum Terpilih!");
-         //        $("#nama_seksi").parents('.form-line').addClass('focused error');
-         //        $("#nama_seksi").focus();
-         //        $("#nama_seksi").prop('placeholder','Harap Pilih Seksi!');
-
-         //    }else if(id_kelompok_jabatan == ''){
-
-         //        alert("Kelompok Jabatan Belum Terpilih!");
-         //        $("#nama_kelompok_jabatan").parents('.form-line').addClass('focused error');
-         //        $("#nama_kelompok_jabatan").focus();
-         //        $("#nama_kelompok_jabatan").prop('placeholder','Harap Pilih Kelompok Jabatan!');
-
-         //    }else if(nama_jabatan == ''){
-
-         //        alert("Nama Jabatan Belum Terpilih!");
-         //        $("#nama_jabatan").parents('.form-line').addClass('focused error');
-         //        $("#nama_jabatan").focus();
-         //        $("#nama_jabatan").prop('placeholder','Harap Isi Nama Jabatan!');
-
-         //    }else{
+ 
                  //transaksi dibelakang layar
                  $.ajax({
                  url:"<?php echo base_url(); ?>formasi_jabatan/simpan_data",
@@ -769,8 +739,7 @@
                     });
                  }
                 }); 
-
-            //}
+ 
  
          
 
@@ -789,6 +758,7 @@
 		$('#example').DataTable( {
 			"ajax": "<?php echo base_url(); ?>formasi_jabatan/fetch_formasi_jabatan",
             'rowsGroup': [3] ,
+             "displayLength": 10,
             'order': [[ 0, 'asc' ], [ 4, 'asc' ]]
 		});
 	  

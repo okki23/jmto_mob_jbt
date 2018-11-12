@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100135
 File Encoding         : 65001
 
-Date: 2018-11-02 14:19:54
+Date: 2018-11-12 15:15:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -64,23 +64,23 @@ CREATE TABLE `m_departemen` (
   `id_divisi` int(10) DEFAULT NULL,
   `nama_departemen` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_departemen
 -- ----------------------------
-INSERT INTO `m_departemen` VALUES ('1', '1', 'Departemen IT Services Management');
-INSERT INTO `m_departemen` VALUES ('2', '1', 'Departemen Operation Support System');
-INSERT INTO `m_departemen` VALUES ('7', '2', 'Departemen Settlement & Reconsiliation');
-INSERT INTO `m_departemen` VALUES ('8', '2', 'Departemen Maintenance');
-INSERT INTO `m_departemen` VALUES ('9', '2', 'Departemen Toll Collection Management');
-INSERT INTO `m_departemen` VALUES ('10', '2', 'Departemen Traffic Management');
-INSERT INTO `m_departemen` VALUES ('11', '6', 'Departemen Finance & Accounting');
-INSERT INTO `m_departemen` VALUES ('12', '6', 'Departemen Coorporate Plan, Risk & Quality Management');
-INSERT INTO `m_departemen` VALUES ('13', '8', 'Departemen Human Capital');
-INSERT INTO `m_departemen` VALUES ('14', '8', 'Departemen General Affair');
-INSERT INTO `m_departemen` VALUES ('15', '10', 'Departemen Business Management');
-INSERT INTO `m_departemen` VALUES ('16', '10', 'Departemen Marketing');
+INSERT INTO `m_departemen` VALUES ('17', '11', 'Business Management');
+INSERT INTO `m_departemen` VALUES ('18', '11', 'Marketing');
+INSERT INTO `m_departemen` VALUES ('19', '12', 'Toll Collection Management');
+INSERT INTO `m_departemen` VALUES ('20', '12', 'Traffic Management');
+INSERT INTO `m_departemen` VALUES ('21', '12', 'Maintenance');
+INSERT INTO `m_departemen` VALUES ('22', '12', 'Settlement and Reconciliation');
+INSERT INTO `m_departemen` VALUES ('23', '13', 'Operation Support System');
+INSERT INTO `m_departemen` VALUES ('24', '13', 'IT Services Management');
+INSERT INTO `m_departemen` VALUES ('25', '14', 'Corporate Plan, Risk and Quality Management');
+INSERT INTO `m_departemen` VALUES ('26', '14', 'Finance and Accounting');
+INSERT INTO `m_departemen` VALUES ('27', '15', 'Human Capital');
+INSERT INTO `m_departemen` VALUES ('28', '15', 'General Affair');
 
 -- ----------------------------
 -- Table structure for m_direktorat
@@ -91,14 +91,15 @@ CREATE TABLE `m_direktorat` (
   `nama_direktorat` varchar(100) DEFAULT NULL,
   `id_dirut` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_direktorat
 -- ----------------------------
-INSERT INTO `m_direktorat` VALUES ('3', 'Direktur Teknik & Operasi', '1');
-INSERT INTO `m_direktorat` VALUES ('4', 'Direktur Keuangan & SDM', '1');
-INSERT INTO `m_direktorat` VALUES ('6', 'Ass Dir', null);
+INSERT INTO `m_direktorat` VALUES ('3', 'Direktorat Teknik & Operasi', '1');
+INSERT INTO `m_direktorat` VALUES ('4', 'Direktorat Keuangan', '1');
+INSERT INTO `m_direktorat` VALUES ('7', 'Utama', null);
+INSERT INTO `m_direktorat` VALUES ('8', 'Direktorat SDM & Umum', null);
 
 -- ----------------------------
 -- Table structure for m_dirut
@@ -108,12 +109,12 @@ CREATE TABLE `m_dirut` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nama_dirut` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_dirut
 -- ----------------------------
-INSERT INTO `m_dirut` VALUES ('1', 'Septerianto Sanaf');
+INSERT INTO `m_dirut` VALUES ('2', 'Septerianto Sanaf');
 
 -- ----------------------------
 -- Table structure for m_divisi
@@ -124,16 +125,16 @@ CREATE TABLE `m_divisi` (
   `id_direktorat` int(10) DEFAULT NULL,
   `nama_divisi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_divisi
 -- ----------------------------
-INSERT INTO `m_divisi` VALUES ('1', '3', 'Divisi Information Technology');
-INSERT INTO `m_divisi` VALUES ('2', '3', 'Divisi Operation Management');
-INSERT INTO `m_divisi` VALUES ('6', '4', 'Divisi Financial Management');
-INSERT INTO `m_divisi` VALUES ('8', '4', 'Divisi Human Capital & General Affair');
-INSERT INTO `m_divisi` VALUES ('10', '6', 'Divisi Business Development');
+INSERT INTO `m_divisi` VALUES ('11', '7', 'Business Development');
+INSERT INTO `m_divisi` VALUES ('12', '3', 'Operation Management');
+INSERT INTO `m_divisi` VALUES ('13', '3', 'Information Technology');
+INSERT INTO `m_divisi` VALUES ('14', '4', 'Financial Management');
+INSERT INTO `m_divisi` VALUES ('15', '8', 'Human Capital and General Affair');
 
 -- ----------------------------
 -- Table structure for m_example
@@ -170,66 +171,37 @@ CREATE TABLE `m_formasi_jabatan` (
   `id_seksi` int(10) DEFAULT NULL,
   `id_kelompok_jabatan` int(10) DEFAULT NULL,
   `id_divisi` int(10) DEFAULT NULL,
-  `id_parent_seksi` int(10) DEFAULT NULL,
-  `npp` varchar(20) DEFAULT NULL,
+  `id_parent` int(10) DEFAULT NULL,
+  `id_karyawan` varchar(20) DEFAULT NULL,
   `nama_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_formasi_jabatan
 -- ----------------------------
-INSERT INTO `m_formasi_jabatan` VALUES ('11', '3', '0', '0', '8', '2', '65', '324234', 'Divisi Operation Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('12', '3', '0', '0', '8', '1', '65', '72834', 'Divisi Information Technology');
-INSERT INTO `m_formasi_jabatan` VALUES ('13', '4', '0', '0', '8', '6', '66', '2428645', 'Divisi Financial Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('14', '4', '0', '0', '8', '8', '66', '3805734', 'Divisi Human Capital & General Affair');
-INSERT INTO `m_formasi_jabatan` VALUES ('17', '3', '9', '0', '9', '2', null, '872364', 'Departemen Toll Collection Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('18', '3', '8', '0', '9', '2', null, '', 'Departemen Maintenance');
-INSERT INTO `m_formasi_jabatan` VALUES ('19', '3', '10', '0', '9', '2', null, '', 'Departemen Traffic Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('21', '3', '8', '7', '10', '2', null, '', 'Seksi Maintenance Control');
-INSERT INTO `m_formasi_jabatan` VALUES ('22', '3', '10', '8', '10', '2', null, '', 'Seksi Traffic Planning');
-INSERT INTO `m_formasi_jabatan` VALUES ('23', '3', '10', '9', '10', '2', null, '7435349', 'Seksi Traffic Service & Sec');
-INSERT INTO `m_formasi_jabatan` VALUES ('24', '3', '9', '10', '10', '2', null, '69998456', 'Seksi Toll Collecting Planning');
-INSERT INTO `m_formasi_jabatan` VALUES ('25', '3', '9', '11', '10', '2', null, '777897456', 'Area Manager Belmera');
-INSERT INTO `m_formasi_jabatan` VALUES ('26', '3', '2', '0', '9', '1', '12', '634574435', 'Departemen Operation Support System');
-INSERT INTO `m_formasi_jabatan` VALUES ('27', '3', '2', '15', '10', '1', null, '66779889', 'Seksi Operation Support System Planning');
-INSERT INTO `m_formasi_jabatan` VALUES ('28', '3', '2', '16', '10', '1', null, '', 'Seksi Transaction Support System Control');
-INSERT INTO `m_formasi_jabatan` VALUES ('29', '3', '2', '17', '10', '1', null, '', 'Seksi Traffic Support System Control');
-INSERT INTO `m_formasi_jabatan` VALUES ('30', '3', '1', '0', '9', '1', '12', '542354', 'Departemen IT Services Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('31', '3', '1', '20', '10', '1', '30', '6999345', 'Seksi IT Application & Database');
-INSERT INTO `m_formasi_jabatan` VALUES ('32', '3', '1', '21', '10', '1', '30', '4596989', 'Seksi IT Network & Infrastruktur');
-INSERT INTO `m_formasi_jabatan` VALUES ('33', '4', '11', '0', '9', '6', null, '973253', 'Departemen Finance & Accounting');
-INSERT INTO `m_formasi_jabatan` VALUES ('34', '4', '12', '0', '9', '6', null, '623843', 'Departemen Coorporate Plan, Risk & Quality Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('35', '4', '13', '0', '9', '8', null, '92837471', 'Departemen Human Capital');
-INSERT INTO `m_formasi_jabatan` VALUES ('36', '4', '14', '0', '9', '8', null, '6532399', 'Departemen General Affair');
-INSERT INTO `m_formasi_jabatan` VALUES ('37', '4', '11', '22', '10', '6', null, '4524239', 'Seksi Finance');
-INSERT INTO `m_formasi_jabatan` VALUES ('38', '4', '11', '23', '10', '6', null, '654699995', 'Seksi Tax & Accounting');
-INSERT INTO `m_formasi_jabatan` VALUES ('39', '4', '12', '24', '10', '6', null, '62347888', 'Seksi Coorporate Plan');
-INSERT INTO `m_formasi_jabatan` VALUES ('40', '4', '12', '25', '10', '6', null, '7546867', 'Seksi Risk & Quality Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('41', '4', '13', '26', '10', '8', null, '5634590', 'Seksi Planning & Development Human Capital');
-INSERT INTO `m_formasi_jabatan` VALUES ('42', '4', '13', '27', '10', '8', null, '986745333', 'Seksi Employment');
-INSERT INTO `m_formasi_jabatan` VALUES ('43', '4', '14', '28', '10', '8', null, '324239090', 'Seksi Procurement & Administration Assets');
-INSERT INTO `m_formasi_jabatan` VALUES ('44', '4', '14', '29', '10', '8', null, '77777998', 'Seksi Legal & Publicrelations');
-INSERT INTO `m_formasi_jabatan` VALUES ('45', '4', '14', '30', '10', '8', null, '78756799', 'Seksi Office Administration');
-INSERT INTO `m_formasi_jabatan` VALUES ('52', '6', '15', '0', '9', '10', null, '', 'Departemen Business Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('53', '6', '16', '0', '9', '10', null, '', 'Departemen Marketing');
-INSERT INTO `m_formasi_jabatan` VALUES ('54', '6', '15', '31', '10', '10', null, '54233333', 'Seksi Business Planning');
-INSERT INTO `m_formasi_jabatan` VALUES ('55', '6', '16', '32', '10', '10', null, '975347377', 'Seksi Project Management');
-INSERT INTO `m_formasi_jabatan` VALUES ('56', '6', '0', '0', '8', '10', '0', '', 'Divisi Business Development');
-INSERT INTO `m_formasi_jabatan` VALUES ('57', '3', '9', '12', '10', '2', null, '534242455', 'Area Manager Jagorawi');
-INSERT INTO `m_formasi_jabatan` VALUES ('58', '3', '9', '13', '10', '2', null, '55334411', 'Area Manager JTC');
-INSERT INTO `m_formasi_jabatan` VALUES ('59', '3', '9', '14', '10', '2', null, '3454200', 'Area Manager Japek - Palikanci');
-INSERT INTO `m_formasi_jabatan` VALUES ('60', '3', '9', '18', '10', '2', null, '545459898', 'Area Manager Japek - Palikanci');
-INSERT INTO `m_formasi_jabatan` VALUES ('61', '3', '9', '19', '10', '2', null, '55779090', 'Area Manager Surgem');
-INSERT INTO `m_formasi_jabatan` VALUES ('62', '3', '1', '20', '11', '1', '31', '555999', 'Ass Seksi IT Application & Database');
-INSERT INTO `m_formasi_jabatan` VALUES ('63', '3', '1', '20', '11', '1', null, '999555', 'Ass Seksi IT Application & Database');
-INSERT INTO `m_formasi_jabatan` VALUES ('64', '3', '1', '21', '11', '1', null, '34343222', 'Ass Seksi IT Network & Infrastruktur');
-INSERT INTO `m_formasi_jabatan` VALUES ('65', '3', '0', '0', '0', '0', '67', '474784', 'Direktur Teknik & Operasi');
-INSERT INTO `m_formasi_jabatan` VALUES ('66', '4', '0', '0', '0', '0', '67', '34545', 'Direktur Keuangan & SDM');
-INSERT INTO `m_formasi_jabatan` VALUES ('67', '0', '0', '0', '0', '0', '0', '4234545', 'Direktur Utama');
-INSERT INTO `m_formasi_jabatan` VALUES ('68', '3', '1', '21', '11', '1', '32', '4545909', 'Ass Seksi IT Network & Infrastruktur');
-INSERT INTO `m_formasi_jabatan` VALUES ('69', '3', '7', '0', '9', '2', '11', '965234', 'Departemen Settlement & Reconsiliation');
-INSERT INTO `m_formasi_jabatan` VALUES ('70', '3', '7', '6', '10', '2', '69', '', 'Seksi Settlement Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('75', '0', '0', '0', '0', '0', '0', '6', 'Direktur Utama');
+INSERT INTO `m_formasi_jabatan` VALUES ('77', '0', '0', '0', '0', '0', '75', '7', 'Direktur Teknik & Operasi');
+INSERT INTO `m_formasi_jabatan` VALUES ('78', '0', '0', '0', '0', '0', '75', '8', 'Direktur SDM dan Umum');
+INSERT INTO `m_formasi_jabatan` VALUES ('79', '3', '0', '0', '1', '13', '77', '10', 'Vice President Information Technology');
+INSERT INTO `m_formasi_jabatan` VALUES ('81', '0', '0', '0', '0', '0', '75', '', 'Direktur Keuangan');
+INSERT INTO `m_formasi_jabatan` VALUES ('83', '3', '24', '0', '2', '13', '79', '16', 'Assistant Vice President Information Technology');
+INSERT INTO `m_formasi_jabatan` VALUES ('84', '3', '24', '45', '3', '13', '83', '25', 'Manager IT Application and Databases');
+INSERT INTO `m_formasi_jabatan` VALUES ('85', '3', '24', '46', '3', '13', '83', '31', 'Manager IT Network and Infrastructure');
+INSERT INTO `m_formasi_jabatan` VALUES ('89', '3', '23', '0', '2', '13', '79', '15', 'Assistant Vice President Operation Support System');
+INSERT INTO `m_formasi_jabatan` VALUES ('90', '3', '23', '42', '3', '13', '89', '24', 'Manager Operation Support System Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('91', '0', '17', '0', '2', '11', '94', '44', 'Assistant Vice President Business Development');
+INSERT INTO `m_formasi_jabatan` VALUES ('93', '0', '0', '0', '0', '0', '75', '', '...');
+INSERT INTO `m_formasi_jabatan` VALUES ('94', '0', '0', '0', '1', '11', '93', '', 'Vice President Business Development');
+INSERT INTO `m_formasi_jabatan` VALUES ('95', '0', '17', '33', '3', '11', '91', '21', 'Manager Business Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('96', '0', '18', '34', '2', '11', '94', '48', 'Assistant Vice President Marketing');
+INSERT INTO `m_formasi_jabatan` VALUES ('97', '0', '18', '34', '3', '11', '96', '22', 'Manager Project Management ');
+INSERT INTO `m_formasi_jabatan` VALUES ('98', '0', '18', '34', '5', '11', '97', null, 'Senior Officer Project Management ');
+INSERT INTO `m_formasi_jabatan` VALUES ('99', '3', '0', '0', '1', '12', '77', '9', 'Vice President');
+INSERT INTO `m_formasi_jabatan` VALUES ('100', '3', '19', '0', '2', '12', '99', '13', 'Assistant Vice President Toll Collection Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('101', '3', '19', '0', '4', '12', '100', '49', 'Specialist Settlement');
+INSERT INTO `m_formasi_jabatan` VALUES ('102', '3', '19', '35', '3', '12', '100', null, 'Manager Toll Collection Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('103', '3', '19', '35', '5', '12', '102', '', 'Senior Officer Toll Collection Planning');
 
 -- ----------------------------
 -- Table structure for m_karyawan
@@ -242,42 +214,42 @@ CREATE TABLE `m_karyawan` (
   `nama_karyawan` varchar(100) DEFAULT NULL,
   `foto` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_karyawan
 -- ----------------------------
-INSERT INTO `m_karyawan` VALUES ('6', '1', '4234545', 'Septerianto Sanaf', null);
-INSERT INTO `m_karyawan` VALUES ('7', '1', '474784', 'Taruli Hutapea', null);
-INSERT INTO `m_karyawan` VALUES ('8', '1', '34545', 'Benny Soediarto. D', null);
-INSERT INTO `m_karyawan` VALUES ('9', '1', '324234', 'Saut Sitorus', null);
-INSERT INTO `m_karyawan` VALUES ('10', '1', '72834', 'Rahwono Haji', null);
-INSERT INTO `m_karyawan` VALUES ('11', '1', '2428645', 'Anang Mohamad Maruf', null);
-INSERT INTO `m_karyawan` VALUES ('12', '1', '3805734', 'Sujakat Triyanto', null);
-INSERT INTO `m_karyawan` VALUES ('13', '1', '965234', 'Hadha Alamajibuwono', null);
+INSERT INTO `m_karyawan` VALUES ('6', '1', '', 'Septerianto Sanaf', '');
+INSERT INTO `m_karyawan` VALUES ('7', '1', '', 'Taruli Hutapea', '');
+INSERT INTO `m_karyawan` VALUES ('8', '1', '', 'Benny Soediarto. D', '');
+INSERT INTO `m_karyawan` VALUES ('9', '1', '180307', 'Saut Sitorus', '');
+INSERT INTO `m_karyawan` VALUES ('10', '1', '170002', 'Rahwono Haji', '');
+INSERT INTO `m_karyawan` VALUES ('11', '1', '170122', 'Anang Mohamad Maruf', '');
+INSERT INTO `m_karyawan` VALUES ('12', '1', '180548', 'Sujakat Triyanto', '');
+INSERT INTO `m_karyawan` VALUES ('13', '1', '180550', 'Widiyatmiko Nursejati', '');
 INSERT INTO `m_karyawan` VALUES ('14', '1', '872364', 'Djoko Siswanto', null);
-INSERT INTO `m_karyawan` VALUES ('15', '1', '634574435', 'Nasir Ahmad', null);
-INSERT INTO `m_karyawan` VALUES ('16', '1', '542354', 'Muchammad Subchan', null);
-INSERT INTO `m_karyawan` VALUES ('17', '1', '973253', 'Ajeng Ananda Pratiwi', null);
-INSERT INTO `m_karyawan` VALUES ('18', '1', '623843', 'Benekdita', null);
-INSERT INTO `m_karyawan` VALUES ('19', '1', '92837471', 'Peni Widianti', null);
-INSERT INTO `m_karyawan` VALUES ('20', '1', '6532399', 'Florita Marlene', null);
-INSERT INTO `m_karyawan` VALUES ('21', '1', '54233333', 'Usca W', null);
-INSERT INTO `m_karyawan` VALUES ('22', '1', '975347377', 'Tody S', null);
-INSERT INTO `m_karyawan` VALUES ('23', '1', '69998456', 'Sebitalia', null);
-INSERT INTO `m_karyawan` VALUES ('24', '1', '66779889', 'Asep Rendra', null);
-INSERT INTO `m_karyawan` VALUES ('25', '1', '6999345', 'Raina', null);
-INSERT INTO `m_karyawan` VALUES ('26', '1', '4524239', 'Dedi Rachmat', null);
-INSERT INTO `m_karyawan` VALUES ('27', '1', '62347888', 'Berfit Aprilia P', null);
-INSERT INTO `m_karyawan` VALUES ('28', '1', '5634590', 'Mala Grazziana A', null);
-INSERT INTO `m_karyawan` VALUES ('29', '1', '324239090', 'Natasha Evelyn', null);
-INSERT INTO `m_karyawan` VALUES ('30', '1', '7435349', 'Richo Tamba', null);
-INSERT INTO `m_karyawan` VALUES ('31', '1', '4596989', 'Heru', null);
-INSERT INTO `m_karyawan` VALUES ('32', '1', '654699995', 'Suwanto', null);
-INSERT INTO `m_karyawan` VALUES ('33', '1', '7546867', 'Didik Susanto', null);
-INSERT INTO `m_karyawan` VALUES ('34', '1', '986745333', 'A.Firmansyah', null);
-INSERT INTO `m_karyawan` VALUES ('35', '1', '77777998', 'Ivan Mawara', null);
-INSERT INTO `m_karyawan` VALUES ('36', '1', '78756799', 'Sri Margono', null);
+INSERT INTO `m_karyawan` VALUES ('15', '1', '170023', 'Nasir Ahmad', '');
+INSERT INTO `m_karyawan` VALUES ('16', '1', '170148', 'Muchammad Subchan', '');
+INSERT INTO `m_karyawan` VALUES ('17', '1', '150005', 'Ajeng Ananda Pratiwi', '');
+INSERT INTO `m_karyawan` VALUES ('18', '1', '180432', 'Benedikta Ariningsih', '');
+INSERT INTO `m_karyawan` VALUES ('19', '1', '170153', 'Peni Widianti', '');
+INSERT INTO `m_karyawan` VALUES ('20', '1', '170149', 'Florita Marlene', '');
+INSERT INTO `m_karyawan` VALUES ('21', '1', '170020', 'Uska Wyanov', '');
+INSERT INTO `m_karyawan` VALUES ('22', '1', '180121', 'Tody Satria Chanta Yudha', '');
+INSERT INTO `m_karyawan` VALUES ('23', '1', '170022', 'Sebitalia Tubagus', '');
+INSERT INTO `m_karyawan` VALUES ('24', '1', '180422', 'Asep Rendra Chrisnawan', '');
+INSERT INTO `m_karyawan` VALUES ('25', '1', '170026', 'Raina Stefani Budi', '');
+INSERT INTO `m_karyawan` VALUES ('26', '1', '170155', 'Dedi Rachmat', '');
+INSERT INTO `m_karyawan` VALUES ('27', '1', '170126', 'Berfit Aprillia Putrilinang', '');
+INSERT INTO `m_karyawan` VALUES ('28', '1', '170123', 'Mala Grazziana Argo', '');
+INSERT INTO `m_karyawan` VALUES ('29', '1', '170125', 'Natasha Evelyn', '');
+INSERT INTO `m_karyawan` VALUES ('30', '1', '180421', 'Helvin Indrawati', '');
+INSERT INTO `m_karyawan` VALUES ('31', '1', '170150', 'Heru Priyantoro', '');
+INSERT INTO `m_karyawan` VALUES ('32', '1', '170156', 'Suwanto', '');
+INSERT INTO `m_karyawan` VALUES ('33', '1', '170151', 'Didik Susanto P.', '');
+INSERT INTO `m_karyawan` VALUES ('34', '1', '170152', 'A. Firmansyah', '');
+INSERT INTO `m_karyawan` VALUES ('35', '1', '180420', 'Ivan Mawara', '');
+INSERT INTO `m_karyawan` VALUES ('36', '1', '170154', 'Sri Margono', '');
 INSERT INTO `m_karyawan` VALUES ('37', '1', '777897456', 'Lokot Pulungan', null);
 INSERT INTO `m_karyawan` VALUES ('38', '1', '534242455', 'Ronny H', null);
 INSERT INTO `m_karyawan` VALUES ('39', '1', '55334411', 'Anas Emil', null);
@@ -285,10 +257,12 @@ INSERT INTO `m_karyawan` VALUES ('40', '1', '3454200', 'Iswantono', null);
 INSERT INTO `m_karyawan` VALUES ('41', '1', '545459898', 'Solihin', null);
 INSERT INTO `m_karyawan` VALUES ('42', '1', '55779090', 'Mustari', null);
 INSERT INTO `m_karyawan` VALUES ('43', '1', '555999', 'Okki Setyawan', 'pIBiU3Q.png');
-INSERT INTO `m_karyawan` VALUES ('44', '1', '999555', 'Taufik', null);
+INSERT INTO `m_karyawan` VALUES ('44', '1', '180549', 'Muhammad Taufik Akbar', '');
 INSERT INTO `m_karyawan` VALUES ('45', '1', '34343222', 'Imam', null);
 INSERT INTO `m_karyawan` VALUES ('46', '1', '4545909', 'Bill Gates', null);
 INSERT INTO `m_karyawan` VALUES ('47', '1', '877834', 'Linus Torvalds', 'linus.jpg');
+INSERT INTO `m_karyawan` VALUES ('48', '1', '180434', 'Vanie Caesaria Patiung', '');
+INSERT INTO `m_karyawan` VALUES ('49', '1', '170127', 'Sumaritan', '');
 
 -- ----------------------------
 -- Table structure for m_kelas_jabatan
@@ -303,10 +277,12 @@ CREATE TABLE `m_kelas_jabatan` (
 -- ----------------------------
 -- Records of m_kelas_jabatan
 -- ----------------------------
-INSERT INTO `m_kelas_jabatan` VALUES ('2', 'I');
-INSERT INTO `m_kelas_jabatan` VALUES ('3', 'II');
-INSERT INTO `m_kelas_jabatan` VALUES ('5', 'III');
-INSERT INTO `m_kelas_jabatan` VALUES ('6', 'IV');
+INSERT INTO `m_kelas_jabatan` VALUES ('1', 'I');
+INSERT INTO `m_kelas_jabatan` VALUES ('2', 'II');
+INSERT INTO `m_kelas_jabatan` VALUES ('3', 'III');
+INSERT INTO `m_kelas_jabatan` VALUES ('4', 'IV');
+INSERT INTO `m_kelas_jabatan` VALUES ('5', 'V');
+INSERT INTO `m_kelas_jabatan` VALUES ('6', 'VI');
 
 -- ----------------------------
 -- Table structure for m_kelompok_jabatan
@@ -317,15 +293,17 @@ CREATE TABLE `m_kelompok_jabatan` (
   `id_kelas_jabatan` int(10) DEFAULT NULL,
   `nama_kelompok_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_kelompok_jabatan
 -- ----------------------------
-INSERT INTO `m_kelompok_jabatan` VALUES ('8', '2', 'VP');
-INSERT INTO `m_kelompok_jabatan` VALUES ('9', '3', 'AVP');
-INSERT INTO `m_kelompok_jabatan` VALUES ('10', '5', 'Manager');
-INSERT INTO `m_kelompok_jabatan` VALUES ('11', '6', 'SO');
+INSERT INTO `m_kelompok_jabatan` VALUES ('1', '1', 'Vice President');
+INSERT INTO `m_kelompok_jabatan` VALUES ('2', '2', 'Assistant Vice President');
+INSERT INTO `m_kelompok_jabatan` VALUES ('3', '3', 'Manager');
+INSERT INTO `m_kelompok_jabatan` VALUES ('4', '4', 'Assistant Specialist');
+INSERT INTO `m_kelompok_jabatan` VALUES ('5', '5', 'Senior Officer');
+INSERT INTO `m_kelompok_jabatan` VALUES ('6', '6', 'Officer');
 
 -- ----------------------------
 -- Table structure for m_lokasi
@@ -340,7 +318,7 @@ CREATE TABLE `m_lokasi` (
 -- ----------------------------
 -- Records of m_lokasi
 -- ----------------------------
-INSERT INTO `m_lokasi` VALUES ('1', 'Jakarta');
+INSERT INTO `m_lokasi` VALUES ('1', 'Kantor Pusat');
 INSERT INTO `m_lokasi` VALUES ('2', 'Bandung');
 INSERT INTO `m_lokasi` VALUES ('3', 'Surabaya');
 
@@ -353,38 +331,33 @@ CREATE TABLE `m_seksi` (
   `id_departemen` int(10) DEFAULT NULL,
   `nama_seksi` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_seksi
 -- ----------------------------
-INSERT INTO `m_seksi` VALUES ('6', '7', 'Seksi Settlement Management');
-INSERT INTO `m_seksi` VALUES ('7', '8', 'Seksi Maintenance Control');
-INSERT INTO `m_seksi` VALUES ('8', '10', 'Seksi Traffic Planning');
-INSERT INTO `m_seksi` VALUES ('9', '10', 'Seksi Traffic Service & Sec');
-INSERT INTO `m_seksi` VALUES ('10', '9', 'Seksi Toll Collecting Planning');
-INSERT INTO `m_seksi` VALUES ('11', '9', 'Area Manager Belmera');
-INSERT INTO `m_seksi` VALUES ('12', '9', 'Area Manager Jagorawi');
-INSERT INTO `m_seksi` VALUES ('13', '9', 'Area Manager JTC');
-INSERT INTO `m_seksi` VALUES ('14', '9', 'Area Manager Japek - Palikanci');
-INSERT INTO `m_seksi` VALUES ('15', '2', 'Seksi Operation Support System Planning');
-INSERT INTO `m_seksi` VALUES ('16', '2', 'Seksi Transaction Support System Control');
-INSERT INTO `m_seksi` VALUES ('17', '2', 'Seksi Traffic Support System Control');
-INSERT INTO `m_seksi` VALUES ('18', '9', 'Area Manager Cipularang Padaleunyi');
-INSERT INTO `m_seksi` VALUES ('19', '9', 'Area Manager Surgem');
-INSERT INTO `m_seksi` VALUES ('20', '1', 'Seksi IT Application & Database');
-INSERT INTO `m_seksi` VALUES ('21', '1', 'Seksi IT Network & Infrastruktur');
-INSERT INTO `m_seksi` VALUES ('22', '11', 'Seksi Finance');
-INSERT INTO `m_seksi` VALUES ('23', '11', 'Seksi Tax & Accounting');
-INSERT INTO `m_seksi` VALUES ('24', '12', 'Seksi Coorporate Plan');
-INSERT INTO `m_seksi` VALUES ('25', '12', 'Seksi Risk & Quality Management');
-INSERT INTO `m_seksi` VALUES ('26', '13', 'Seksi Planning & Development Human Capital');
-INSERT INTO `m_seksi` VALUES ('27', '13', 'Seksi Employment');
-INSERT INTO `m_seksi` VALUES ('28', '14', 'Seksi Procurement & Administration Assets');
-INSERT INTO `m_seksi` VALUES ('29', '14', 'Seksi Legal & Publicrelations');
-INSERT INTO `m_seksi` VALUES ('30', '14', 'Seksi Office Administration');
-INSERT INTO `m_seksi` VALUES ('31', '15', 'Seksi Business Planning');
-INSERT INTO `m_seksi` VALUES ('32', '16', 'Seksi Project Management');
+INSERT INTO `m_seksi` VALUES ('33', '17', 'Business Planning');
+INSERT INTO `m_seksi` VALUES ('34', '18', 'Project Management ');
+INSERT INTO `m_seksi` VALUES ('35', '19', 'Toll Collection Planning');
+INSERT INTO `m_seksi` VALUES ('36', '19', 'Toll Collection Control');
+INSERT INTO `m_seksi` VALUES ('37', '20', 'Traffic Planning');
+INSERT INTO `m_seksi` VALUES ('38', '20', 'Traffic Services and Security');
+INSERT INTO `m_seksi` VALUES ('40', '21', 'Maintenance Control');
+INSERT INTO `m_seksi` VALUES ('41', '22', 'Settlement Management');
+INSERT INTO `m_seksi` VALUES ('42', '23', 'Operation Support System Planning');
+INSERT INTO `m_seksi` VALUES ('43', '23', 'Transaction Support System Control');
+INSERT INTO `m_seksi` VALUES ('44', '23', 'Traffic Support System Control ');
+INSERT INTO `m_seksi` VALUES ('45', '24', 'IT Application and Databases');
+INSERT INTO `m_seksi` VALUES ('46', '24', 'IT Network and Infrastructure');
+INSERT INTO `m_seksi` VALUES ('47', '25', 'Corporate Plan');
+INSERT INTO `m_seksi` VALUES ('48', '25', 'Risk and Quality Management');
+INSERT INTO `m_seksi` VALUES ('49', '26', 'Finance');
+INSERT INTO `m_seksi` VALUES ('50', '26', 'Tax and Accounting');
+INSERT INTO `m_seksi` VALUES ('51', '27', 'Human Capital Planning and Development ');
+INSERT INTO `m_seksi` VALUES ('52', '27', 'Human Capital Services');
+INSERT INTO `m_seksi` VALUES ('53', '28', 'Procurement and Administration Assets');
+INSERT INTO `m_seksi` VALUES ('54', '28', 'Legal and Public Relations');
+INSERT INTO `m_seksi` VALUES ('55', '28', 'Office Administration');
 
 -- ----------------------------
 -- Table structure for m_struktur
