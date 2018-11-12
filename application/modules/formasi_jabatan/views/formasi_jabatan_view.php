@@ -728,6 +728,7 @@
                      $("#defaultModal").modal('hide');
                      $('#example').DataTable().ajax.reload(); 
                      $('#user_form')[0].reset();
+                     Bersihkan_Form();
                      
                      $.notify("Data berhasil disimpan!", {
                         animate: {

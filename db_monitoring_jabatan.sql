@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 100135
 File Encoding         : 65001
 
-Date: 2018-11-12 15:15:51
+Date: 2018-11-13 06:53:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -175,7 +175,7 @@ CREATE TABLE `m_formasi_jabatan` (
   `id_karyawan` varchar(20) DEFAULT NULL,
   `nama_jabatan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_formasi_jabatan
@@ -202,6 +202,67 @@ INSERT INTO `m_formasi_jabatan` VALUES ('100', '3', '19', '0', '2', '12', '99', 
 INSERT INTO `m_formasi_jabatan` VALUES ('101', '3', '19', '0', '4', '12', '100', '49', 'Specialist Settlement');
 INSERT INTO `m_formasi_jabatan` VALUES ('102', '3', '19', '35', '3', '12', '100', null, 'Manager Toll Collection Planning');
 INSERT INTO `m_formasi_jabatan` VALUES ('103', '3', '19', '35', '5', '12', '102', '', 'Senior Officer Toll Collection Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('104', '3', '19', '36', '5', '12', '102', '50', 'Senior Officer Data and Reporting');
+INSERT INTO `m_formasi_jabatan` VALUES ('105', '3', '19', '36', '5', '12', '102', '51', 'Senior Officer Toll Collection Administration');
+INSERT INTO `m_formasi_jabatan` VALUES ('106', '3', '19', '36', '5', '12', '102', '52', 'Senior Officer Toll Collection Data and Evaluation');
+INSERT INTO `m_formasi_jabatan` VALUES ('107', '3', '19', '36', '5', '12', '102', '53', 'Officer Reporting');
+INSERT INTO `m_formasi_jabatan` VALUES ('108', '3', '20', '36', '2', '12', '99', '14', 'Assistant Vice President Traffic Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('109', '3', '20', '37', '3', '12', '108', null, 'Manager Traffic Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('110', '3', '20', '37', '5', '12', '109', '', 'Senior Officer Traffic Administration');
+INSERT INTO `m_formasi_jabatan` VALUES ('111', '3', '20', '37', '5', '12', '109', '', 'Senior Officer Traffic Planning');
+INSERT INTO `m_formasi_jabatan` VALUES ('112', '3', '20', '38', '3', '12', '108', '54', 'Manager Traffic Services and Security');
+INSERT INTO `m_formasi_jabatan` VALUES ('113', '3', '20', '38', '5', '12', '112', '55', 'Senior Officer Traffic Data & Evaluation');
+INSERT INTO `m_formasi_jabatan` VALUES ('114', '3', '21', '0', '2', '12', '99', '56', 'Assistant Vice President Maintenance');
+INSERT INTO `m_formasi_jabatan` VALUES ('115', '3', '21', '40', '3', '12', '114', '57', 'Manager Maintenance Control');
+INSERT INTO `m_formasi_jabatan` VALUES ('116', '3', '21', '40', '5', '12', '115', '58', 'Senior Officer Maintenance Evaluation and Reporting');
+INSERT INTO `m_formasi_jabatan` VALUES ('117', '3', '22', '40', '2', '12', '99', '59', 'Assistant Vice President Settlement and Reconciliation');
+INSERT INTO `m_formasi_jabatan` VALUES ('118', '3', '22', '41', '3', '12', '117', '23', 'Manager Settlement Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('119', '3', '22', '41', '5', '12', '118', '60', 'Senior Officer Settlement Administration 1');
+INSERT INTO `m_formasi_jabatan` VALUES ('120', '3', '22', '41', '5', '12', '118', '61', 'Senior Officer Settlement Administration 2 ');
+INSERT INTO `m_formasi_jabatan` VALUES ('121', '3', '22', '41', '5', '12', '118', '62', 'Senior Officer Settlement Administration 3 ');
+INSERT INTO `m_formasi_jabatan` VALUES ('122', '3', '22', '41', '5', '12', '118', null, 'Senior Officer Settlement Administration 4  ');
+INSERT INTO `m_formasi_jabatan` VALUES ('123', '3', '23', '43', '3', '13', '89', '30', 'Manager Transaction Support System Control');
+INSERT INTO `m_formasi_jabatan` VALUES ('124', '3', '23', '43', '5', '13', '123', '', 'Senior Officer Transaction Support System Control');
+INSERT INTO `m_formasi_jabatan` VALUES ('125', '3', '23', '44', '3', '13', '89', '63', 'Manager Traffic Support System Control ');
+INSERT INTO `m_formasi_jabatan` VALUES ('126', '3', '23', '44', '5', '13', '125', '', 'Senior Officer Traffic Support System Control ');
+INSERT INTO `m_formasi_jabatan` VALUES ('127', '3', '24', '45', '5', '13', '84', '64', 'Senior Officer Administration');
+INSERT INTO `m_formasi_jabatan` VALUES ('128', '3', '24', '46', '5', '13', '85', '65', 'Senior Officer Infrastructure');
+INSERT INTO `m_formasi_jabatan` VALUES ('129', '4', '0', '0', '1', '14', '81', '11', 'Vice President Financial Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('130', '8', '0', '0', '1', '15', '78', '12', 'Vice President Human Capital and General Affair');
+INSERT INTO `m_formasi_jabatan` VALUES ('131', '4', '25', '0', '2', '14', '129', '18', 'Assistant Vice President Corporate Plan, Risk and Quality Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('132', '4', '25', '0', '4', '14', '131', '', 'Specialist Corporate Plan, Risk and Quality Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('133', '4', '25', '47', '3', '14', '131', '27', 'Manager Corporate Plan');
+INSERT INTO `m_formasi_jabatan` VALUES ('134', '4', '25', '48', '3', '14', '131', '33', 'Risk and Quality Management Manager');
+INSERT INTO `m_formasi_jabatan` VALUES ('135', '4', '25', '48', '4', '14', '131', '', 'Assistant Specialist Risk and Quality Management');
+INSERT INTO `m_formasi_jabatan` VALUES ('136', '4', '26', '0', '2', '14', '129', '17', 'Assistant Vice President Finance and Accounting');
+INSERT INTO `m_formasi_jabatan` VALUES ('137', '4', '26', '49', '3', '14', '136', '26', 'Manager Finance');
+INSERT INTO `m_formasi_jabatan` VALUES ('138', '4', '26', '49', '5', '14', '137', '67', 'Senior Officer Drafting and Budgeting Control');
+INSERT INTO `m_formasi_jabatan` VALUES ('139', '4', '26', '49', '5', '14', '137', '68', 'Paymaster');
+INSERT INTO `m_formasi_jabatan` VALUES ('140', '4', '26', '50', '3', '14', '136', '32', 'Manager Tax and Accounting');
+INSERT INTO `m_formasi_jabatan` VALUES ('141', '4', '26', '50', '5', '14', '140', '69', 'Senior Officer General Ledger and Reporting');
+INSERT INTO `m_formasi_jabatan` VALUES ('142', '4', '26', '50', '5', '14', '140', '70', 'Senior Officer Tax');
+INSERT INTO `m_formasi_jabatan` VALUES ('143', '8', '27', '0', '2', '15', '130', '19', 'Assistant Vice President Human Capital');
+INSERT INTO `m_formasi_jabatan` VALUES ('144', '8', '27', '0', '4', '15', '143', '19', 'Specialist Human Capital');
+INSERT INTO `m_formasi_jabatan` VALUES ('145', '8', '27', '51', '3', '15', '143', '28', 'Manager Human Capital Planning and Development ');
+INSERT INTO `m_formasi_jabatan` VALUES ('146', '8', '27', '51', '4', '15', '143', null, 'Assistant Specialist Human Capital Planning and Development ');
+INSERT INTO `m_formasi_jabatan` VALUES ('147', '8', '27', '51', '5', '15', '145', '72', 'Senior Officer Human Capital Planning and Development ');
+INSERT INTO `m_formasi_jabatan` VALUES ('148', '8', '27', '52', '3', '15', '143', '34', 'Manager Human Capital Services');
+INSERT INTO `m_formasi_jabatan` VALUES ('149', '8', '27', '52', '5', '15', '148', '73', 'Senior Officer Compensation');
+INSERT INTO `m_formasi_jabatan` VALUES ('150', '8', '27', '52', '5', '15', '148', '74', 'Senior Officer Welfare');
+INSERT INTO `m_formasi_jabatan` VALUES ('151', '8', '27', '52', '5', '15', '148', '75', 'Senior Officer Industrial Relations and Dicipline');
+INSERT INTO `m_formasi_jabatan` VALUES ('152', '8', '27', '52', '5', '15', '148', '76', 'Senior Officer Mutation and Employee Placement');
+INSERT INTO `m_formasi_jabatan` VALUES ('153', '8', '28', '0', '2', '15', '130', '20', 'Assistant Vice President General Affair');
+INSERT INTO `m_formasi_jabatan` VALUES ('154', '8', '28', '0', '3', '15', '153', '77', 'Senior Secretary');
+INSERT INTO `m_formasi_jabatan` VALUES ('155', '8', '28', '53', '3', '15', '153', '29', 'Manager Procurement and Administration Assets');
+INSERT INTO `m_formasi_jabatan` VALUES ('156', '8', '28', '53', '5', '15', '155', '78', 'Senior Officer Goods Procurement');
+INSERT INTO `m_formasi_jabatan` VALUES ('157', '8', '28', '53', '5', '15', '155', '', 'Senior Officer Assets Administration');
+INSERT INTO `m_formasi_jabatan` VALUES ('158', '8', '28', '54', '3', '15', '153', '35', 'Manager Legal and Public Relations');
+INSERT INTO `m_formasi_jabatan` VALUES ('159', '8', '28', '54', '4', '15', '158', '', 'Assistant Specialist Legal and Public Relations');
+INSERT INTO `m_formasi_jabatan` VALUES ('160', '8', '28', '54', '5', '15', '158', '79', 'Senior Officer Public Relations');
+INSERT INTO `m_formasi_jabatan` VALUES ('161', '8', '28', '54', '5', '15', '158', '', 'Senior Officer Administration Secretariat');
+INSERT INTO `m_formasi_jabatan` VALUES ('162', '8', '28', '55', '3', '15', '153', '36', 'Manager Office Administration');
+INSERT INTO `m_formasi_jabatan` VALUES ('163', '8', '28', '55', '5', '15', '162', '80', 'Senior Officer Office Administration');
+INSERT INTO `m_formasi_jabatan` VALUES ('164', '8', '28', '55', '5', '15', '162', '', 'Senior Officer Administration Plan');
 
 -- ----------------------------
 -- Table structure for m_karyawan
@@ -214,7 +275,7 @@ CREATE TABLE `m_karyawan` (
   `nama_karyawan` varchar(100) DEFAULT NULL,
   `foto` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of m_karyawan
@@ -227,7 +288,7 @@ INSERT INTO `m_karyawan` VALUES ('10', '1', '170002', 'Rahwono Haji', '');
 INSERT INTO `m_karyawan` VALUES ('11', '1', '170122', 'Anang Mohamad Maruf', '');
 INSERT INTO `m_karyawan` VALUES ('12', '1', '180548', 'Sujakat Triyanto', '');
 INSERT INTO `m_karyawan` VALUES ('13', '1', '180550', 'Widiyatmiko Nursejati', '');
-INSERT INTO `m_karyawan` VALUES ('14', '1', '872364', 'Djoko Siswanto', null);
+INSERT INTO `m_karyawan` VALUES ('14', '1', '170162', 'Djoko Siswanto', '');
 INSERT INTO `m_karyawan` VALUES ('15', '1', '170023', 'Nasir Ahmad', '');
 INSERT INTO `m_karyawan` VALUES ('16', '1', '170148', 'Muchammad Subchan', '');
 INSERT INTO `m_karyawan` VALUES ('17', '1', '150005', 'Ajeng Ananda Pratiwi', '');
@@ -263,6 +324,35 @@ INSERT INTO `m_karyawan` VALUES ('46', '1', '4545909', 'Bill Gates', null);
 INSERT INTO `m_karyawan` VALUES ('47', '1', '877834', 'Linus Torvalds', 'linus.jpg');
 INSERT INTO `m_karyawan` VALUES ('48', '1', '180434', 'Vanie Caesaria Patiung', '');
 INSERT INTO `m_karyawan` VALUES ('49', '1', '170127', 'Sumaritan', '');
+INSERT INTO `m_karyawan` VALUES ('50', '1', '170166', 'Agus Triono', '');
+INSERT INTO `m_karyawan` VALUES ('51', '1', '151597', 'Farry Dwita Gestalia', '');
+INSERT INTO `m_karyawan` VALUES ('52', '1', '170167', 'Riana Nasution', '');
+INSERT INTO `m_karyawan` VALUES ('53', '1', '152731', 'Zaenal', '');
+INSERT INTO `m_karyawan` VALUES ('54', '1', '170021', 'Richo Rynaldo Tamba', '');
+INSERT INTO `m_karyawan` VALUES ('55', '1', '151314', 'Erfina Amanda', '');
+INSERT INTO `m_karyawan` VALUES ('56', '1', '180551', 'Muhammad Ridwan', '');
+INSERT INTO `m_karyawan` VALUES ('57', '1', '180433', 'Yusra Alfitri', '');
+INSERT INTO `m_karyawan` VALUES ('58', '1', '150154', 'Inu Nugraha,S.kom', '');
+INSERT INTO `m_karyawan` VALUES ('59', '1', '180120', 'Hadha Alamajibuwono', '');
+INSERT INTO `m_karyawan` VALUES ('60', '1', '150944', 'Fauziah Afriyani', '');
+INSERT INTO `m_karyawan` VALUES ('61', '1', '151266', 'Syahrul Maulana', '');
+INSERT INTO `m_karyawan` VALUES ('62', '1', '151921', 'Purwo Handoko', '');
+INSERT INTO `m_karyawan` VALUES ('63', '1', '170024', 'Khris Indrantoro', '');
+INSERT INTO `m_karyawan` VALUES ('64', '1', '152057\r\n', 'Djoko Siswanto', '');
+INSERT INTO `m_karyawan` VALUES ('65', '1', '150648', 'Muhammad Aan Kurniansyah', '');
+INSERT INTO `m_karyawan` VALUES ('67', '1', '151336', 'Muhamad Sahrih', '');
+INSERT INTO `m_karyawan` VALUES ('68', '1', '150640', 'Irwan Firmansyah', '');
+INSERT INTO `m_karyawan` VALUES ('69', '1', '151369', 'Tiara Julia Mega', '');
+INSERT INTO `m_karyawan` VALUES ('70', '1', '150717', 'Hardiansyah', '');
+INSERT INTO `m_karyawan` VALUES ('72', '1', '170159', 'Tigor Kanigoro', '');
+INSERT INTO `m_karyawan` VALUES ('73', '1', '170158', 'Agus Sunaryo', '');
+INSERT INTO `m_karyawan` VALUES ('74', '1', '170160', 'Watari Wahid', '');
+INSERT INTO `m_karyawan` VALUES ('75', '1', '150445', 'Ogy Narendra', '');
+INSERT INTO `m_karyawan` VALUES ('76', '1', '152328', 'Sophian Adhe Chandra', '');
+INSERT INTO `m_karyawan` VALUES ('77', '1', '170157', 'Siti Humaira', '');
+INSERT INTO `m_karyawan` VALUES ('78', '1', '152189', 'Adiyansyah', '');
+INSERT INTO `m_karyawan` VALUES ('79', '1', '152730', 'Bannu Priyambudi ', '');
+INSERT INTO `m_karyawan` VALUES ('80', '1', '170161', 'Wage Mulyatno', '');
 
 -- ----------------------------
 -- Table structure for m_kelas_jabatan
